@@ -1,0 +1,90 @@
+
+
+.athlete-chat .user-tabs{
+max-height: 70vh;
+min-height: 70vh;
+overflow: auto;
+}
+.athlete-chat .user-tabs .user{
+padding: 10px;
+border-bottom: 1px solid gainsboro;
+cursor: pointer;
+padding: 10px;
+}
+.athlete-chat .user-tabs .active , .athlete-chat .user-tabs .user:hover{
+background-color: aliceblue;
+}
+.athlete-chat .user-tabs .media img{
+width: 40px;
+height: 40px;
+border-radius: 100%;
+margin-right:10px;
+}
+.athlete-chat .user-tabs .media h5{
+font-size: 14px;
+font-weight: 600;
+color: black;
+}
+.athlete-chat .user-tabs .media p{
+font-size: 13px;
+display: -webkit-box;
+-webkit-line-clamp: 1;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+margin-bottom:0px;
+}
+.athlete-chat  .chat-person .online-badge
+{
+width: 10px;
+height: 10px;
+background: #1aca1a;
+border-radius: 100%;
+margin: 10px;
+}
+.athlete-chat  .chat-person  .top-bar{
+background-color: white;
+border-bottom: 1px solid gainsboro;
+}
+.athlete-chat .messages{
+min-height: 70vh;
+max-height: 70vh;
+overflow: auto;
+padding: 20px;
+}
+.athlete-chat .messages .media{
+margin-bottom: 20px;
+}
+.athlete-chat .messages .media img{
+width: 40px;
+height: 40px;
+border-radius: 100%;
+margin-right:10px;
+}
+.athlete-chat .messages .media h5{
+font-size: 14px;
+font-weight: 600;
+color: black;
+}
+.athlete-chat .messages .media p{
+font-size: 13px;
+line-height: 20px;
+margin-top: 7px;
+margin-bottom:0px;
+}
+.athlete-chat  .message-type textarea{
+    resize: none;
+
+}
+.athlete-chat .about-chat-person {
+padding: 10px;
+}
+.athlete-chat .about-chat-person img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    margin: 20px auto 20px auto;
+}
+.sub-menu li a{
+ font-size:13px;   
+}

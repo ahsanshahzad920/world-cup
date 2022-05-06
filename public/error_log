@@ -1,0 +1,1 @@
+[23-Feb-2022 06:19:50 UTC] PHP Fatal error:  Cannot redeclare highlightText() (previously declared in /home/stagokxg/oreesight.staggingserver.tech/storage/framework/views/fc92b1d2315a2f644eb9a81d37c8822dc1a3ffc8.php:41) in /home/stagokxg/oreesight.staggingserver.tech/storage/framework/views/fc92b1d2315a2f644eb9a81d37c8822dc1a3ffc8.php on line 112

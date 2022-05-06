@@ -1,0 +1,311 @@
+$gray-color: #6c757d;
+$green-light-color: #468407;
+
+.gray-color {
+  color: $gray-color;
+}
+.bg-gray {
+  background-color: #f8f9fa;
+}
+.light-green-color {
+  color: $green-light-color;
+}
+
+$font-family-poppins: "Poppins", sans-serif;
+
+body {
+  font-family: $font-family-poppins;
+}
+
+.main-heading {
+  font-weight: 700;
+}
+
+// navbar Section
+.navbar-brand {
+  position: relative;
+  .powered-by {
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    font-size: 8px;
+  }
+}
+
+.navbar-for-desktop {
+  .navbar-light {
+    .nav-item {
+      a {
+        color: #6c757d;
+        border-bottom: 4px solid transparent;
+
+        &:hover {
+          border-bottom: 4px solid $green-light-color;
+        }
+
+        &:active {
+          border-bottom: 4px solid $green-light-color;
+        }
+      }
+    }
+  }
+}
+
+.navbar-dark {
+  background-color: #43416f !important;
+}
+
+.dropdown {
+  button {
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}
+// navbar Section
+
+//
+.time-counter-sec {
+  background-image: linear-gradient(
+    to bottom,
+    #2e5604 0%,
+    $green-light-color 100%
+  );
+}
+//
+
+
+// Nav Tabs
+.admin-portal {
+  .side-links-sec {
+    height: 100vh;
+    width: 300px;
+    border: 1px solid $green-light-color;
+    background-image: linear-gradient(
+      to bottom,
+      #2e5604 0%,
+      $green-light-color 100%
+    );
+
+    .links {
+      display: block;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid white;
+      padding: 7px 7px;
+      text-align: left;
+      border-radius: 0;
+
+      &:hover,
+      &.active {
+        background-color: white;
+        color: $green-light-color;
+      }
+    }
+  }
+}
+
+// Nav Tabs
+
+// Index Carousel
+.carousel-sec {
+  .carousel-item {
+    img {
+      height: 700px;
+    }
+  }
+  .carousel-caption {
+    background-color: rgba(black, 0.5);
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+// Index Carousel
+
+// About Us
+.about-sec {
+  background-image: url(../images/about-us-banner.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 400px;
+  position: relative;
+
+  .overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(black, 0.5);
+  }
+
+  .text-sec {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  hr {
+    background-color: white;
+    opacity: 1;
+  }
+}
+
+.work-with-us {
+  .green-bg {
+    color: white;
+    background-image: linear-gradient(
+      to bottom,
+      #2e5604 0%,
+      $green-light-color 100%
+    );
+  }
+}
+
+.lets-work-togather {
+  color: White;
+  background-image: url(../images/futebol-fanatic.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: relative;
+  height: 300px;
+
+  .overlay {
+    background-color: rgba(black, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .position-absolute {
+    top: 100px;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+  }
+}
+// About Us
+
+// Contact Us
+.chat-with-us {
+  .d-flex {
+    img {
+      width: 50px;
+    }
+
+    a {
+      color: $gray-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $green-light-color;
+      }
+    }
+  }
+}
+
+.contact-form {
+  background-color: #43416f;
+  color: white;
+}
+// Contact Us
+
+// Sign Up Form
+.sign-up-form {
+  form {
+    box-shadow: 0px 0px 5px rgba(black, 0.5);
+    border-radius: 10px;
+
+    a {
+      color: #7b808d;
+    }
+  }
+}
+// Sign Up Form
+
+// matches-sec
+
+.table {
+  td {
+    img {
+      width: 20px;
+    }
+  }
+}
+
+// matches-sec
+
+// Footer Section
+.footer-sec {
+  a {
+    color: $gray-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $green-light-color;
+    }
+  }
+}
+// Footer Section
+
+@media screen and (max-width: 767px) {
+  .navbar-for-mobile {
+    .navbar-brand {
+      font-size: 16px;
+    }
+  }
+
+  .carousel-sec {
+    .carousel-item {
+      img {
+        height: 400px;
+      }
+    }
+  }
+
+  .lets-work-togather {
+    background-size: 100% 350px;
+    height: 350px;
+
+    p {
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .admin-portal {
+    .side-links-sec {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .admin-portal {
+    .side-links-sec {
+      width: 250px;
+    }
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .container {
+    max-width: 1500px;
+  }
+}

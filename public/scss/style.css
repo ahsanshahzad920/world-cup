@@ -1,0 +1,236 @@
+.gray-color {
+  color: #6c757d;
+}
+
+.bg-gray {
+  background-color: #f8f9fa;
+}
+
+.light-green-color {
+  color: #468407;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.main-heading {
+  font-weight: 700;
+}
+
+.navbar-brand {
+  position: relative;
+}
+
+.navbar-brand .powered-by {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  font-size: 8px;
+}
+
+.navbar-for-desktop .navbar-light .nav-item a {
+  color: #6c757d;
+  border-bottom: 4px solid transparent;
+}
+
+.navbar-for-desktop .navbar-light .nav-item a:hover {
+  border-bottom: 4px solid #468407;
+}
+
+.navbar-for-desktop .navbar-light .nav-item a:active {
+  border-bottom: 4px solid #468407;
+}
+
+.navbar-dark {
+  background-color: #43416f !important;
+}
+
+.dropdown button {
+  color: white;
+}
+
+.dropdown button:hover {
+  color: white;
+}
+
+.dropdown button::after {
+  display: none;
+}
+
+.time-counter-sec {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e5604), to(#468407));
+  background-image: linear-gradient(to bottom, #2e5604 0%, #468407 100%);
+}
+
+.admin-portal .side-links-sec {
+  height: 100vh;
+  width: 300px;
+  border: 1px solid #468407;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e5604), to(#468407));
+  background-image: linear-gradient(to bottom, #2e5604 0%, #468407 100%);
+}
+
+.admin-portal .side-links-sec .links {
+  display: block;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  padding: 7px 7px;
+  text-align: left;
+  border-radius: 0;
+}
+
+.admin-portal .side-links-sec .links:hover, .admin-portal .side-links-sec .links.active {
+  background-color: white;
+  color: #468407;
+}
+
+.carousel-sec .carousel-item img {
+  height: 700px;
+}
+
+.carousel-sec .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.about-sec {
+  background-image: url(../images/about-us-banner.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 400px;
+  position: relative;
+}
+
+.about-sec .overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.about-sec .text-sec {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.about-sec hr {
+  background-color: white;
+  opacity: 1;
+}
+
+.work-with-us .green-bg {
+  color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e5604), to(#468407));
+  background-image: linear-gradient(to bottom, #2e5604 0%, #468407 100%);
+}
+
+.lets-work-togather {
+  color: White;
+  background-image: url(../images/futebol-fanatic.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: relative;
+  height: 300px;
+}
+
+.lets-work-togather .overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.lets-work-togather .position-absolute {
+  top: 100px;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+}
+
+.chat-with-us .d-flex img {
+  width: 50px;
+}
+
+.chat-with-us .d-flex a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.chat-with-us .d-flex a:hover {
+  color: #468407;
+}
+
+.contact-form {
+  background-color: #43416f;
+  color: white;
+}
+
+.sign-up-form form {
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.sign-up-form form a {
+  color: #7b808d;
+}
+
+.table td img {
+  width: 20px;
+}
+
+.footer-sec a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.footer-sec a:hover {
+  color: #468407;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-for-mobile .navbar-brand {
+    font-size: 16px;
+  }
+  .carousel-sec .carousel-item img {
+    height: 400px;
+  }
+  .lets-work-togather {
+    background-size: 100% 350px;
+    height: 350px;
+  }
+  .lets-work-togather p br {
+    display: none;
+  }
+  .admin-portal .side-links-sec {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .admin-portal .side-links-sec {
+    width: 250px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .container {
+    max-width: 1500px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
