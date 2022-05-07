@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        Create Match
+        Create group
     </div>
 
     <div class="card-body">
@@ -23,15 +23,15 @@
                 {!!$errors->first("group", "<span class='text-danger'>:message</span>")!!}
             </div>
             <div class="form-group">
-                <label class="required" for="team1">Team 1</label>
-                <select name="team1" class="form-control" id="" required>
+                <label class="required" for="team1">Team</label>
+                <select name="team" class="form-control" id="" required>
                     @foreach ($team as $item)
                     <option value="{{$item->id??''}}">{{$item->name??''}}</option>
                     @endforeach
                 </select>
                 {!!$errors->first("team1", "<span class='text-danger'>:message</span>")!!}
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label class="required" for="team1">Team 2</label>
                 <select name="team2" class="form-control" id="" required>
                     @foreach ($team as $item)
@@ -59,7 +59,7 @@
                 <label class="required" for="group">City</label>
                 <input class="form-control" type="text" name="city" id="city" value="{{ old('city', '') }}" required>
                 {!!$errors->first("city", "<span class='text-danger'>:message</span>")!!}
-            </div>
+            </div> --}}
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     SAVE

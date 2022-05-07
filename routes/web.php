@@ -71,8 +71,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('group-edit/{id}', 'GroupController@edit')->name('group.edit');
     Route::post('group-update/{id}', 'GroupController@update')->name('group.update');
     Route::delete('group-destroy/{id}', 'GroupController@destroy')->name('group.destroy');
-    Route::get('match-edit/{id}', 'GroupController@match_edit')->name('match.edit');
-    Route::post('match-update/{id}', 'GroupController@match_update')->name('match.update');
+
+    // Match
+    Route::get('match/{group}/{tournament}', 'GroupMatchController@index');
+    Route::post('match-store', 'GroupMatchController@store')->name('match.store');
+    Route::get('match-edit/{id}', 'GroupMatchController@edit')->name('match.edit');
+    Route::post('match-update/{id}', 'GroupMatchController@update')->name('match.update');
+    Route::delete('match-destroy/{id}', 'GroupMatchController@destroy')->name('match.destroy');
 
     // Rank
     Route::resource('rank', 'RankController');

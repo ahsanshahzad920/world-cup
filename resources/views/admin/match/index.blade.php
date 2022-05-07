@@ -2,29 +2,19 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        Create Match Update
+        Create Match
     </div>
 
     <div class="card-body">
         <form method="POST" action="{{ route("admin.match.store") }}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label class="required" for="team1">Group</label>
-                <select name="group" class="form-control" id="" required>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                </select>
-                {!!$errors->first("group", "<span class='text-danger'>:message</span>")!!}
-            </div>
+            <input type="hidden" name="tournament_id" value="{{$tournament??''}}">
+            <input type="hidden" name="group" value="{{$group??''}}">
             <div class="form-group">
                 <label class="required" for="team1">Team 1</label>
                 <select name="team1" class="form-control" id="" required>
                     @foreach ($team as $item)
-                    <option value="{{$item->id??''}}">{{$item->name??''}}</option>
+                    <option value="{{$item->team_name->id??''}}">{{$item->team_name->name??''}}</option>
                     @endforeach
                 </select>
                 {!!$errors->first("team1", "<span class='text-danger'>:message</span>")!!}
@@ -33,7 +23,7 @@
                 <label class="required" for="team1">Team 2</label>
                 <select name="team2" class="form-control" id="" required>
                     @foreach ($team as $item)
-                    <option value="{{$item->id??''}}">{{$item->name??''}}</option>
+                    <option value="{{$item->team_name->id??''}}">{{$item->team_name->name??''}}</option>
                     @endforeach
                 </select>
                 {!!$errors->first("team2", "<span class='text-danger'>:message</span>")!!}
@@ -68,7 +58,7 @@
 </div>
 <div class="card">
     <div class="card-header">
-        Group & Match
+        Matches
     </div>
 
     <div class="card-body">
@@ -83,7 +73,19 @@
                             Team 1
                         </th>
                         <th>
+                            Goals
+                        </th>
+                        <th>
+                            Points
+                        </th>
+                        <th>
                             Team 2
+                        </th>
+                        <th>
+                            Goals
+                        </th>
+                        <th>
+                            Points
                         </th>
                         <th>
                             Time
@@ -104,9 +106,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($group as $index => $item)
-                        @if($item->group=='A')
-                        <tr><th>Group A</th></tr>
+                    @foreach($match as $index => $item)
                         <tr>
                             <td>
                                 {{$index+1}}
@@ -115,7 +115,19 @@
                                 {{ $item->team1_name->name ?? '' }}
                             </td>
                             <td>
+                                {{ $item->goal1 ?? '' }}
+                            </td>
+                            <td>
+                                {{ $item->point1 ?? '' }}
+                            </td>
+                            <td>
                                 {{ $item->team2_name->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $item->goal2 ?? '' }}
+                            </td>
+                            <td>
+                                {{ $item->point2 ?? '' }}
                             </td>
                             <td>
                                 {{ $item->time ?? '' }}
@@ -130,15 +142,13 @@
                                 {{ $item->city ?? '' }}
                             </td>
                             <td>
-
-                                @can('group_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
-                                        Edit
-                                    </a>
-                                @endcan
-
-                                @can('group_delete')
-                                    <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('match_update')
+                                <a class="btn btn-xs btn-dark" href="{{ url('admin/match-edit/'.$item->id) }}">
+                                    Update
+                                </a>
+                            @endcan
+                                @can('match_delete')
+                                    <form action="{{ route('admin.match.destroy', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="Delete">
@@ -148,227 +158,6 @@
                             </td>
 
                         </tr>
-                        @endif
-                        @if($item->group=='B')
-                        <tr><th>Group B</th></tr>
-                        <tr>
-                            <td>
-                                {{$index+1}}
-                            </td>
-                            <td>
-                                {{ $item->team1_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->team2_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->time ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->date ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->ground ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->city ?? '' }}
-                            </td>
-                            <td>
-
-                                @can('group_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
-                                        Edit
-                                    </a>
-                                @endcan
-
-                                @can('group_delete')
-                                    <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form>
-                                @endcan
-
-                            </td>
-
-                        </tr>
-                        @endif
-                        @if($item->group=='C')
-                        <tr><th>Group C</th></tr>
-                        <tr>
-                            <td>
-                                {{$index+1}}
-                            </td>
-                            <td>
-                                {{ $item->team1_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->team2_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->time ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->date ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->ground ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->city ?? '' }}
-                            </td>
-                            <td>
-
-                                @can('group_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
-                                        Edit
-                                    </a>
-                                @endcan
-
-                                @can('group_delete')
-                                    <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form>
-                                @endcan
-
-                            </td>
-
-                        </tr>
-                        @endif
-                        @if($item->group=='D')
-                        <tr><th>Group D</th></tr>
-                        <tr>
-                            <td>
-                                {{$index+1}}
-                            </td>
-                            <td>
-                                {{ $item->team1_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->team2_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->time ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->date ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->ground ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->city ?? '' }}
-                            </td>
-                            <td>
-
-                                @can('group_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
-                                        Edit
-                                    </a>
-                                @endcan
-
-                                @can('group_delete')
-                                    <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form>
-                                @endcan
-
-                            </td>
-
-                        </tr>
-                        @endif
-                        @if($item->group=='E')
-                        <tr><th>Group E</th></tr>
-                        <tr>
-                            <td>
-                                {{$index+1}}
-                            </td>
-                            <td>
-                                {{ $item->team1_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->team2_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->time ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->date ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->ground ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->city ?? '' }}
-                            </td>
-                            <td>
-
-                                @can('group_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
-                                        Edit
-                                    </a>
-                                @endcan
-
-                                @can('group_delete')
-                                    <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form>
-                                @endcan
-
-                            </td>
-
-                        </tr>
-                        @endif
-                        @if($item->group=='F')
-                        <tr><th>Group F</th></tr>
-                        <tr>
-                            <td>
-                                {{$index+1}}
-                            </td>
-                            <td>
-                                {{ $item->team1_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->team2_name->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->time ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->date ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->ground ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->city ?? '' }}
-                            </td>
-                            <td>
-
-                                @can('group_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
-                                        Edit
-                                    </a>
-                                @endcan
-
-                                @can('group_delete')
-                                    <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form>
-                                @endcan
-
-                            </td>
-
-                        </tr>
-                        @endif
                     @endforeach
                     
                 </tbody>

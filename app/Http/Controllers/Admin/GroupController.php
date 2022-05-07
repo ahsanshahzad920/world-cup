@@ -42,25 +42,15 @@ class GroupController extends Controller
         $validation = $request->validate(
             [
                 'group' => 'required',
-                'team1' => 'required',
-                'team2' => 'required',
-                'date' => 'required',
-                'time' => 'required',
-                'ground' => 'required',
-                'city' => 'required',
+                'team' => 'required',
             ]
         );
         $group = new Group;
         $group->tournament_id = $request->id;
         $group->group = $request->group;
-        $group->team1_id = $request->team1;
-        $group->team2_id = $request->team2;
-        $group->date = $request->date;
-        $group->time = $request->time;
-        $group->ground = $request->ground;
-        $group->city = $request->city;
+        $group->team_id = $request->team;
         $group->save();
-        return redirect('admin/group/'.$request->id)->with('success','Group Match has created!');
+        return redirect('admin/group/'.$request->id)->with('success','Group Team has created!');
     }
 
     /**
@@ -105,25 +95,15 @@ class GroupController extends Controller
         $validation = $request->validate(
             [
                 'group' => 'required',
-                'team1' => 'required',
-                'team2' => 'required',
-                'date' => 'required',
-                'time' => 'required',
-                'ground' => 'required',
-                'city' => 'required',
+                'team' => 'required',
             ]
         );
         $group = Group::find($id);
         $group->tournament_id = $request->id;
         $group->group = $request->group;
-        $group->team1_id = $request->team1;
-        $group->team2_id = $request->team2;
-        $group->date = $request->date;
-        $group->time = $request->time;
-        $group->ground = $request->ground;
-        $group->city = $request->city;
+        $group->team_id = $request->team;
         $group->update();
-        return redirect('admin/group/'.$request->id)->with('success','Group Match has updated!');
+        return redirect('admin/group/'.$request->id)->with('success','Group Team has updated!');
     }
 
     public function match_update(Request $request, $id)
