@@ -70,9 +70,9 @@
                 <a href="#" class="links">Dashboard</a>
                 <a href="#" class="links">Participant Management</a>
                 <a href="#" class="links">Entry Management</a>
-                <a href="#" class="links">Match Management</a>
+             
                 @can('tournament_access')
-                <a href="{{url('admin/tournament')}}" class="links">Tournaments</a>
+                <a href="{{url('admin/tournament')}}" class="links">Match Management</a>
                 @endcan
                 @can('team_access')
                 <a href="{{url('admin/team')}}" class="links">Teams</a>
