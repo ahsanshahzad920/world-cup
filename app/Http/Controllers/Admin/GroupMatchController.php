@@ -59,6 +59,12 @@ class GroupMatchController extends Controller
         $match->time = $request->time;
         $match->ground = $request->ground;
         $match->city = $request->city;
+        $groupMatch1 = Group::where('tournament_id',$request->tournament_id)->where('team_id',$request->team1)->first();
+        $groupMatch1->total_match = $groupMatch1->total_match+1;
+        $groupMatch1->update();
+        $groupMatch2 = Group::where('tournament_id',$request->tournament_id)->where('team_id',$request->team2)->first();
+        $groupMatch2->total_match = $groupMatch2->total_match+1;
+        $groupMatch2->update();
         $match->save();
         return redirect('admin/match/'.$request->group.'/'.$request->tournament_id)->with('success','Group '.$request->group.' Match has created!');
     }
@@ -99,16 +105,34 @@ class GroupMatchController extends Controller
             [
                 'goal1' => 'required',
                 'goal2' => 'required',
-                'point1' => 'required',
-                'point2' => 'required',
             ]
         );
+        
         $match = GroupMatch::find($id);
+        if($request->goal1>$request->goal2){
+            $group = Group::where('team_id',$match->team1_id)->where('tournament_id',$request->tournament_id)->first();
+            $group->total_points = $group->total_points+2;
+            $group->win = $group->win+1;
+            $match->win = $match->team1_id;
+        }else{
+            $group = Group::where('team_id',$match->team2_id)->where('tournament_id',$request->tournament_id)->first();
+            $group->total_points = $group->total_points+2;
+            $group->win = $group->win+1;
+            $match->win = $match->team2_id;
+        }
+        if($request->goal1<$request->goal2){
+            $lose = Group::where('team_id',$match->team1_id)->where('tournament_id',$request->tournament_id)->first();
+            $lose->lose = $group->lose+1;
+            $lose->update();
+        }else{
+            $lose = Group::where('team_id',$match->team2_id)->where('tournament_id',$request->tournament_id)->first();
+            $lose->lose = $group->lose+1;
+            $lose->update();
+        }
         $match->goal1 = $request->goal1;
         $match->goal2 = $request->goal2;
-        $match->point1 = $request->point1;
-        $match->point2 = $request->point2;
         $match->update();
+        $group->update();
         return redirect('admin/match/'.$request->group.'/'.$request->tournament_id)->with('success','Match Points has updated!');
     }
 

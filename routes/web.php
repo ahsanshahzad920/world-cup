@@ -14,7 +14,6 @@ Route::group(['middleware' => ['auth']], function () {
 // User
 Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::get('home', 'HomeController@redirect');
-
     Route::get('dashboard', 'HomeController@index')->name('home');
     Route::get('change-password', 'ChangePasswordController@create')->name('password.create');
     Route::post('change-password', 'ChangePasswordController@update')->name('password.update');
@@ -22,6 +21,9 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::post('test', 'TestsController@store')->name('test.store');
     Route::get('results/{result_id}', 'ResultsController@show')->name('results.show');
     Route::get('send/{result_id}', 'ResultsController@send')->name('results.send');
+
+    Route::get('tournament', 'TournamentController@index');
+    Route::get('point/{id}', 'ParticipantPointController@index');
 });
 
 Route::get('/', 'HomeController@home')->name('/');
@@ -58,7 +60,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/admin', 'HomeController@index')->name('home');
     Route::get('paid-users/{id?}', 'HomeController@paidUsers');
     //Profile
-    Route::view('profile','Admin/users/profile');
+    Route::view('profile', 'Admin/users/profile');
 
     // Tournament
     Route::resource('tournament', 'TournamentController');
@@ -78,7 +80,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('match-edit/{id}', 'GroupMatchController@edit')->name('match.edit');
     Route::post('match-update/{id}', 'GroupMatchController@update')->name('match.update');
     Route::delete('match-destroy/{id}', 'GroupMatchController@destroy')->name('match.destroy');
-
+    // Participant Point
+    Route::resource('participant_point', 'ParticipantPointController');
     // Rank
     Route::resource('rank', 'RankController');
     Route::post('deleteRank', 'RankController@destroy')->name('deleteRank');
@@ -265,7 +268,7 @@ Route::post('document/signature-store', 'DocumentController@documentSignature')-
 
 Route::post('document/image-store', 'DocumentController@documentImage')->name('document-image.store');
 Route::post('document/text-store', 'DocumentController@documentText')->name('document-text.store');
-/* Chat */ 
+/* Chat */
 Route::get('chat/{id?}', 'HomeController@chat')->name('chat');
 Route::get('chat/fetch/msgs', 'CustomChatController@fetch')->name('fetchchat');
 Route::get('chat/new/group', 'CustomChatController@createGroup')->name('makegroup');

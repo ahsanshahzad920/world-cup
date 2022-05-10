@@ -19,6 +19,8 @@
                     <option value="D">D</option>
                     <option value="E">E</option>
                     <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
                 </select>
                 {!!$errors->first("group", "<span class='text-danger'>:message</span>")!!}
             </div>

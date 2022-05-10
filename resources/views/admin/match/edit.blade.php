@@ -18,10 +18,6 @@
                         <input type="number" name="goal1" value="{{$match->goal1??''}}" class="form-control" placeholder="Enter Goals" required>
                         {!!$errors->first("goal1", "<span class='text-danger'>:message</span>")!!}
                     </div>
-                    <div class="col-md-6">
-                        <input type="number" name="point1" value="{{$match->point1??''}}" class="form-control" placeholder="Enter Points" required>
-                        {!!$errors->first("point1", "<span class='text-danger'>:message</span>")!!}
-                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -30,10 +26,6 @@
                     <div class="col-md-6">
                         <input type="number" name="goal2" class="form-control" value="{{$match->goal2??''}}" placeholder="Enter Goals" required>
                         {!!$errors->first("goal2", "<span class='text-danger'>:message</span>")!!}
-                    </div>
-                    <div class="col-md-6">
-                        <input type="number" name="point2" class="form-control" value="{{$match->point2??''}}" placeholder="Enter Points" required>
-                        {!!$errors->first("point2", "<span class='text-danger'>:message</span>")!!}
                     </div>
                 </div>
             </div>

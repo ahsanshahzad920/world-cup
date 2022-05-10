@@ -21,7 +21,7 @@
     <div class="navbar-for-desktop ">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="./index.html">World Cup</a>
+                <a class="navbar-brand" href="{{url('/')}}">World Cup</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item pt-2">
-                            <a class="nav-link" href="./signin.html">
+                            <a class="nav-link" href="#">
                                 <i class="fa fa-bell"></i>
                             </a>
                         </li>
@@ -38,7 +38,7 @@
                             <div class="nav-link dropdown">
                                 <button class="btn ps-0 dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img class="me-2" src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/user.jpg') }}" style="height: 22px;width: 22px;"
+                                    <img class="me-2" src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/team1.jpg') }}" style="height: 22px;width: 22px;"
                                         alt="">
                                     {{Auth()->user()->first_name}} {{Auth()->user()->last_name}}
                                 </button>
@@ -67,8 +67,8 @@
     <div class="admin-portal">
         <div class="d-flex flex-column flex-md-row align-items-start">
             <div class="side-links-sec dropdown">
-                <a href="#" class="links">Dashboard</a>
-                <a href="#" class="links">Participant Management</a>
+                <a href="{{url('dashboard')}}" class="links">Dashboard</a>
+                <a href="{{url('tournament')}}" class="links">Participant Management</a>
                 <a href="#" class="links">Entry Management</a>
              
                 @can('tournament_access')
@@ -76,6 +76,9 @@
                 @endcan
                 @can('team_access')
                 <a href="{{url('admin/team')}}" class="links">Teams</a>
+                @endcan
+                @can('participant_point_access')
+                <a href="{{url('admin/participant_point')}}" class="links">Participant Points</a>
                 @endcan
                 <a href="{{url('chat')}}" class="links">Messages</a>
                 @can('user_access')

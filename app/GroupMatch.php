@@ -18,4 +18,8 @@ class GroupMatch extends Model
     {
         return $this->belongsTo(Team::class, 'team2_id');
     }
+    public function win_name()
+    {
+        return $this->belongsTo(Team::class, 'win');
+    }
 }
