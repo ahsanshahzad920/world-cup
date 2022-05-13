@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Faq;
 use App\FaqCategory;
+use App\GroupMatch;
 use App\Models\Service;
 use App\Models\Feature;
 use App\Models\Content;
@@ -14,6 +15,7 @@ use App\WritingPoint;
 use Illuminate\Http\Request;
 use App\Models\Chat;
 use App\Models\Messages;
+use App\ParticipantPoint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,24 +33,19 @@ class HomeController extends Controller
     }
     public function home()
     {
-        // $service = Service::orderBy('created_at','ASC')->get();
-    	// $writing_point = WritingPoint::orderBy('created_at','ASC')->get();
-    	// $review = Review::orderBy('created_at','ASC')->get();
-    	// $faq_category = FaqCategory::orderBy('created_at','ASC')->get();
-    	// $faq = Faq::orderBy('id','ASC')->get();
-    	// $news = News::orderBy('created_at','DESC')->get();
-        return view('welcome');
-        //return redirect()->route('login');
+        $world_cup = GroupMatch::where('tournament_id',3)->orderBy('date','ASC')->where('win',null)->get();
+        $point = ParticipantPoint::where('tournament_id',3)->orderBy('points','DESC')->get();
+        return view('welcome',compact('world_cup','point'));
     }
-    public function FaqSearch(Request $request){
-        $service = Service::orderBy('created_at','ASC')->get();
-    	$writing_point = WritingPoint::orderBy('created_at','ASC')->get();
-    	$review = Review::orderBy('created_at','ASC')->get();
-    	$faq_category = FaqCategory::orderBy('created_at','ASC')->get();
-    	$faq = Faq::where('heading', 'LIKE', '%'.$request->search.'%')->orWhere('description', 'LIKE', '%'.$request->search.'%')->get();
-    	$news = News::orderBy('created_at','DESC')->get();
-        return view('welcome',compact('service','writing_point','review','faq_category','faq','news'));
-    }
+    // public function FaqSearch(Request $request){
+    //     $service = Service::orderBy('created_at','ASC')->get();
+    // 	$writing_point = WritingPoint::orderBy('created_at','ASC')->get();
+    // 	$review = Review::orderBy('created_at','ASC')->get();
+    // 	$faq_category = FaqCategory::orderBy('created_at','ASC')->get();
+    // 	$faq = Faq::where('heading', 'LIKE', '%'.$request->search.'%')->orWhere('description', 'LIKE', '%'.$request->search.'%')->get();
+    // 	$news = News::orderBy('created_at','DESC')->get();
+    //     return view('welcome',compact('service','writing_point','review','faq_category','faq','news'));
+    // }
     public function redirect()
     {
         if (auth()->user()->is_admin) {

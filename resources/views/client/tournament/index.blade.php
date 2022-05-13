@@ -28,6 +28,9 @@
                         <th>
                             City
                         </th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +40,7 @@
                                 {{$item->id??''}}
                             </td>
                             <td>
-                                <a href="{{url('point/'.$item->id)}}">{{ $item->name ?? '' }}</a>
+                                <a href="{{url('point-table/'.$item->id)}}">{{ $item->name ?? '' }}</a>
                             </td>
                             <td>
                                 {{ $item->start ?? '' }}
@@ -51,7 +54,9 @@
                             <td>
                                 {{ $item->city ?? '' }}
                             </td>
-
+                            <td>
+                                <a class="btn btn-primary" href="{{url('point/'.$item->id)}}">Participant Points</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

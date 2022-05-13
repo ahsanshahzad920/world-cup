@@ -28,7 +28,8 @@ class ReplyMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Reply form Legacy Writer')
+        return $this->subject('Reply form Futebol Fanatics PlatformPowered by Renovato Bros Association
+        ')
                     ->view('emails.replyMail');
     }
 }

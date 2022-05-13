@@ -8,7 +8,7 @@
     <title>World Cup Site - Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/scss/style.css">
-    <script src="/javascript/javascript.js"></script>
+    <script src="{{asset('javascript/javascript.js')}}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,7 +21,10 @@
     <div class="navbar-for-desktop ">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{url('/')}}">World Cup</a>
+                <a class="navbar-brand" href="{{url('/')}}">
+                    <span>Futebol Fanatics Platform</span>
+                    <small class="powered-by">Powered by Renovato Bros Association</small>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -67,19 +70,21 @@
     <div class="admin-portal">
         <div class="d-flex flex-column flex-md-row align-items-start">
             <div class="side-links-sec dropdown">
-                <a href="{{url('dashboard')}}" class="links">Dashboard</a>
+                {{-- <a href="{{url('dashboard')}}" class="links">Dashboard</a> --}}
+                @can('participant_management_access')
                 <a href="{{url('tournament')}}" class="links">Participant Management</a>
+                @endif
                 <a href="#" class="links">Entry Management</a>
-             
+                @can('participant_point_access')
+                <a href="{{url('admin/participant_point')}}" class="links">Participant Management</a>
+                @endcan
                 @can('tournament_access')
                 <a href="{{url('admin/tournament')}}" class="links">Match Management</a>
                 @endcan
                 @can('team_access')
                 <a href="{{url('admin/team')}}" class="links">Teams</a>
                 @endcan
-                @can('participant_point_access')
-                <a href="{{url('admin/participant_point')}}" class="links">Participant Points</a>
-                @endcan
+                
                 <a href="{{url('chat')}}" class="links">Messages</a>
                 @can('user_access')
                 <a href="/admin/users" class="links">Users</a>
@@ -89,6 +94,15 @@
                 @endcan
                 @can('permission_access')
                 <a href="/admin/permissions" class="links">Permissions</a>
+                @endcan
+                @can('content_access')
+                <a href="{{url('admin/content')}}" class="links">Website Content</a>
+                @endcan
+                @can('contact_access')
+                <a href="{{url('admin/contact')}}" class="links">Contact Mail</a>
+                @endcan
+                @can('media_access')
+                <a href="{{url('admin/media')}}" class="links">Social Media</a>
                 @endcan
             </div>
             <div></div>
@@ -100,7 +114,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/javascript/charts.js"></script>
+    <script src="{{asset('javascript/charts.js')}}"></script>
     @yield('script')
 </body>
 

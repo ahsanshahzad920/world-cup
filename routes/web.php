@@ -24,6 +24,8 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
 
     Route::get('tournament', 'TournamentController@index');
     Route::get('point/{id}', 'ParticipantPointController@index');
+    Route::get('point-table/{id}', 'GroupController@index');
+    Route::get('tournament-match/{group}/{tournament}', 'GroupMatchController@index');
 });
 
 Route::get('/', 'HomeController@home')->name('/');
@@ -82,6 +84,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('match-destroy/{id}', 'GroupMatchController@destroy')->name('match.destroy');
     // Participant Point
     Route::resource('participant_point', 'ParticipantPointController');
+    // media
+    Route::resource('media', 'MediaController');
+    // Website Content
+    Route::resource('content', 'ContentController');
+    // contact
+    Route::resource('contact', 'ContactController');
+    Route::post('deleteContact', 'ContactController@destroy')->name('deleteContact');
+
+
+
+
     // Rank
     Route::resource('rank', 'RankController');
     Route::post('deleteRank', 'RankController@destroy')->name('deleteRank');
@@ -100,11 +113,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Review
     Route::resource('review', 'ReviewController');
     Route::post('deleteReview', 'ReviewController@destroy')->name('deleteReview');
-    // media
-    Route::resource('media', 'MediaController');
-    Route::post('deletemedia', 'MediaController@destroy')->name('deleteMedia');
-    // Website Content
-    Route::resource('content', 'ContentController');
+    
     // Country
     Route::resource('country', 'CountryController');
     // Profile
@@ -126,9 +135,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // writing point
     Route::resource('writing_point', 'WritingPointController');
     Route::post('deleteWritingPoint', 'WritingPointController@destroy')->name('deleteWritingPoint');
-    // contact
-    Route::resource('contact', 'ContactController');
-    Route::post('deleteContact', 'ContactController@destroy')->name('deleteContact');
+    
 
     // Lists
     Route::resource('lists', 'ListController');

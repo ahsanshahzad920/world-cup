@@ -3,8 +3,11 @@
 <div class="card">
     <div class="card-header">
         {{$tournament->name??''}} Points
+        @can('participant_prediction_access')
+        <a href="#" class="btn btn-primary">Prediction</a>
+    @endcan
     </div>
-
+    
     <div class="card-body">
         <div class="table-responsive">
             <table class=" table table-bordered table-striped table-hover datatable datatable-User"  id="table-1">

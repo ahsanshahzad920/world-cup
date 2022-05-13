@@ -15,18 +15,11 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $validation = $request->validate(
-            [
-                'name' => 'required|min:1|max:255',
-                'email' => 'required|min:1|max:255',
-                'message' => 'required'
-            ]
-        );
 
         $contact = new Contact;
         $contact->name = $request->name;
         $contact->email = $request->email;
-        $contact->phone = $request->phone;
+        $contact->options = $request->options;
         // $contact->address = $request->address;
         // $contact->city = $request->city;
         $contact->seen = 0;

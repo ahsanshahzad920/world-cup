@@ -24,24 +24,24 @@
                         <h3>Become a Futebol Fanatic!</h3>
                         <p>Take your World Cup experience to the next level, and participate in our digital and
                             fun-filled competition.</p>
-                        <a href="./signin.html" class="btn btn-success px-4 mb-4">Join Now</a>
+                        <a href="{{route('login')}}" class="btn btn-success px-4 mb-4">Join Now</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/banner-2.jpg" class="d-block w-100" alt="...">
+                    <img src="{{asset('images/banner-2.jpg')}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>What is Futebol Fanatics Platform (FFP)?</h3>
                         <p>Get to know us, our rules and how to play – and be ready to be amazed!</p>
-                        <a href="./how-to-play-and-guidlines.html" class="btn btn-success px-4 mb-4">Learn More</a>
+                        <a href="#" class="btn btn-success px-4 mb-4">Learn More</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/banner-3.png" class="d-block w-100" alt="...">
+                    <img src="{{asset('images/banner-3.png')}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>Contact Us</h3>
                         <p>Reach out for of any questions you have, or if you simply want to share your amazing idea to
                             make this platform even better. </p>
-                        <a href="./contact.html" class="btn btn-success px-4 mb-4">Get In Touch </a>
+                        <a href="#" class="btn btn-success px-4 mb-4">Get In Touch </a>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
             </div>
         </div>
     </div>
-
+    @auth
     <div class="my-prediction mt-5">
         <div class="container">
             <h3>Fantasy Soccer World Cup 2022</h3>
@@ -119,84 +119,53 @@
                     <h3>Ranking / Individual</h3>
                     <table class="table table-striped">
                         <tbody>
+                            @foreach ($point as $index=> $item)
                             <tr>
-                                <td>1</td>
-                                <td>Bekithemba</td>
-                                <td>0</td>
+                                <td>{{$index+1}}</td>
+                                <td>{{$item->participant_name->first_name??''}} {{$item->participant_name->last_name??''}}</td>
+                                <td>{{$item->points??''}}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Black Mamba</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>BOBO</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Cyl</td>
-                                <td>0</td>
-                            </tr>
+                            @endforeach
+                            
                         </tbody>
                     </table>
-                    <a href="#" class="btn btn-success">All rankings »</a>
+                    <a href="{{url('point/3')}}" class="btn btn-success">All rankings »</a>
                 </div>
                 <div class="col-12 col-lg-6 mb-5">
                     <h3>Matches</h3>
                     <table class="table table-striped">
                         <tbody>
+                            @foreach ($world_cup as $item)
                             <tr>
-                                <td>21-11 15h</td>
-                                <td><img src="./images/flag.jpg" alt=""> QAT</td>
-                                <td> <img src="./images/flag.jpg" alt=""> A2</td>
+                                <td>{{date('d M Y', strtotime($item->date))??''}} {{$item->time??''}}</td>
+                                <td><img src="{{asset($item->team1_name->flag??'')}}" alt=""> {{$item->team1_name->name??''}}</td>
+                                <td> <img src="{{asset($item->team2_name->flag??'')}}" alt=""> {{$item->team2_name->name??''}}</td>
                                 <td><a href="./matche-number.html">NS</a></td>
                             </tr>
-                            <tr>
-                                <td>21-11 15h</td>
-                                <td><img src="./images/flag.jpg" alt=""> QAT</td>
-                                <td> <img src="./images/flag.jpg" alt=""> A2</td>
-                                <td><a href="./matche-number.html">NS</a></td>
-                            </tr>
-                            <tr>
-                                <td>21-11 15h</td>
-                                <td><img src="./images/flag.jpg" alt=""> QAT</td>
-                                <td> <img src="./images/flag.jpg" alt=""> A2</td>
-                                <td><a href="./matche-number.html">NS</a></td>
-                            </tr>
-                            <tr>
-                                <td>21-11 15h</td>
-                                <td><img src="./images/flag.jpg" alt=""> QAT</td>
-                                <td> <img src="./images/flag.jpg" alt=""> A2</td>
-                                <td><a href="./matche-number.html">NS</a></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    <a href="#" class="btn btn-success">All rankings »</a>
+                    <a href="{{url('point-table/3')}}" class="btn btn-success">All Matches »</a>
                 </div>
                 <div class="col-12 col-lg-6 mb-5">
                     <h3>Ranking / Best league</h3>
                     <table class="table table-striped">
                         <tbody>
+                            @foreach ($point as $index=> $item)
                             <tr>
-                                <td>1</td>
-                                <td>Pitch, betta recognize!</td>
-                                <td>0</td>
+                                <td>{{$index+1}}</td>
+                                <td>{{$item->participant_name->first_name??''}} {{$item->participant_name->last_name??''}}</td>
+                                <td>{{$item->points??''}}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>test</td>
-                                <td>0</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    <a href="#" class="btn btn-success">All rankings »</a>
+                    <a href="{{url('point/3')}}" class="btn btn-success">All Rankings »</a>
                 </div>
             </div>
         </div>
     </div>
-
+    @endauth
     
 
     <div class="ussoccer-sec mt-5">
