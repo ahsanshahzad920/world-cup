@@ -1,8 +1,11 @@
+@php
+    $data = content();
+@endphp
 @extends('layouts.app')
 @section('content')
 <div class="time-counter-sec text-white">
         <div class="container py-5">
-            <h1 class="text-center main-heading ">Get Ready for FIFA World Cup Qatar 2022</h1>
+            <h1 class="text-center main-heading ">{{$data['#top_counter']['heading']??''}}</h1>
             <h4 class="text-center" id="countDown"></h4>
         </div>
     </div>
@@ -18,16 +21,17 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./images/banner-1.jpg" class="d-block w-100" alt="...">
+                @foreach ($slider as $loop=>$item)
+                <div class="carousel-item @if($loop->first) active @endif">
+                    <img src="{{$item->image??''}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>Become a Futebol Fanatic!</h3>
-                        <p>Take your World Cup experience to the next level, and participate in our digital and
-                            fun-filled competition.</p>
-                        <a href="{{route('login')}}" class="btn btn-success px-4 mb-4">Join Now</a>
+                        <h3>{{$item->heading??''}}</h3>
+                        <p>{!!$item->description??''!!}</p>
+                        <a href="{{url($item->link??'')}}" class="btn btn-success px-4 mb-4">Join Now</a>
                     </div>
                 </div>
-                <div class="carousel-item">
+                @endforeach
+                {{-- <div class="carousel-item">
                     <img src="{{asset('images/banner-2.jpg')}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>What is Futebol Fanatics Platform (FFP)?</h3>
@@ -43,7 +47,7 @@
                             make this platform even better. </p>
                         <a href="#" class="btn btn-success px-4 mb-4">Get In Touch </a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                 data-bs-slide="prev">
@@ -60,25 +64,28 @@
 
     <div class="fantasy-coccer-sec mt-5">
         <div class="container">
-            <h3>Fantasy Soccer World Cup 2022</h3>
+            <h3>{{$data['#home_service']['heading']??''}}</h3>
             <hr>
             <div class="row bg-gray">
+                @foreach ($service->take(3) as $item)
                 <div class="col-12 col-lg-4 px-3 px-lg-4 py-4">
-                    <i class="fa fa-soccer-ball-o fa-2x text-success mb-3"></i>
-                    <h5>Fantasy Soccer</h5>
+                    <i class="{{$item->icon??''}} fa-2x text-success mb-3"></i>
+                    <h5>{{$item->name??''}}</h5>
                     <p>
-                        Organising a fantasy football league for World Cup 2022 is easy
+                        {!!$item->description??''!!}
                     </p>
-                    <a href="./signin.html" class="btn btn-success">Login »</a>
+                    <a href="{{route('login')}}" class="btn btn-success">Login »</a>
                 </div>
-                <div class="col-12 col-lg-4 px-3 px-lg-4 py-4">
+                    
+                @endforeach
+                {{-- <div class="col-12 col-lg-4 px-3 px-lg-4 py-4">
                     <i class="fa fa-group fa-2x text-success mb-3"></i>
                     <h5>Play with friends</h5>
                     <p>
                         Play individually against the rest of USA, or invite your friends to your league and play
                         against each other
                     </p>
-                    <a href="./signin.html" class="btn btn-success">Organise Leaguage »</a>
+                    <a href="{{route('login')}}" class="btn btn-success">Organise Leaguage »</a>
                 </div>
                 <div class="col-12 col-lg-4 px-3 px-lg-4 py-4">
                     <i class="fa fa-server fa-2x text-success mb-3"></i>
@@ -86,30 +93,27 @@
                     <p>
                         You predict the match results, we keep track of the scores and rankings for you!
                     </p>
-                    <a href="./my-prediction.html" class="btn btn-success">My Prediction »</a>
-                </div>
+                    <a href="#" class="btn btn-success">My Prediction »</a>
+                </div> --}}
             </div>
         </div>
     </div>
     @auth
+    @if(Auth()->user()->permission==1)
     <div class="my-prediction mt-5">
         <div class="container">
-            <h3>Fantasy Soccer World Cup 2022</h3>
+            <h3>{{$data['#home_ranking']['heading']??''}}</h3>
             <hr>
             <div class="row">
                 <div class="col-12 col-lg-6 mb-5">
                     <a href="#" class="gray-color" style="color: #6c757d;text-decoration: none;">
                         <div class="card p-3">
                             <div class="position-relative">
-                                <img src="./images/fans.jpg" class="img-fluid mb-4" alt="">
+                                <img src="{{asset($data['#home_ranking_detail']['image']??'')}}" class="img-fluid mb-4" alt="">
                             </div>
-                            <h4>A Fantasy Soccer for your office?</h4>
+                            <h4>{{$data['#home_ranking_detail']['heading']??''}}</h4>
                             <p>
-                                Do you want an exclusive Fantasy Soccer for your company? That's possible! With a office
-                                fantasy you can make your pool as exclusive as you want. Add the colors and logo of your
-                                company, invite your colleagues and let them predict. To make things more fun, let teams
-                                and
-                                departments compete against each other for great prizes!
+                                {!!$data['#home_ranking_detail']['description']??''!!}
                             </p>
                             <a href="#" class="btn btn-success">Get Football Fantasy »</a>
                         </div>
@@ -140,7 +144,8 @@
                                 <td>{{date('d M Y', strtotime($item->date))??''}} {{$item->time??''}}</td>
                                 <td><img src="{{asset($item->team1_name->flag??'')}}" alt=""> {{$item->team1_name->name??''}}</td>
                                 <td> <img src="{{asset($item->team2_name->flag??'')}}" alt=""> {{$item->team2_name->name??''}}</td>
-                                <td><a href="./matche-number.html">NS</a></td>
+                                <td>{{$item->type??''}}</td>
+                                <td><a href="#">NS</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -165,6 +170,7 @@
             </div>
         </div>
     </div>
+    @endif
     @endauth
     
 
@@ -172,8 +178,9 @@
         <div class="container">
             <h3><i class="fa fa-twitter"></i> @ussoccer</h3>
             <div class="row">
+                @foreach ($blog as $item)
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card p-2">
+                    {{-- <div class="card p-2">
                         <div class="d-flex">
                             <div>
                                 <img src="./images/ussoccer.jpg" class="img-fluid" alt="">
@@ -188,30 +195,31 @@
                             <br>
                             Wishing you a blessed month.
                         </p>
-                    </div>
-
+                    </div> --}}
                     <div class="card mt-3 p-2">
                         <div class="card-img">
-                            <img src="./images/ussoccer-1.png" class="img-fluid" alt="">
+                            @if ($item->image!=null)
+                                
+                            <img src="{{asset($item->image)}}" class="img-fluid" alt="">
+                            @endif
                             <div class="d-flex mt-3">
                                 <div>
-                                    <img src="./images/ussoccer.jpg" class="img-fluid" alt="">
+                                    <img src="{{asset($item->author_image)}}" class="img-fluid" alt="">
                                 </div>
                                 <div>
-                                    <a href="#"><b>@ussoccer</b></a>
-                                    <p>01-04-2022, 23:05</p>
+                                    <a href="#"><b>{{$item->author??''}}</b></a>
+                                    <p>{{$item->created_at->diffForHumans()}}</p>
                                 </div>
                             </div>
                             <p>
-                                #RamadanMubarak to everyone celebrating in our soccer community and around the world!
-                                <br>
-                                Wishing you a blessed month.
+                                {!!$item->description??''!!}
                             </p>
 
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
+                @endforeach
+                {{-- <div class="col-12 col-md-6 col-lg-4">
                     <div class="card p-2">
                         <div class="d-flex">
                             <div>
@@ -288,7 +296,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

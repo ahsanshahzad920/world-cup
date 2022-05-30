@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.users.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("admin.users.store") }}" enctype="multipart/form-data" onsubmit="return confirm('Are you sure to add User??');">
             @csrf
             <div class="form-group">
                 <label class="required" for="first_name">First Name</label>

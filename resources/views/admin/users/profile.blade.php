@@ -25,7 +25,7 @@
                     <div>
                         <div class="profile-title">
                             <div class="media ad-profile2-img">
-                                <img alt="" src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/user2.png') }}">
+                                <img alt="" src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/user2.png') }}" style="height: 100px;">
                                 <div class="media-body">
                                     <h5 class="mb-1">{{ Auth()->user()->first_name }}
                                         {{ Auth()->user()->last_name }}</h5>
@@ -139,7 +139,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Website <small>(optional)</small></label>
-                                <input class="form-control" type="url" value="{{ Auth()->user()->website ?? '' }}"
+                                <input class="form-control" name="website" type="url" value="{{ Auth()->user()->website ?? '' }}"
                                     placeholder="Website" data-bs-original-title="" title="">
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                                 {!! $errors->first('address', "<span class='text-danger'>:message</span>") !!}
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-4">
+                        <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">City</label>
                                 <input class="form-control" type="text" name="city"
@@ -167,7 +167,7 @@
                                 {!! $errors->first('city', "<span class='text-danger'>:message</span>") !!}
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3">
+                        <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Postal Code</label>
                                 <input class="form-control" type="number" name="postcode"
@@ -176,7 +176,7 @@
                                 {!! $errors->first('postcode', "<span class='text-danger'>:message</span>") !!}
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        {{-- <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label">Country</label>
                                 <select class="form-control btn-square" name="country">
@@ -188,9 +188,9 @@
                                 </select>
                                 {!! $errors->first('country', "<span class='text-danger'>:message</span>") !!}
                             </div>
-                        </div>
+                        </div> --}}
                         
-                        <div class="col-sm-6 col-md-6">
+                        {{-- <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Level</label>
                                 <select name="level" class="form-control">
@@ -202,8 +202,8 @@
                                 
                                 
                             </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
+                        </div> --}}
+                        {{-- <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Active Flag <small>(optional)</small></label>
                                 <select name="active_flag" class="form-control">
@@ -213,9 +213,9 @@
                                 </select>
                                 {!! $errors->first('active_flag', "<span class='text-danger'>:message</span>") !!}
                             </div>
-                        </div>
+                        </div> --}}
                         <!--  -->
-                        <div class="col-sm-6 col-md-4">
+                        {{-- <div class="col-sm-6 col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">id_ERP_customer_1</label>
                                 <input class="form-control" type="number" name="id_ERP_customer_1"
@@ -223,8 +223,8 @@
                                     title="">
                                 {!! $errors->first('id_ERP_customer_1', "<span class='text-danger'>:message</span>") !!}
                             </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
+                        </div> --}}
+                        {{-- <div class="col-sm-6 col-md-3">
                             <div class="mb-3">
                                 <label class="form-label">id_ERP_customer_2</label>
                                 <input class="form-control" type="number" name="id_ERP_customer_2"
@@ -241,10 +241,10 @@
                                     data-bs-original-title="" title="">
                                 {!! $errors->first('id_ERP_customer_3', "<span class='text-danger'>:message</span>") !!}
                             </div>
-                        </div>
+                        </div> --}}
                         <!--  -->
                         <!--  -->
-                        <div class="col-sm-6 col-md-4">
+                        {{-- <div class="col-sm-6 col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">RFC</label>
                                 <input class="form-control" type="text" name="RFC"
@@ -261,8 +261,8 @@
                                     data-bs-original-title="" title="">
                                 {!! $errors->first('business_name', "<span class='text-danger'>:message</span>") !!}
                             </div>
-                        </div>
-                        <div class="col-md-5">
+                        </div> --}}
+                        {{-- <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label">UserIp</label>
                                 <input class="form-control" type="number" name="user_ip"
@@ -270,7 +270,7 @@
                                     data-bs-original-title="" title="">
                                 {!! $errors->first('user_ip', "<span class='text-danger'>:message</span>") !!}
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!--  -->
                         <div class="col-md-12 mb-3">

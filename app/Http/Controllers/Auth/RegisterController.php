@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -84,6 +85,10 @@ class RegisterController extends Controller
                     'whatsAppDiscussion' => $data['whatsAppDiscussion'],
                     'termsAndConditions' => $data['termsAndConditions'],
                 ]);
+                $details = [
+                    'body' => 'Your account Admins can review and approve or deny!'
+                ];
+                Mail::to($data['email'])->send(new \App\Mail\PermissionUser($details));
        }else{
            return redirect()->back();
        }

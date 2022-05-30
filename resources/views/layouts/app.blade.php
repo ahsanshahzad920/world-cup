@@ -80,7 +80,7 @@
                             <a class="nav-link" href="/matches">Matches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/how-to-play">How To Play & Guidlines</a>
+                            <a class="nav-link" href="/how-to-play">How To Play & Guidelines</a>
                         </li>
                     </ul>
                     @auth

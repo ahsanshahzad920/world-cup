@@ -38,7 +38,13 @@
                             {{ trans('cruds.user.fields.email_verified_at') }}
                         </th>
                         <th>
+                            Payment
+                        </th>
+                        <th>
                             {{ trans('cruds.user.fields.roles') }}
+                        </th>
+                        <th>
+                            Permission
                         </th>
                         <th>
                             &nbsp;
@@ -67,9 +73,19 @@
                                 {{ $user->email_verified_at ?? '' }}
                             </td>
                             <td>
+                                {{ $user->paid_amount ?? '' }}
+                            </td>
+                            <td>
                                 @foreach($user->roles as $key => $item)
                                     <span class="badge badge-info">{{ $item->title }}</span>
                                 @endforeach
+                            </td>
+                            <td>
+                                @if($user->permission==0)
+                                Denied
+                                @else
+                                Accepted
+                                @endif
                             </td>
                             <td>
                                 @can('user_show')
@@ -89,6 +105,17 @@
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    </form>
+                                @endcan
+                                @can('user_delete')
+                                    <form action="{{ route('admin.users.permission', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        @if($user->permission==0)
+                                        <input type="submit" class="btn btn-xs btn-warning mt-2" value="Accept">
+                                        @else
+                                        <input type="submit" class="btn btn-xs btn-dark mt-2" value="Denied">
+                                        @endif
                                     </form>
                                 @endcan
 

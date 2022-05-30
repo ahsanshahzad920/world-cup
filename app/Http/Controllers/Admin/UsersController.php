@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Role;
+use Illuminate\Support\Facades\Mail;
 use App\User;
 use Gate;
 use Illuminate\Http\Request;
@@ -82,5 +83,28 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+    public function permission($id)
+    {
+        $user = User::find($id);
+        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        
+        if ($user->permission == 0) {
+            $user->permission = 1;
+            $user->update();
+            $details = [
+                'body' => 'You request have been accepted!'
+            ];
+            Mail::to($user->email)->send(new \App\Mail\PermissionUser($details));
+        }else{
+            $user->permission = 0;
+            $user->update();
+            $details = [
+                'body' => 'You request have been denied!'
+            ];
+            Mail::to($user->email)->send(new \App\Mail\PermissionUser($details));
+        }
+        
+        return back();
     }
 }

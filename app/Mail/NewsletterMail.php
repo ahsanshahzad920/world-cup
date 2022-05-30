@@ -28,7 +28,7 @@ class NewsletterMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Important Mail form Legacy Writer')
+        return $this->subject('Important Mail form Futebol Fanatics Platform')
                     ->view('emails.newsletter');
     }
 }

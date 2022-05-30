@@ -47,6 +47,7 @@ class GroupMatchController extends Controller
                 'date' => 'required',
                 'time' => 'required',
                 'ground' => 'required',
+                'type' => 'required',
                 'city' => 'required',
             ]
         );
@@ -58,6 +59,7 @@ class GroupMatchController extends Controller
         $match->date = $request->date;
         $match->time = $request->time;
         $match->ground = $request->ground;
+        $match->type = $request->type;
         $match->city = $request->city;
         $groupMatch1 = Group::where('tournament_id',$request->tournament_id)->where('team_id',$request->team1)->first();
         $groupMatch1->total_match = $groupMatch1->total_match+1;

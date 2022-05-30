@@ -20,9 +20,6 @@
                 <thead>
                     <tr>
                         <th>
-                            ID
-                        </th>
-                        <th>
                             Name
                         </th>
                         <th>
@@ -34,9 +31,6 @@
                         <th>
                             Country
                         </th>
-                        <th>
-                            City
-                        </th>
                         
                         <th>
                             Actions
@@ -46,9 +40,6 @@
                 <tbody>
                     @foreach($tournament as $key => $item)
                         <tr>
-                            <td>
-                                {{$item->id??''}}
-                            </td>
                             <td>
                                 <a href="{{url('admin/group/'.$item->id)}}">{{ $item->name ?? '' }}</a>
                             </td>
@@ -60,9 +51,6 @@
                             </td>
                             <td>
                                 {{ $item->country ?? '' }}
-                            </td>
-                            <td>
-                                {{ $item->city ?? '' }}
                             </td>
                             <td>
 

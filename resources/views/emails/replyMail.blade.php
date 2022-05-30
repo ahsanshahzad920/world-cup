@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Legacy Writer</title>
+    <title>Futebol Fanatics Platform</title>
 </head>
 <body>
     <b>Hi,</b><br>

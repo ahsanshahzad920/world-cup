@@ -43,7 +43,6 @@ class TournamentController extends Controller
                 'start' => 'required|max:255',
                 'end' => 'required|max:255',
                 'country' => 'required|max:255',
-                'city' => 'required|max:255',
             ]
         );
         $tournament = new Tournament;
@@ -51,7 +50,6 @@ class TournamentController extends Controller
         $tournament->start = $request->start;
         $tournament->end = $request->end;
         $tournament->country = $request->country;
-        $tournament->city = $request->city;
         $tournament->save();
         return redirect('admin/tournament')->with('success','Tournament has created!');
     }
@@ -94,7 +92,6 @@ class TournamentController extends Controller
                 'start' => 'required|max:255',
                 'end' => 'required|max:255',
                 'country' => 'required|max:255',
-                'city' => 'required|max:255',
             ]
         );
         
@@ -103,7 +100,6 @@ class TournamentController extends Controller
         $tournament->start = $request->start;
         $tournament->end = $request->end;
         $tournament->country = $request->country;
-        $tournament->city = $request->city;
         $tournament->update();
         return redirect('admin/tournament')->with('success','Tournament has updated!');
     }

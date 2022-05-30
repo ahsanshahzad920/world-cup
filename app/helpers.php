@@ -23,20 +23,20 @@ function content(){
         $media  = App\Media::orderBy('id','ASC')->get();
         return $media;
     }
-    function news(){
-        $news  = App\News::orderBy('created_at','DESC')->get();
-        return $news;
+    // function news(){
+    //     $news  = App\News::orderBy('created_at','DESC')->get();
+    //     return $news;
+    // }
+    function user()
+    {
+        $user  =  App\User::where('created_at', '>', Carbon::now()->subHours(24)->toDateTimeString())->get();
+        return $user;
     }
-    // function user()
-    // {
-    //     $user  =  App\Models\User::where('created_at', '>', Carbon::now()->subHours(24)->toDateTimeString())->get();
-    //     return $user;
-    // }
-    // function contact()
-    // {
-    //     $contact  =  App\Models\Contact::where('seen',0)->get();
-    //     return $contact;
-    // }
+    function contact()
+    {
+        $contact  =  App\Models\Contact::where('seen',0)->get();
+        return $contact;
+    }
     
     // function product()
     // {

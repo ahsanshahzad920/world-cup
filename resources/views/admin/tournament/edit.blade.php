@@ -31,11 +31,6 @@
                     <input class="form-control" type="text" name="country" id="country" value="{{ $tournament->country??'' }}" required>
                     {!!$errors->first("country", "<span class='text-danger'>:message</span>")!!}
                 </div>
-                <div class="form-group">
-                    <label class="required" for="group">City</label>
-                    <input class="form-control" type="text" name="city" id="city" value="{{ $tournament->city??'' }}" required>
-                    {!!$errors->first("city", "<span class='text-danger'>:message</span>")!!}
-                </div>
 
                 <div class="form-group">
                     <button class="btn btn-danger" type="submit">

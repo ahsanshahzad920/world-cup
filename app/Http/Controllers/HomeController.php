@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
 use App\Faq;
 use App\FaqCategory;
 use App\GroupMatch;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Models\Chat;
 use App\Models\Messages;
 use App\ParticipantPoint;
+use App\Slider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +37,10 @@ class HomeController extends Controller
     {
         $world_cup = GroupMatch::where('tournament_id',3)->orderBy('date','ASC')->where('win',null)->get();
         $point = ParticipantPoint::where('tournament_id',3)->orderBy('points','DESC')->get();
-        return view('welcome',compact('world_cup','point'));
+        $slider = Slider::orderBy('id','DESC')->get();
+        $service = Service::orderBy('id','ASC')->get();
+        $blog = Blog::orderBy('id','ASC')->get();
+        return view('welcome',compact('world_cup','point','slider','service','blog'));
     }
     // public function FaqSearch(Request $request){
     //     $service = Service::orderBy('created_at','ASC')->get();

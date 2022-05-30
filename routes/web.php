@@ -129,6 +129,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Team
     Route::resource('team', 'TeamController');
     Route::post('deleteTeam', 'TeamController@destroy')->name('deleteTeam');
+    // Slider
+    Route::resource('slider', 'SliderController');
+    Route::post('deleteSlider', 'SliderController@destroy')->name('deleteSlider');
+    // Service
+    Route::resource('service', 'ServiceController');
+    Route::post('deleteService', 'ServiceController@destroy')->name('deleteService');
+    // Blog
+    Route::resource('blog', 'BlogController');
+    Route::post('deleteBlog', 'BlogController@destroy')->name('deleteBlog');
     // news
     Route::resource('news', 'NewsController');
     Route::post('deletenews', 'NewsController@destroy')->name('deleteNews');
@@ -167,6 +176,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::post('users/permission/{id}', 'UsersController@permission')->name('users.permission');
     Route::resource('users', 'UsersController');
     //Document
     Route::delete('documents/destroy', 'DocumentController@massDestroy')->name('documents.massDestroy');

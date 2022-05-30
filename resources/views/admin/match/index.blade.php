@@ -29,6 +29,17 @@
                     {!! $errors->first('team2', "<span class='text-danger'>:message</span>") !!}
                 </div>
                 <div class="form-group">
+                    <label class="required" for="group">Match Type</label>
+                    <select name="type" class="form-control" id="">
+                        <option value="league">league Match</option>
+                        <option value="Quarterfinal">Quarterfinal</option>
+                        <option value="Semifinal">Semifinal</option>
+                        <option value="3rd place">3rd place Match</option>
+                        <option value="Final">Final</option>
+                    </select>
+                    {!! $errors->first('type', "<span class='text-danger'>:message</span>") !!}
+                </div>
+                <div class="form-group">
                     <label class="required" for="group">Date</label>
                     <input class="form-control" type="date" name="date" id="date" value="{{ old('date', '') }}"
                         required>
@@ -71,7 +82,7 @@
                     <thead>
                         <tr>
                             <th>
-                                Sr.
+                                Match #
                             </th>
                             <th>
                                 Team 1
@@ -79,9 +90,9 @@
                             <th>
                                 Goals
                             </th>
-                            {{-- <th>
-                            Points
-                        </th> --}}
+                            <th>
+                                Type
+                            </th>
                             <th>
                                 Team 2
                             </th>
@@ -98,7 +109,7 @@
                                 Date
                             </th>
                             <th>
-                                Ground
+                                Stadium
                             </th>
                             <th>
                                 City
@@ -123,9 +134,9 @@
                                 <td>
                                     {{ $item->goal1 ?? '' }}
                                 </td>
-                                {{-- <td>
-                                {{ $item->point1 ?? '' }}
-                            </td> --}}
+                                <td>
+                                    {{ $item->type ?? '' }}
+                                </td>
                                 <td>
                                     {{ $item->team2_name->name ?? '' }}
                                 </td>
