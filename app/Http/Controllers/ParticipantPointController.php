@@ -16,7 +16,7 @@ class ParticipantPointController extends Controller
     public function index($id)
     {
         $tournament = Tournament::find($id);
-        $point = ParticipantPoint::where('tournament_id',$id)->orderBy('points','DESC')->get();
+        $point = ParticipantPoint::where('tournament_id',$id)->where('status',0)->orderBy('points','DESC')->get();
         return view('client/point.index',compact('point','tournament'));
     }
 

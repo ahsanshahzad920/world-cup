@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Newsletter;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -85,10 +86,13 @@ class RegisterController extends Controller
                     'whatsAppDiscussion' => $data['whatsAppDiscussion'],
                     'termsAndConditions' => $data['termsAndConditions'],
                 ]);
-                $details = [
-                    'body' => 'Your account Admins can review and approve or deny!'
-                ];
-                Mail::to($data['email'])->send(new \App\Mail\PermissionUser($details));
+                $newsletter = new Newsletter;
+                $newsletter->email = $data['email'];
+                $newsletter->save();
+                // $details = [
+                //     'body' => 'Your account Admins can review and approve or deny!'
+                // ];
+                // Mail::to($data['email'])->send(new \App\Mail\PermissionUser($details));
        }else{
            return redirect()->back();
        }

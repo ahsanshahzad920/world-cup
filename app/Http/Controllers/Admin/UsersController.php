@@ -92,17 +92,17 @@ class UsersController extends Controller
         if ($user->permission == 0) {
             $user->permission = 1;
             $user->update();
-            $details = [
-                'body' => 'You request have been accepted!'
-            ];
-            Mail::to($user->email)->send(new \App\Mail\PermissionUser($details));
+            // $details = [
+            //     'body' => 'You request have been accepted!'
+            // ];
+            // Mail::to($user->email)->send(new \App\Mail\PermissionUser($details));
         }else{
             $user->permission = 0;
             $user->update();
-            $details = [
-                'body' => 'You request have been denied!'
-            ];
-            Mail::to($user->email)->send(new \App\Mail\PermissionUser($details));
+            // $details = [
+            //     'body' => 'You request have been denied!'
+            // ];
+            // Mail::to($user->email)->send(new \App\Mail\PermissionUser($details));
         }
         
         return back();

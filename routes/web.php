@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('match-destroy/{id}', 'GroupMatchController@destroy')->name('match.destroy');
     // Participant Point
     Route::resource('participant_point', 'ParticipantPointController');
+    Route::post('deleteTypeMedal', 'TypeMedalController@destroy')->name('deleteTypeMedal');
     // media
     Route::resource('media', 'MediaController');
     // Website Content

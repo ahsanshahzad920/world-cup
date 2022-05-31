@@ -19,6 +19,7 @@
                             <th>
                                 Participant
                             </th>
+                            
                             <th>
                                 Actions
                             </th>
@@ -34,7 +35,7 @@
                                     {{ $item->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ number_format($participant_point->where('tournament_id', $item->tournament_id)->count() ?? '0') }}
+                                    {{ number_format($participant_point->where('tournament_id', $item->id)->count() ?? '0') }}
                                 </td>
 
                                 <td>

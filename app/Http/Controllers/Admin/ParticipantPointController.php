@@ -61,9 +61,17 @@ class ParticipantPointController extends Controller
      * @param  \App\ParticipantPoint  $participantPoint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ParticipantPoint $participantPoint)
+    public function update(Request $request, $id)
     {
-        //
+        $participant_point = ParticipantPoint::find($id);
+        if($participant_point->status==0){
+            $participant_point->status = 1;
+            $participant_point->update();
+        }else{
+            $participant_point->status = 0;
+            $participant_point->update();
+        }
+        return back();
     }
 
     /**

@@ -19,6 +19,12 @@
                         <th>
                             Points
                         </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +39,26 @@
                             </td>
                             <td>
                                 {{ $item->points ?? '' }}
+                            </td>
+                            <td>
+                                @if($item->status==0)
+                                <span class="btn btn-primary" style="border-radius: 0px;"> Active</span>
+                                @else
+                                <span class="btn btn-danger" style="border-radius: 0px;"> Block</span>
+                                @endif
+                            </td>
+                            <td>
+                                @can('tournament_delete')
+                                    <form action="{{ route('admin.participant_point.update', $item->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        @if($item->status==0)
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Block">
+                                        @else
+                                        <input type="submit" class="btn btn-xs btn-success" value="Active">
+                                        @endif
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

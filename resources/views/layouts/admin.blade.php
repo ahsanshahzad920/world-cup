@@ -135,6 +135,9 @@ $contact = contact();
                     @can('media_access')
                         <a href="{{ url('admin/media') }}" class="links">Social Media</a>
                     @endcan
+                    @can('newsletter_access')
+                        <a href="{{ url('admin/newsletter') }}" class="links">Newsletter</a>
+                    @endcan
                 </div>
                 <div></div>
                 <div class="w-100 px-0 py-4 p-md-4" id="v-pills-dashboard">
