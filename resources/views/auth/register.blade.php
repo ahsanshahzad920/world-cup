@@ -81,6 +81,11 @@
                         </ul>
                     </div>
                 @endif
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">Username<span class="text-danger">*</span> </label>
+                    <input type="text" placeholder="Username" class="form-control" name="username" value="{{ old('username') }}" />
+                    
+                </div>
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name<span class="text-danger">*</span> </label>
                         <input type="text" placeholder="First Name" class="form-control" name="first_name" value="{{ old('first_name') }}" />
@@ -128,6 +133,9 @@
                         <input type="radio" name="termsAndConditions" value="no" class="ms-3"> No
                     </div>
                     <button type="submit" class="btn btn-success">Create Account</button>
+                    <div class="mb-3">
+                        Already Register? <a href="{{ route('login') }}">Login</a>
+                    </div>
                 </form>
             </div>
         </div>

@@ -32,6 +32,7 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
+        'username',
         'first_name',
         'last_name',
         'email',
@@ -49,6 +50,7 @@ class User extends Authenticatable
         'termsAndConditions',
         'phone',
         'permission',
+        'address',
     ];
     public function country_name()
     {
@@ -107,16 +109,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    // public function setImageAttribute($file)
-    // {
-    //     if ($file) {
-    //         $upload = 'uploads';
-    //         $filename = time() . $file->getClientOriginalName();
-    //         $path    = move_uploaded_file($file->getPathName(), $upload . $filename);
-    //         $image =  $upload . $filename;
-    //         $this->attributes['image'] = $image;
-    //     }
-    // }
+    public function setImageAttribute($file)
+    {
+        if ($file) {
+            $upload = 'uploads';
+            $filename = time() . $file->getClientOriginalName();
+            $path    = move_uploaded_file($file->getPathName(), $upload . $filename);
+            $image =  $upload . $filename;
+            $this->attributes['image'] = $image;
+        }
+    }
 
     // public function getImageAttribute($value)
     // {

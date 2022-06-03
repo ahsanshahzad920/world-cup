@@ -6,6 +6,7 @@ use App\Blog;
 use App\Faq;
 use App\FaqCategory;
 use App\GroupMatch;
+use App\Guideline;
 use App\Models\Service;
 use App\Models\Feature;
 use App\Models\Content;
@@ -18,6 +19,8 @@ use App\Models\Chat;
 use App\Models\Messages;
 use App\ParticipantPoint;
 use App\Slider;
+use App\Term;
+use App\Tournament;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,7 +66,8 @@ class HomeController extends Controller
 
     public function HowToPlay()
     {
-        return view('how-to-play');
+        $guideline = Guideline::orderBy('created_at','ASC')->get();
+        return view('how-to-play',compact('guideline'));
     }
 
     public function About()
@@ -73,7 +77,9 @@ class HomeController extends Controller
 
     public function fame()
     {
-        return view('hall-of-fame'); 
+        $tournament = Tournament::all();
+        $point = ParticipantPoint::orderBy('points','DESC')->get();
+        return view('hall-of-fame',compact('tournament','point')); 
     }
 
     public function contact()
@@ -83,12 +89,14 @@ class HomeController extends Controller
 
     public function term()
     {
-        return view('term-condition'); 
+        $term = Term::orderBy('created_at','ASC')->get();
+        return view('term-condition',compact('term')); 
     }
 
     public function matches()
     {
-        return view('matches'); 
+        $world_cup = GroupMatch::orderBy('date','ASC')->where('win',null)->get();
+        return view('matches',compact('world_cup')); 
     }
 
     public function prediction()

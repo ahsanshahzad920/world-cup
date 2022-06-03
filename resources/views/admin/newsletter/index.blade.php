@@ -12,7 +12,7 @@
             
             <div class="form-group">
                 <label class="required" for="description">Message<span style="color: red;">*</span></label>
-                <textarea class="form-control" name="message" required>{{ old('description') }}</textarea>
+                <textarea class="form-control" name="message" id="summernote" required>{{ old('description') }}</textarea>
                 {!!$errors->first("message", "<span class='text-danger'>:message</span>")!!}
             </div>
             <br>

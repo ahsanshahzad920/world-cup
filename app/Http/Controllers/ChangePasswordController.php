@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
-class ChangePasswordController extends Controller
+class ChangepasswordController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('client.changePassword');
@@ -23,25 +19,18 @@ class ChangePasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function reset(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $validation = $request->validate(
+            [
+                'password' => 'required|string|min:8|confirmed'
+            ]
+        );
+        $user = User::find(Auth()->user()->id);
+        $user->password = Hash::make($request->password);
+        $user->update();
+        // auth()->user()->update(['password' => $request->input('password')]);
 
-        auth()->user()->update(['password' => $request->input('password')]);
-
-        return redirect()->back()->withStatus('Password changed successfully.');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        return redirect()->back()->with('success','Password changed successfully.');
     }
 }

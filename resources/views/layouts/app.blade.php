@@ -21,9 +21,9 @@
 <body>
 
     <div class="navbar-for-desktop d-none d-lg-block">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 65px;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}" style="font-size: 23px; font-weight: bold; margin-left:-65px;">
                     <span>Futebol Fanatics Platform</span>
                     <small class="powered-by">Powered by Renovato Bros Association</small>
                 </a>
@@ -77,10 +77,21 @@
                             <a class="nav-link ps-0" href="/">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link ps-0" href="{{url('about-us')}}">About Us</a>
+                        </li>
+                        @auth
+                        <li class="nav-item">
                             <a class="nav-link" href="/matches">Matches</a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/how-to-play">How To Play & Guidelines</a>
+                        </li class="nav-item">
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="{{url('hall-of-fame')}}">Hall of Fame</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/contact-us">Contact Us</a>
                         </li>
                     </ul>
                     @auth
@@ -169,7 +180,7 @@
                 <div class="col-sm-4">
                     <div class="text-start text-lg-end">
                         <a href="#" class="me-2">Privacy Policy</a>
-                        <a href="/terms-condition">Terms & Conditions</a>
+                        <a href="{{url('term-condition')}}">Terms & Conditions</a>
                     </div>
                 </div>
             </div>

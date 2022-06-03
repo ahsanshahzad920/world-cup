@@ -32,7 +32,7 @@
                 @method('PUT')
                 <div class="form-group">
                     <label class="required" for="description">Reply</label>
-                    <textarea id="div_editor1" class="form-control" type="text" name="description"
+                    <textarea id="summernote" class="form-control" type="text" name="description"
                         required>{{ old('description') }}</textarea>
                     {!! $errors->first('description', "<span class='text-danger'>:message</span>") !!}
                 </div>

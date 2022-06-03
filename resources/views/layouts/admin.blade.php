@@ -15,8 +15,11 @@ $contact = contact();
     <script src="{{ asset('javascript/javascript.js') }}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     @yield('style')
 </head>
 
@@ -61,15 +64,22 @@ $contact = contact();
                         <li class="nav-item">
                             <div class="nav-link drop down">
                                 <button class="btn ps-0 dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="me-2"
                                         src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/team1.jpg') }}"
                                         style="height: 22px;width: 22px;" alt="">
                                     {{ Auth()->user()->first_name }} {{ Auth()->user()->last_name }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <a class="dropdown-item" href="{{url('admin/profile')}}">View Profile</a>
+                                    @if (Auth()->user()->is_admin)
+                                        <a class="dropdown-item" href="{{ url('admin/profile') }}">View Profile</a>
+                                        <a class="dropdown-item" href="{{ url('change-password') }}">Change
+                                            Password</a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ url('profile') }}">View Profile</a>
+                                        <a class="dropdown-item" href="{{ url('change-password') }}">Change
+                                            Password</a>
+                                    @endif
                                     {{-- <a class="dropdown-item" href="#">Edit Profile</a> --}}
 
                                     <a href="javascript:void(0);" class="dropdown-item"
@@ -129,6 +139,9 @@ $contact = contact();
                     @can('slider_access')
                         <a href="{{ url('admin/slider') }}" class="links">Slider</a>
                     @endcan
+                    @can('guideline_access')
+                        <a href="{{ url('admin/guideline') }}" class="links">Play & Guidelines</a>
+                    @endcan
                     @can('contact_access')
                         <a href="{{ url('admin/contact') }}" class="links">Contact Form Inquiries</a>
                     @endcan
@@ -137,6 +150,9 @@ $contact = contact();
                     @endcan
                     @can('newsletter_access')
                         <a href="{{ url('admin/newsletter') }}" class="links">Newsletter</a>
+                    @endcan
+                    @can('term_access')
+                        <a href="{{ url('admin/term') }}" class="links">Term & Condition</a>
                     @endcan
                 </div>
                 <div></div>
@@ -148,7 +164,7 @@ $contact = contact();
 
 
 
-        <script src="/dash-assets/js/jquery-3.4.1.min.js"></script>
+
         <script src="/dash-assets/js/jquery-ui.js"></script>
         <script src="/dash-assets/js/popper.min.js"></script>
         <script src="/dash-assets/js/bootstrap.min.js"></script>
@@ -161,6 +177,11 @@ $contact = contact();
         <script src="/dash-assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
         @yield('script')
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#summernote').summernote();
+            });
+        </script>
     </body>
 
     </html>

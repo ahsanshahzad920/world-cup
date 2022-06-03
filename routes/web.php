@@ -9,14 +9,16 @@ Route::post('message_send', 'user\ContactController@store');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'ProfileController@index');
     Route::post('update-profile', 'ProfileController@update');
+    Route::get('change-password', 'ChangepasswordController@create')->name('password.create');
+    Route::post('change-password', 'ChangepasswordController@reset')->name('UpdatePassword');
 });
 
 // User
 Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::get('home', 'HomeController@redirect');
     Route::get('dashboard', 'HomeController@index')->name('home');
-    Route::get('change-password', 'ChangePasswordController@create')->name('password.create');
-    Route::post('change-password', 'ChangePasswordController@update')->name('password.update');
+    // Route::get('change-password', 'ChangePasswordController@create')->name('password.create');
+    // Route::post('change-password', 'ChangePasswordController@update')->name('password.update');
     Route::get('test', 'TestsController@index')->name('test');
     Route::post('test', 'TestsController@store')->name('test.store');
     Route::get('results/{result_id}', 'ResultsController@show')->name('results.show');
@@ -33,7 +35,7 @@ Route::get('/how-to-play', 'HomeController@HowToPlay')->name('how-to-play');
 Route::get('/about-us', 'HomeController@About')->name('about-us');
 Route::get('/hall-of-fame', 'HomeController@fame')->name('hall-of-fame');
 Route::get('/contact-us', 'HomeController@contact')->name('contact-us');
-Route::get('/term-condition', 'HomeController@term')->name('term-condition');
+Route::get('term-condition', 'HomeController@term')->name('term-condition');
 Route::get('/matches', 'HomeController@matches')->name('matches');
 Route::get('/prediction', 'HomeController@prediction')->name('prediction');
 Route::post('FAQ_Search', 'HomeController@FaqSearch')->name('FAQ_Search');
@@ -68,6 +70,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('tournament', 'TournamentController');
     // Team
     Route::resource('team', 'TeamController');
+    // Term & Condition
+    Route::resource('term', 'TermController');
+    // Play & Guideline
+    Route::resource('guideline', 'GuidelineController');
     // group
     Route::get('group/{id}', 'GroupController@index');
     Route::get('group-create/{id}', 'GroupController@create')->name('group.create');
