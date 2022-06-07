@@ -39,7 +39,12 @@
                         </li> --}}
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('home') }}">Dashboard</a>
+                                
+                                <a class="nav-link" href="{{ url('home') }}">
+                                    <img class="me-2"
+                                        src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/team1.jpg') }}"
+                                        style="height: 22px;width: 22px;" alt="">    
+                                {{auth::user()->first_name??''}} {{auth::user()->last_name??''}}</a>
                             </li>
 
                             <li class="nav-item">
@@ -95,12 +100,13 @@
                         </li>
                     </ul>
                     @auth
-                    @else
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link pe-0" href="/prediction">My Prediction</a>
                         </li>
                     </ul>
+                    @else
+                    
                     @endif
                 </div>
             </div>
