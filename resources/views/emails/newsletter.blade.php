@@ -5,7 +5,7 @@
 </head>
 <body>
     <b>Hi,</b><br>
-    <p>{{ $details['body'] }}</p>
+    <p>{{ $details['Message'] }}</p>
    
     <p>Thank you</p>
 </body>

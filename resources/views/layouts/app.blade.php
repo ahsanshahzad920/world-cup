@@ -83,7 +83,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/matches">Matches</a>
                         </li>
-                        @endif
+                        @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="/how-to-play">How To Play & Guidelines</a>
                         </li class="nav-item">
@@ -95,13 +95,12 @@
                         </li>
                     </ul>
                     @auth
-                    @else
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link pe-0" href="/prediction">My Prediction</a>
                         </li>
                     </ul>
-                    @endif
+                    @endauth
                 </div>
             </div>
         </nav>

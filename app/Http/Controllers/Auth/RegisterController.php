@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Newsletter;
+use App\ParticipantPoint;
+use App\Tournament;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -74,8 +76,7 @@ class RegisterController extends Controller
     {   
        // dd($data['termsAndConditions']);
         if($data['termsAndConditions']=='yes'){
-
-            return User::create([
+            $user = User::create([
                 'username' => $data['username'],
                     'first_name' => $data['first_name'],
                     'last_name' => $data['last_name'],
@@ -87,9 +88,19 @@ class RegisterController extends Controller
                     'whatsAppDiscussion' => $data['whatsAppDiscussion'],
                     'termsAndConditions' => $data['termsAndConditions'],
                 ]);
+                
                 $newsletter = new Newsletter;
                 $newsletter->email = $data['email'];
                 $newsletter->save();
+                $tournament = Tournament::all();
+                foreach($tournament as $item){
+                    $particpant = new  ParticipantPoint;
+                    $particpant->participant_id = $user->id;
+                    $particpant->tournament_id = $item->id;
+                    $particpant->points = 0;
+                    $particpant->save();
+                }
+                return $user;
                 // $details = [
                 //     'body' => 'Your account Admins can review and approve or deny!'
                 // ];
