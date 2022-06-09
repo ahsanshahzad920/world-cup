@@ -119,6 +119,7 @@ class User extends Authenticatable
             $this->attributes['image'] = $image;
         }
     }
+    
 
     // public function getImageAttribute($value)
     // {

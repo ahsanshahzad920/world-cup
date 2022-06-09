@@ -117,7 +117,7 @@
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Upload an image (optional) – default image will be
                             displayed otherwise</label>
-                        <input class="form-control" type="file" id="formFile" name="image">
+                        <input class="form-control" type="file" id="image" name="image">
                     </div>
                     <div class="mb-3">
                         <label for="whatsAppDiscussion" class="form-label">Do you want to participate in the WhatsApp

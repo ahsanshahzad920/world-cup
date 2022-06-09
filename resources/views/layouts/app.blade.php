@@ -39,12 +39,7 @@
                         </li> --}}
                         @auth
                             <li class="nav-item">
-                                
-                                <a class="nav-link" href="{{ url('home') }}">
-                                    <img class="me-2"
-                                        src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/team1.jpg') }}"
-                                        style="height: 22px;width: 22px;" alt="">    
-                                {{auth::user()->first_name??''}} {{auth::user()->last_name??''}}</a>
+                                <a class="nav-link" href="{{ url('home') }}">Dashboard</a>
                             </li>
 
                             <li class="nav-item">
@@ -88,7 +83,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/matches">Matches</a>
                         </li>
-                        @endif
+                        @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="/how-to-play">How To Play & Guidelines</a>
                         </li class="nav-item">
@@ -105,9 +100,7 @@
                             <a class="nav-link pe-0" href="/prediction">My Prediction</a>
                         </li>
                     </ul>
-                    @else
-                    
-                    @endif
+                    @endauth
                 </div>
             </div>
         </nav>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Group;
 use App\GroupMatch;
 use App\Http\Controllers\Controller;
+use App\ParticipantPoint;
+use App\Prediction;
 use Illuminate\Http\Request;
 
 class GroupMatchController extends Controller
@@ -116,11 +118,38 @@ class GroupMatchController extends Controller
             $group->total_points = $group->total_points+2;
             $group->win = $group->win+1;
             $match->win = $match->team1_id;
+            $predition = Prediction::where('match_id',$match->id)->where('team_id',$match->team1_id)->where('tournament_id',$request->tournament_id)->get();
+            foreach($predition as $item){
+                $participant_point = ParticipantPoint::where('participant_id',$item->participant_id)->where('tournament_id',$request->tournament_id)->first();
+                if($request->goal1==$item->team1_goal && $request->goal2==$item->team2_goal){
+                    $participant_point->points = $participant_point->points+4;
+                }elseif($request->goal1-$request->goal2 == $item->team1_goal-$item->team2_goal){
+                    $participant_point->points = $participant_point->points+2;
+                }else{
+                    $participant_point->points = $participant_point->points+1;
+                }
+                
+                $participant_point->update();
+            }
+            
         }else{
             $group = Group::where('team_id',$match->team2_id)->where('tournament_id',$request->tournament_id)->first();
             $group->total_points = $group->total_points+2;
             $group->win = $group->win+1;
             $match->win = $match->team2_id;
+            $predition = Prediction::where('match_id',$match->id)->where('team_id',$match->team2_id)->where('tournament_id',$request->tournament_id)->get();
+            foreach($predition as $item){
+                $participant_point = ParticipantPoint::where('participant_id',$item->participant_id)->where('tournament_id',$request->tournament_id)->first();
+                if($request->goal1==$item->team1_goal && $request->goal2==$item->team2_goal){
+                    $participant_point->points = $participant_point->points+4;
+                }elseif($request->goal1-$request->goal2 == $item->team1_goal-$item->team2_goal){
+                    $participant_point->points = $participant_point->points+2;
+                }else{
+                    $participant_point->points = $participant_point->points+1;
+                }
+                
+                $participant_point->update();
+            }
         }
         if($request->goal1<$request->goal2){
             $lose = Group::where('team_id',$match->team1_id)->where('tournament_id',$request->tournament_id)->first();

@@ -15,8 +15,8 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        $newsletter =  Newsletter::orderBy('created_at','ASC')->get();
-        return view('admin.newsletter.index',compact('newsletter'));
+        $newsletter =  Newsletter::orderBy('created_at', 'ASC')->get();
+        return view('admin.newsletter.index', compact('newsletter'));
     }
 
     /**
@@ -37,20 +37,30 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        $validation=$request->validate(
+        // dd($request->all());
+        $validation = $request->validate(
             [
-            'message' => 'required'
-            
-        ]);
+                'message' => 'required'
+
+            ]
+        );
         $details = [
             'Message' => $request->message,
         ];
         try {
-            // $newsletter = Newsletter::get();
-            // foreach($newsletter as $item){
-            //     \Mail::to($item->email)->send(new \App\Mail\NewsletterMail($details));
-            // }
-            return back()->with('success','Your Email sent!');
+            if ($request->chk == null) {
+                $newsletter = Newsletter::get();
+                foreach ($newsletter as $item) {
+                    \Mail::to($item->email)->send(new \App\Mail\NewsletterMail($details));
+                }
+            } else {
+                
+                foreach ($request->chk as $item) {
+                    $newsletter = Newsletter::find($item);
+                    \Mail::to($newsletter->email)->send(new \App\Mail\NewsletterMail($details));
+                }
+            }
+            return back()->with('success', 'Your Email sent!');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

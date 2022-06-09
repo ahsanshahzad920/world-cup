@@ -35,7 +35,22 @@ class PredictionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate(
+            [
+                'team_id' => 'required',
+                'team1_goal' => 'required',
+                'team2_goal' => 'required'
+            ]
+        );
+        $prediction = new Prediction;
+        $prediction->tournament_id = $request->tournament_id;
+        $prediction->participant_id = Auth()->user()->id;
+        $prediction->match_id = $request->match_id;
+        $prediction->team_id = $request->team_id;
+        $prediction->team1_goal = $request->team1_goal;
+        $prediction->team2_goal = $request->team2_goal;
+        $prediction->save();
+        return back();
     }
 
     /**

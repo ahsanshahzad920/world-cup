@@ -28,6 +28,9 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::get('point/{id}', 'ParticipantPointController@index');
     Route::get('point-table/{id}', 'GroupController@index');
     Route::get('tournament-match/{group}/{tournament}', 'GroupMatchController@index');
+
+    
+    Route::post('predition-match', 'PredictionController@store')->name('Predition.store');
 });
 
 Route::get('/', 'HomeController@home')->name('/');
