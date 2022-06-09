@@ -74,7 +74,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-       // dd($data['termsAndConditions']);
+        //dd($data);
         if($data['termsAndConditions']=='yes'){
             $user = User::create([
                 'username' => $data['username'],
@@ -82,7 +82,7 @@ class RegisterController extends Controller
                     'last_name' => $data['last_name'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
-                    'image' => $data['image'],
+                    'image' => $data['image']??'',
                     'phone' => $data['phone'],
                     'nickname' => $data['nickname'],
                     'whatsAppDiscussion' => $data['whatsAppDiscussion'],
