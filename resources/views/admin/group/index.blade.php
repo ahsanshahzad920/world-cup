@@ -517,6 +517,296 @@
                                 </tr>
                             @endforeach
                         @endif
+                        @if ($group->where('group', 'Round of 16')->count() > 0)
+                            <tr>
+                                <th>Round of 16</th>
+                                <th>
+                                    @can('match_access')
+                                        <a class="btn btn-xs btn-dark" href="{{ url('admin/match/' . 'Round of 16/' . $id) }}">
+                                            Matches
+                                        </a>
+                                    @endcan
+                                </th>
+                            </tr>
+                            @foreach ($group->where('group', 'Round of 16') as $index => $item)
+                                <tr>
+                                    <td>
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset($item->team_name->flag) }}" style="width:100px; height:100px;"
+                                            alt="">
+                                    </td>
+                                    <td>
+                                        {{ $item->team_name->name ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_match ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->win ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->lose ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_points ?? '' }}
+                                    </td>
+                                    <td>
+
+                                        @can('group_edit')
+                                            <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
+                                                Edit
+                                            </a>
+                                        @endcan
+
+                                        @can('group_delete')
+                                            <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST"
+                                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                            </form>
+                                        @endcan
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        @endif
+                        @if ($group->where('group', 'Quater Final')->count() > 0)
+                            <tr>
+                                <th>Quater Final</th>
+                                <th>
+                                    @can('match_access')
+                                        <a class="btn btn-xs btn-dark" href="{{ url('admin/match/' . 'Quater Final/' . $id) }}">
+                                            Matches
+                                        </a>
+                                    @endcan
+                                </th>
+                            </tr>
+                            @foreach ($group->where('group', 'Quater Final') as $index => $item)
+                                <tr>
+                                    <td>
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset($item->team_name->flag) }}" style="width:100px; height:100px;"
+                                            alt="">
+                                    </td>
+                                    <td>
+                                        {{ $item->team_name->name ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_match ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->win ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->lose ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_points ?? '' }}
+                                    </td>
+                                    <td>
+
+                                        @can('group_edit')
+                                            <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
+                                                Edit
+                                            </a>
+                                        @endcan
+
+                                        @can('group_delete')
+                                            <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST"
+                                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                            </form>
+                                        @endcan
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        @endif
+                        @if ($group->where('group', 'Semifinal')->count() > 0)
+                            <tr>
+                                <th>Semifinal</th>
+                                <th>
+                                    @can('match_access')
+                                        <a class="btn btn-xs btn-dark" href="{{ url('admin/match/' . 'Semifinal/' . $id) }}">
+                                            Matches
+                                        </a>
+                                    @endcan
+                                </th>
+                            </tr>
+                            @foreach ($group->where('group', 'Semifinal') as $index => $item)
+                                <tr>
+                                    <td>
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset($item->team_name->flag) }}" style="width:100px; height:100px;"
+                                            alt="">
+                                    </td>
+                                    <td>
+                                        {{ $item->team_name->name ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_match ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->win ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->lose ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_points ?? '' }}
+                                    </td>
+                                    <td>
+
+                                        @can('group_edit')
+                                            <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
+                                                Edit
+                                            </a>
+                                        @endcan
+
+                                        @can('group_delete')
+                                            <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST"
+                                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                            </form>
+                                        @endcan
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        @endif
+                        @if ($group->where('group', 'Third Place')->count() > 0)
+                            <tr>
+                                <th>Third Place</th>
+                                <th>
+                                    @can('match_access')
+                                        <a class="btn btn-xs btn-dark" href="{{ url('admin/match/' . 'Third Place/' . $id) }}">
+                                            Matches
+                                        </a>
+                                    @endcan
+                                </th>
+                            </tr>
+                            @foreach ($group->where('group', 'Third Place') as $index => $item)
+                                <tr>
+                                    <td>
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset($item->team_name->flag) }}" style="width:100px; height:100px;"
+                                            alt="">
+                                    </td>
+                                    <td>
+                                        {{ $item->team_name->name ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_match ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->win ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->lose ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_points ?? '' }}
+                                    </td>
+                                    <td>
+
+                                        @can('group_edit')
+                                            <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
+                                                Edit
+                                            </a>
+                                        @endcan
+
+                                        @can('group_delete')
+                                            <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST"
+                                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                            </form>
+                                        @endcan
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        @endif
+                        @if ($group->where('group', 'Final')->count() > 0)
+                            <tr>
+                                <th>Final</th>
+                                <th>
+                                    @can('match_access')
+                                        <a class="btn btn-xs btn-dark" href="{{ url('admin/match/' . 'Final/' . $id) }}">
+                                            Matches
+                                        </a>
+                                    @endcan
+                                </th>
+                            </tr>
+                            @foreach ($group->where('group', 'Final') as $index => $item)
+                                <tr>
+                                    <td>
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset($item->team_name->flag) }}" style="width:100px; height:100px;"
+                                            alt="">
+                                    </td>
+                                    <td>
+                                        {{ $item->team_name->name ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_match ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->win ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->lose ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->total_points ?? '' }}
+                                    </td>
+                                    <td>
+
+                                        @can('group_edit')
+                                            <a class="btn btn-xs btn-info" href="{{ route('admin.group.edit', $item->id) }}">
+                                                Edit
+                                            </a>
+                                        @endcan
+
+                                        @can('group_delete')
+                                            <form action="{{ route('admin.group.destroy', $item->id) }}" method="POST"
+                                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                            </form>
+                                        @endcan
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
 
                 </table>

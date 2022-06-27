@@ -19,6 +19,13 @@
                     <option value="D" @if ($group->group=='D') selected @endif>D</option>
                     <option value="E" @if ($group->group=='E') selected @endif>E</option>
                     <option value="F" @if ($group->group=='F') selected @endif>F</option>
+                    <option value="G" @iG ($group->group=='G') selected @endif>G</option>
+                    <option value="H" @if ($group->group=='H') selected @endif>H</option>
+                    <option value="Round of 16" @if ($group->group=='Round of 16') selected @endif>Round of 16</option>
+                    <option value="Quater Final" @if ($group->group=='Quater Final') selected @endif>Quater Final</option>
+                    <option value="Semifinal" @if ($group->group=='Semifinal') selected @endif>Semifinal</option>
+                    <option value="Third Place" @if ($group->group=='Third Place') selected @endif>Third Place</option>
+                    <option value="Final" @if ($group->group=='Final') selected @endif>Final</option>
                 </select>
                 {!!$errors->first("group", "<span class='text-danger'>:message</span>")!!}
             </div>

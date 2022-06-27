@@ -22,6 +22,7 @@
         "laravel/ui": "2.0",
         "maatwebsite/excel": "^3.1",
         "stripe/stripe-php": "^7.100",
+        "thujohn/twitter": "^3.1",
         "yajra/laravel-datatables-oracle": "^9.7"
     },
     "require-dev": {

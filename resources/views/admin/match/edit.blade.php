@@ -30,6 +30,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <input type="checkbox" name="penalty" id="">
+                <label  for="team1">Match win by penalty kiks?</label>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     UPDATE
                 </button>

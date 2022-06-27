@@ -21,6 +21,11 @@
                     <option value="F">F</option>
                     <option value="G">G</option>
                     <option value="H">H</option>
+                    <option value="Round of 16">Round of 16</option>
+                    <option value="Quater Final">Quater Final</option>
+                    <option value="Semifinal">Semifinal</option>
+                    <option value="Third Place">Third Place</option>
+                    <option value="Final">Final</option>
                 </select>
                 {!!$errors->first("group", "<span class='text-danger'>:message</span>")!!}
             </div>
