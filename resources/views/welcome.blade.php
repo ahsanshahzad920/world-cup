@@ -2,6 +2,13 @@
     $data = content();
 @endphp
 @extends('layouts.app')
+@section('style')
+<style>
+    blockquote, button, h1, h2, h3, h4, h5, h6, iframe, ol, p, ul {
+            display:inline-flex;   
+        }
+</style>
+@endsection
 @section('content')
 <div class="time-counter-sec text-white">
         <div class="container py-5">
@@ -176,6 +183,7 @@
 
     <div class="ussoccer-sec mt-5">
         <div class="container">
+            <a class="twitter-timeline" href="https://twitter.com/AdnanJunaid_?ref_src=twsrc%5Etfw">AdnanJunaid_</a> <script async src="{{asset('assets/js/twitter.js')}}" charset="utf-8"></script>
             <h3><i class="fa fa-twitter"></i> @ussoccer</h3>
             <div class="row">
                 @foreach ($blog as $item)
