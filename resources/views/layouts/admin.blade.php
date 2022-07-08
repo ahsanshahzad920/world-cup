@@ -66,7 +66,7 @@ $contact = contact();
                                 <button class="btn ps-0 dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="me-2"
-                                        src="{{ asset(Auth()->user()->image ?? 'dash-assets/images/team1.jpg') }}"
+                                        src="{{ asset(Auth()->user()->image ?? 'avatar.jpeg') }}"
                                         style="height: 22px;width: 22px;" alt="">
                                     {{ Auth()->user()->first_name }} {{ Auth()->user()->last_name }}
                                 </button>
@@ -133,9 +133,9 @@ $contact = contact();
                     @can('service_access')
                         <a href="{{ url('admin/service') }}" class="links">Services</a>
                     @endcan
-                    @can('blog_access')
+                    {{-- @can('blog_access')
                         <a href="{{ url('admin/blog') }}" class="links">Blogs</a>
-                    @endcan
+                    @endcan --}}
                     @can('slider_access')
                         <a href="{{ url('admin/slider') }}" class="links">Slider</a>
                     @endcan

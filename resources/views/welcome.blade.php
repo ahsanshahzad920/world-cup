@@ -4,8 +4,11 @@
 @extends('layouts.app')
 @section('style')
 <style>
-    blockquote, button, h1, h2, h3, h4, h5, h6, iframe, ol, p, ul {
+    .timeline-TweetList {
             display:inline-flex;   
+        }
+        .customisable-border{
+            float: left;
         }
 </style>
 @endsection
@@ -183,27 +186,16 @@
 
     <div class="ussoccer-sec mt-5">
         <div class="container">
-            <a class="twitter-timeline" href="https://twitter.com/AdnanJunaid_?ref_src=twsrc%5Etfw">AdnanJunaid_</a> <script async src="{{asset('assets/js/twitter.js')}}" charset="utf-8"></script>
-            <h3><i class="fa fa-twitter"></i> @ussoccer</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="twitter-timeline" href="https://twitter.com/ussoccer?ref_src=twsrc%5Etfw">Tweets by ussoccer</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+            {{-- <h3><i class="fa fa-twitter"></i> @ussoccer</h3>
             <div class="row">
                 @foreach ($blog as $item)
                 <div class="col-12 col-md-6 col-lg-4">
-                    {{-- <div class="card p-2">
-                        <div class="d-flex">
-                            <div>
-                                <img src="./images/ussoccer.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div>
-                                <a href="#"><b>@ussoccer</b></a>
-                                <p>01-04-2022, 23:05</p>
-                            </div>
-                        </div>
-                        <p>
-                            #RamadanMubarak to everyone celebrating in our soccer community and around the world!
-                            <br>
-                            Wishing you a blessed month.
-                        </p>
-                    </div> --}}
+                    
                     <div class="card mt-3 p-2">
                         <div class="card-img">
                             @if ($item->image!=null)
@@ -227,85 +219,8 @@
                     </div>
                 </div>
                 @endforeach
-                {{-- <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card p-2">
-                        <div class="d-flex">
-                            <div>
-                                <img src="./images/ussoccer.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div>
-                                <a href="#"><b>@ussoccer</b></a>
-                                <p>01-04-2022, 23:05</p>
-                            </div>
-                        </div>
-                        <p>
-                            #RamadanMubarak to everyone celebrating in our soccer community and around the world!
-                            <br>
-                            Wishing you a blessed month.
-                        </p>
-                    </div>
-
-                    <div class="card mt-3 p-2">
-                        <div class="card-img">
-                            <img src="./images/ussoccer-2.png" class="img-fluid" alt="">
-                            <div class="d-flex mt-3">
-                                <div>
-                                    <img src="./images/ussoccer.jpg" class="img-fluid" alt="">
-                                </div>
-                                <div>
-                                    <a href="#"><b>@ussoccer</b></a>
-                                    <p>01-04-2022, 23:05</p>
-                                </div>
-                            </div>
-                            <p>
-                                #RamadanMubarak to everyone celebrating in our soccer community and around the world!
-                                <br>
-                                Wishing you a blessed month.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card p-2">
-                        <div class="d-flex">
-                            <div>
-                                <img src="./images/ussoccer.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div>
-                                <a href="#"><b>@ussoccer</b></a>
-                                <p>01-04-2022, 23:05</p>
-                            </div>
-                        </div>
-                        <p>
-                            #RamadanMubarak to everyone celebrating in our soccer community and around the world!
-                            <br>
-                            Wishing you a blessed month.
-                        </p>
-                    </div>
-
-                    <div class="card mt-3 p-2">
-                        <div class="card-img">
-                            <img src="./images/ussoccer-3.png" class="img-fluid" alt="">
-                            <div class="d-flex mt-3">
-                                <div>
-                                    <img src="./images/ussoccer.jpg" class="img-fluid" alt="">
-                                </div>
-                                <div>
-                                    <a href="#"><b>@ussoccer</b></a>
-                                    <p>01-04-2022, 23:05</p>
-                                </div>
-                            </div>
-                            <p>
-                                #RamadanMubarak to everyone celebrating in our soccer community and around the world!
-                                <br>
-                                Wishing you a blessed month.
-                            </p>
-
-                        </div>
-                    </div>
-                </div> --}}
-            </div>
+                
+            </div> --}}
         </div>
     </div>
 @endsection

@@ -24,8 +24,9 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 65px;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}" style="font-size: 23px; font-weight: bold; margin-left:-65px;">
-                    <span>Futebol Fanatics Platform</span>
-                    <small class="powered-by">Powered by Renovato Bros Association</small>
+                    <img src="{{asset('logo.jpeg')}}" style="height: 65px;" alt="">
+                    {{-- <span>Futebol Fanatics Platform</span>
+                    <small class="powered-by">Powered by Renovato Bros Association</small> --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
