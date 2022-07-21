@@ -77,7 +77,7 @@
                             </td>
                             <td>
                                 @foreach($user->roles as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                    <span class="badge badge-info" style="color:#000;">{{ $item->title }}</span>
                                 @endforeach
                             </td>
                             <td>

@@ -21,6 +21,9 @@ $contact = contact();
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     @yield('style')
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -29,8 +32,9 @@ $contact = contact();
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <span>Futebol Fanatics Platform</span>
-                    <small class="powered-by">Powered by Renovato Bros Association</small>
+                    {{-- <span>Futebol Fanatics Platform</span>
+                    <small class="powered-by">Powered by Renovato Bros Association</small> --}}
+                    <img src="{{asset('logo.jpeg')}}" style="height: 65px;" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -104,55 +108,55 @@ $contact = contact();
             <div class="side-links-sec dropdown">
                 {{-- <a href="{{url('dashboard')}}" class="links">Dashboard</a> --}}
                 @can('participant_management_access')
-                    <a href="{{ url('tournament') }}" class="links">Participant Management</a>
+                    <a href="{{ url('tournament') }}" @if (Request::is('tournament')) class="links active" @else class="links" @endif>Participant Management</a>
                     @endif
                     {{-- <a href="#" class="links">Entry Management</a> --}}
                     @can('participant_point_access')
-                        <a href="{{ url('admin/participant_point') }}" class="links">Participant Management</a>
+                        <a href="{{ url('admin/participant_point') }}"  @if (Request::is('admin/participant_point')) class="links active" @else class="links" @endif>Participant Management</a>
                     @endcan
                     @can('tournament_access')
-                        <a href="{{ url('admin/tournament') }}" class="links">Tournament Management</a>
+                        <a href="{{ url('admin/tournament') }}"  @if (Request::is('admin/tournament')) class="links active" @else class="links" @endif>Tournament Management</a>
                     @endcan
                     @can('team_access')
-                        <a href="{{ url('admin/team') }}" class="links">Teams</a>
+                        <a href="{{ url('admin/team') }}"  @if (Request::is('admin/team')) class="links active" @else class="links" @endif>Teams</a>
                     @endcan
 
-                    <a href="{{ url('chat') }}" class="links">Messages</a>
+                    <a href="{{ url('chat') }}"  @if (Request::is('chat')) class="links active" @else class="links" @endif>Messages</a>
                     @can('user_access')
-                        <a href="/admin/users" class="links">User Management</a>
+                        <a href="/admin/users"  @if (Request::is('admin/users')) class="links active" @else class="links" @endif>User Management</a>
                     @endcan
                     @can('role_access')
-                        <a href="/admin/roles" class="links">Roles</a>
+                        <a href="/admin/roles"  @if (Request::is('admin/roles')) class="links active" @else class="links" @endif>Roles</a>
                     @endcan
                     @can('permission_access')
-                        <a href="/admin/permissions" class="links">Permissions</a>
+                        <a href="/admin/permissions"  @if (Request::is('admin/permissions')) class="links active" @else class="links" @endif>Permissions</a>
                     @endcan
                     @can('content_access')
-                        <a href="{{ url('admin/content') }}" class="links">Website Content</a>
+                        <a href="{{ url('admin/content') }}"  @if (Request::is('admin/content')) class="links active" @else class="links" @endif>Website Content</a>
                     @endcan
                     @can('service_access')
-                        <a href="{{ url('admin/service') }}" class="links">Services</a>
+                        <a href="{{ url('admin/service') }}"  @if (Request::is('admin/service')) class="links active" @else class="links" @endif>Services</a>
                     @endcan
                     {{-- @can('blog_access')
                         <a href="{{ url('admin/blog') }}" class="links">Blogs</a>
                     @endcan --}}
                     @can('slider_access')
-                        <a href="{{ url('admin/slider') }}" class="links">Slider</a>
+                        <a href="{{ url('admin/slider') }}"  @if (Request::is('admin/slider')) class="links active" @else class="links" @endif>Slider</a>
                     @endcan
                     @can('guideline_access')
-                        <a href="{{ url('admin/guideline') }}" class="links">Play & Guidelines</a>
+                        <a href="{{ url('admin/guideline') }}"  @if (Request::is('admin/guideline')) class="links active" @else class="links" @endif>Play & Guidelines</a>
                     @endcan
                     @can('contact_access')
-                        <a href="{{ url('admin/contact') }}" class="links">Contact Form Inquiries</a>
+                        <a href="{{ url('admin/contact') }}"  @if (Request::is('admin/contact')) class="links active" @else class="links" @endif>Contact Form Inquiries</a>
                     @endcan
                     @can('media_access')
-                        <a href="{{ url('admin/media') }}" class="links">Social Media</a>
+                        <a href="{{ url('admin/media') }}"  @if (Request::is('admin/media')) class="links active" @else class="links" @endif>Social Media</a>
                     @endcan
                     @can('newsletter_access')
-                        <a href="{{ url('admin/newsletter') }}" class="links">Newsletter</a>
+                        <a href="{{ url('admin/newsletter') }}"  @if (Request::is('admin/newsletter')) class="links active" @else class="links" @endif>Newsletter</a>
                     @endcan
                     @can('term_access')
-                        <a href="{{ url('admin/term') }}" class="links">Term & Condition</a>
+                        <a href="{{ url('admin/term') }}"  @if (Request::is('admin/term')) class="links active" @else class="links" @endif>Terms and Conditions</a>
                     @endcan
                 </div>
                 <div></div>

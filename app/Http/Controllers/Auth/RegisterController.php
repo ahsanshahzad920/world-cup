@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Session;
+use Stripe;
 
 class RegisterController extends Controller
 {
@@ -59,7 +61,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            'nickname'=> ['required'],
+            'nickname' => ['required'],
             'whatsAppDiscussion' => ['required'],
             'termsAndConditions' => ['required'],
             'phone' => ['required'],
@@ -73,40 +75,49 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {   
-        //dd($data);
-        if($data['termsAndConditions']=='yes'){
+    {
+        // dd($data);
+        if ($data['termsAndConditions'] == 'yes') {
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe\Charge::create([
+                "amount" => 100,
+                "currency" => "usd",
+                "source" => $data['stripeToken'],
+                "description" => "Partipant Payment"
+            ]);
             $user = User::create([
                 'username' => $data['username'],
-                    'first_name' => $data['first_name'],
-                    'last_name' => $data['last_name'],
-                    'email' => $data['email'],
-                    'password' => Hash::make($data['password']),
-                    'image' => $data['image']??'',
-                    'phone' => $data['phone'],
-                    'nickname' => $data['nickname'],
-                    'whatsAppDiscussion' => $data['whatsAppDiscussion'],
-                    'termsAndConditions' => $data['termsAndConditions'],
-                ]);
-                
-                $newsletter = new Newsletter;
-                $newsletter->email = $data['email'];
-                $newsletter->save();
-                $tournament = Tournament::all();
-                foreach($tournament as $item){
-                    $particpant = new  ParticipantPoint;
-                    $particpant->participant_id = $user->id;
-                    $particpant->tournament_id = $item->id;
-                    $particpant->points = 0;
-                    $particpant->save();
-                }
-                return $user;
-                // $details = [
-                //     'body' => 'Your account Admins can review and approve or deny!'
-                // ];
-                // Mail::to($data['email'])->send(new \App\Mail\PermissionUser($details));
-       }else{
-           return redirect()->back();
-       }
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'image' => $data['image'] ?? '',
+                'phone' => $data['phone'],
+                'nickname' => $data['nickname'],
+                'subscription' => 'basic',
+                'paid_amount' => 1,
+                'whatsAppDiscussion' => $data['whatsAppDiscussion'],
+                'termsAndConditions' => $data['termsAndConditions'],
+            ]);
+
+            $newsletter = new Newsletter;
+            $newsletter->email = $data['email'];
+            $newsletter->save();
+            $tournament = Tournament::all();
+            foreach ($tournament as $item) {
+                $particpant = new  ParticipantPoint;
+                $particpant->participant_id = $user->id;
+                $particpant->tournament_id = $item->id;
+                $particpant->points = 0;
+                $particpant->save();
+            }
+            return $user;
+            // $details = [
+            //     'body' => 'Your account Admins can review and approve or deny!'
+            // ];
+            // Mail::to($data['email'])->send(new \App\Mail\PermissionUser($details));
+        } else {
+            return redirect()->back();
+        }
     }
 }

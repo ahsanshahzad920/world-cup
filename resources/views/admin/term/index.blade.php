@@ -11,7 +11,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        Term & Condition
+        Terms and Conditions
     </div>
 
     <div class="card-body">

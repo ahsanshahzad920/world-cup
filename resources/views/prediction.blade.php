@@ -25,7 +25,7 @@
                         bonding in no time.
                     </p>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12 col-lg-6 offset-lg-3">
                             <a href="{{route('register')}}" class="btn btn-primary form-control">Sign Up</a>
                             <div class="text-center">
@@ -33,7 +33,7 @@
                             </div>
                             <a href="{{route('login')}}" class="btn btn-primary form-control">Sign In</a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-12 col-lg-6 offset-lg-3 mt-3">
                             <a href="{{url('point-table/3')}}" class="btn btn-primary form-control">Prediction</a>
