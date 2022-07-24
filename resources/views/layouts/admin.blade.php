@@ -34,7 +34,7 @@ $contact = contact();
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- <span>Futebol Fanatics Platform</span>
                     <small class="powered-by">Powered by Renovato Bros Association</small> --}}
-                    <img src="{{asset('logo.jpeg')}}" style="height: 65px;" alt="">
+                    <img src="{{asset('logo.jpeg')}}" style="height: 85px; width:85px; border-radius:50%;" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

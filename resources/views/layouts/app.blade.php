@@ -1,5 +1,5 @@
 @php
-    $media = media();
+$media = media();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -11,20 +11,27 @@
     @yield('style')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./scss/style.css">
-    <script src="{{asset('javascript/javascript.js')}}"></script>
+    <script src="{{ asset('javascript/javascript.js') }}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
 </head>
 
 <body>
 
     <div class="navbar-for-desktop d-none d-lg-block">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 65px;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 65px; margin: 30px 0px;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}" style="font-size: 23px; font-weight: bold; margin-left:-65px;">
-                    <img src="{{asset('logo.jpeg')}}" style="height: 65px;" alt="">
+                <a class="navbar-brand" href="{{ url('/') }}"
+                    style="font-size: 23px; font-weight: bold; margin-left:-65px;">
+                    <img src="{{ asset('logo.jpeg') }}"
+                        style="height: 115px;
+                    width: 115px;
+                    margin: -30px 0px;
+                    border-radius: 50%;
+                    border: 2px solid #43416f;"
+                        alt="">
                     {{-- <span>Futebol Fanatics Platform</span>
                     <small class="powered-by">Powered by Renovato Bros Association</small> --}}
                 </a>
@@ -33,8 +40,33 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse  justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="{{ url('about-us') }}">About Us</a>
+                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="/matches">Matches</a>
+                            </li>
+                        @endauth
+                        <li class="nav-item">
+                            <a class="nav-link" href="/how-to-play">How To Play & Guidelines</a>
+                        </li class="nav-item">
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="{{ url('hall-of-fame') }}">Hall of Fame</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/contact-us">Contact Us</a>
+                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link pe-0" href="/prediction">My Prediction</a>
+                            </li>
+                        @endauth
                         {{-- <li class="nav-item">
                             <a class="nav-link" href="#">Organise League</a>
                         </li> --}}
@@ -48,8 +80,7 @@
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>
@@ -65,7 +96,8 @@
                 </div>
             </div>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    </div>
+    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -104,13 +136,13 @@
                     @endauth
                 </div>
             </div>
-        </nav>
+        </nav> --}}
     </div>
 
     <div class="navbar-for-mobile d-blocke d-lg-none">
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
-                <a class="navbar-brand" href="{{url('/')}}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <span>Futebol Fanatics Platform</span>
                     <small class="powered-by">Powered by Renovato Bros Association</small>
                 </a>
@@ -164,7 +196,8 @@
                         echo Carbon::now()->format('Y');
                     @endphp Futebol Fanatics Platform. All rights reserved.</p>
                     @foreach ($media as $item)
-                    <a href="{{$item->link??''}}" title="{{$item->name??''}}" class="me-2"><i class="{{$item->icon??''}} fa-2x"></i></a>
+                        <a href="{{ $item->link ?? '' }}" title="{{ $item->name ?? '' }}" class="me-2"><i
+                                class="{{ $item->icon ?? '' }} fa-2x"></i></a>
                     @endforeach
                     {{-- <a href="#" class="me-2"><i class="fa fa-youtube fa-2x"></i></a>
                     <a href="#" class="me-2"><i class="fa fa-twitter fa-2x"></i></a>
@@ -180,7 +213,7 @@
                 <div class="col-sm-4">
                     <div class="text-start text-lg-end">
                         <a href="#" class="me-2">Privacy Policy</a>
-                        <a href="{{url('term-condition')}}">Terms & Conditions</a>
+                        <a href="{{ url('term-condition') }}">Terms & Conditions</a>
                     </div>
                 </div>
             </div>
@@ -189,7 +222,7 @@
     </div>
 
 
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     @yield('script')
