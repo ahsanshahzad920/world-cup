@@ -25,7 +25,7 @@ $media = media();
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"
                     style="font-size: 23px; font-weight: bold; margin-left:-65px;">
-                    <img src="{{ asset('logo.jpeg') }}"
+                    <img src="{{ asset('logo.jpg') }}"
                         style="height: 115px;
                     width: 115px;
                     margin: -30px 0px;
