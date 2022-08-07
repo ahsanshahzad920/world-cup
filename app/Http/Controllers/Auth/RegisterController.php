@@ -78,13 +78,13 @@ class RegisterController extends Controller
     {
         // dd($data);
         if ($data['termsAndConditions'] == 'yes') {
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create([
-                "amount" => 100,
-                "currency" => "usd",
-                "source" => $data['stripeToken'],
-                "description" => "Partipant Payment"
-            ]);
+            // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            // Stripe\Charge::create([
+            //     "amount" => 100,
+            //     "currency" => "usd",
+            //     "source" => $data['stripeToken'],
+            //     "description" => "Partipant Payment"
+            // ]);
             $user = User::create([
                 'username' => $data['username'],
                 'first_name' => $data['first_name'],

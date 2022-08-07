@@ -8,14 +8,15 @@ $media = media();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @yield('style')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./scss/style.css">
+    <link rel="stylesheet" href="{{asset('scss/style.css')}}">
     <script src="{{ asset('javascript/javascript.js') }}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('icon.ico') }}" />
 
+    @yield('style')
 </head>
 
 <body>
@@ -25,7 +26,7 @@ $media = media();
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"
                     style="font-size: 23px; font-weight: bold; margin-left:-65px;">
-                    <img src="{{ asset('logo.jpeg') }}"
+                    <img src="{{ asset('logo.jpg') }}"
                         style="height: 115px;
                     width: 115px;
                     margin: -30px 0px;
@@ -46,50 +47,51 @@ $media = media();
                             <a class="nav-link ps-0" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-0" href="{{ url('about-us') }}">About Us</a>
+                            <a class="nav-link ps-0" style="margin-left:10px;" href="{{ url('about-us') }}">About Us</a>
                         </li>
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="/matches">Matches</a>
+                                <a class="nav-link" style="margin-left:10px;" href="/matches">Matches</a>
                             </li>
                         @endauth
                         <li class="nav-item">
-                            <a class="nav-link" href="/how-to-play">How To Play & Guidelines</a>
+                            <a class="nav-link" style="margin-left:10px;" href="/how-to-play">How To Play & Guidelines</a>
                         </li class="nav-item">
                         <li class="nav-item">
-                            <a class="nav-link ps-0" href="{{ url('hall-of-fame') }}">Hall of Fame</a>
+                            <a class="nav-link ps-0" style="margin-left:10px;" href="{{ url('hall-of-fame') }}">Hall of Fame</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="/contact-us">Contact Us</a>
+                            <a class="nav-link" style="margin-left:10px;" href="/contact-us">Contact Us</a>
                         </li>
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link pe-0" href="/prediction">My Prediction</a>
+                                <a class="nav-link pe-0" style="margin-left:10px;" href="/prediction">My Prediction</a>
                             </li>
                         @endauth
                         {{-- <li class="nav-item">
                             <a class="nav-link" href="#">Organise League</a>
                         </li> --}}
                         @auth
+                        <li class="nav-item">
+                            <a href="javascript:void(0);" class="nav-link" style="margin-left:10px;"
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('home') }}">Dashboard</a>
+                                <a  class="nav-link btn btn-success" href="{{ url('home') }}">Dashboard</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" class="nav-link btn btn-success"
-                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
+                            
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                <a class="nav-link" style="margin-left:10px;" href="{{ route('login') }}">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link btn btn-success" href="{{ route('register') }}">Sign Up</a>
+                                <a class="nav-link btn btn-success" style="margin-left:10px;" href="{{ route('register') }}">Sign Up</a>
                             </li>
                         @endauth
                     </ul>

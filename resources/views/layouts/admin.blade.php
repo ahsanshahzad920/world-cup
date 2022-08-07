@@ -20,6 +20,7 @@ $contact = contact();
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('icon.ico') }}" />
     @yield('style')
     <style>
 
@@ -34,7 +35,7 @@ $contact = contact();
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- <span>Futebol Fanatics Platform</span>
                     <small class="powered-by">Powered by Renovato Bros Association</small> --}}
-                    <img src="{{asset('logo.jpeg')}}" style="height: 85px; width:85px; border-radius:50%;" alt="">
+                    <img src="{{asset('logo.jpg')}}" style="height: 85px; width:85px; border-radius:50%;" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -121,7 +122,7 @@ $contact = contact();
                         <a href="{{ url('admin/team') }}"  @if (Request::is('admin/team')) class="links active" @else class="links" @endif>Teams</a>
                     @endcan
 
-                    <a href="{{ url('chat') }}"  @if (Request::is('chat')) class="links active" @else class="links" @endif>Messages</a>
+                    {{-- <a href="{{ url('chat') }}"  @if (Request::is('chat')) class="links active" @else class="links" @endif>Messages</a> --}}
                     @can('user_access')
                         <a href="/admin/users"  @if (Request::is('admin/users')) class="links active" @else class="links" @endif>User Management</a>
                     @endcan

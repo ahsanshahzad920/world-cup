@@ -37,9 +37,9 @@
                         <th>
                             {{ trans('cruds.user.fields.email_verified_at') }}
                         </th>
-                        <th>
+                        {{-- <th>
                             Payment
-                        </th>
+                        </th> --}}
                         <th>
                             {{ trans('cruds.user.fields.roles') }}
                         </th>
@@ -72,9 +72,9 @@
                             <td>
                                 {{ $user->email_verified_at ?? '' }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 {{ $user->paid_amount ?? '' }}
-                            </td>
+                            </td> --}}
                             <td>
                                 @foreach($user->roles as $key => $item)
                                     <span class="badge badge-info" style="color:#000;">{{ $item->title }}</span>

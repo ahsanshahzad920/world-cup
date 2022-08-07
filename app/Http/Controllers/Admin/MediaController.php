@@ -105,8 +105,9 @@ class MediaController extends Controller
      * @param  \App\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy(Request $request)
     {
+        $media = Media::find($request->id);
         $media->delete();
 
         return back()->with('success', 'Social Media has deleted!');
