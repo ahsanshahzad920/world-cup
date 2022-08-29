@@ -14,7 +14,8 @@ class PredictionController extends Controller
      */
     public function index()
     {
-        //
+        $prediction = Prediction::orderBy('created_at','DESC')->where('participant_id',Auth()->user()->id)->get();
+        return view('client/my_prediction',compact('prediction'));
     }
 
     /**
@@ -82,9 +83,22 @@ class PredictionController extends Controller
      * @param  \App\Prediction  $prediction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prediction $prediction)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate(
+            [
+                'team_id' => 'required',
+                'team1_goal' => 'required',
+                'team2_goal' => 'required'
+            ]
+        );
+        $prediction = Prediction::find($id);
+        $prediction->team_id = $request->team_id;
+        $prediction->team1_goal = $request->team1_goal;
+        $prediction->team2_goal = $request->team2_goal;
+        $prediction->allow =1;
+        $prediction->update();
+        return back();
     }
 
     /**

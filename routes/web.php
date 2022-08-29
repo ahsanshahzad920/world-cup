@@ -29,8 +29,9 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::get('point-table/{id}', 'GroupController@index');
     Route::get('tournament-match/{group}/{tournament}', 'GroupMatchController@index');
 
-    
+    Route::get('my-prediction', 'PredictionController@index');
     Route::post('predition-match', 'PredictionController@store')->name('Predition.store');
+    Route::post('predition-match/{id}', 'PredictionController@update')->name('Predition.update');
 });
 
 Route::get('/', 'HomeController@home')->name('/');
@@ -77,6 +78,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('term', 'TermController');
     // Play & Guideline
     Route::resource('guideline', 'GuidelineController');
+    // prediction
+    Route::resource('prediction', 'PredictionController');
     // group
     Route::get('group/{id}', 'GroupController@index');
     Route::get('group-create/{id}', 'GroupController@create')->name('group.create');

@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupMatch extends Model
 {
+    public function MatchGroup()
+    {
+        return $this->hasMany(GroupMatch::class, 'match_id', 'id');
+    }
     public function tournament_name()
     {
         return $this->belongsTo(Tournament::class, 'tournament_id');

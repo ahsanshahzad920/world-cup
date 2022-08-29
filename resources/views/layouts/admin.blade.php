@@ -111,9 +111,16 @@ $contact = contact();
                 @can('participant_management_access')
                     <a href="{{ url('tournament') }}" @if (Request::is('tournament')) class="links active" @else class="links" @endif>Participant Management</a>
                     @endif
+                    @can('user_prediction_access')
+                    <a href="{{ url('my-prediction') }}" @if (Request::is('my-prediction')) class="links active" @else class="links" @endif>My Predictions</a>
+                    @endcan
+                    
                     {{-- <a href="#" class="links">Entry Management</a> --}}
                     @can('participant_point_access')
                         <a href="{{ url('admin/participant_point') }}"  @if (Request::is('admin/participant_point')) class="links active" @else class="links" @endif>Participant Management</a>
+                    @endcan
+                    @can('prediction_access')
+                    <a href="{{ url('admin/prediction') }}" @if (Request::is('admin/prediction')) class="links active" @else class="links" @endif>Predictions</a>
                     @endcan
                     @can('tournament_access')
                         <a href="{{ url('admin/tournament') }}"  @if (Request::is('admin/tournament')) class="links active" @else class="links" @endif>Tournament Management</a>
