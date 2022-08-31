@@ -185,9 +185,9 @@
     
 
     <div class="ussoccer-sec mt-5">
-        <div class="container">
+        <div class="container" style="height: 600px; overflow-y: scroll;">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <a class="twitter-timeline" href="https://twitter.com/ussoccer?ref_src=twsrc%5Etfw">Tweets by ussoccer</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>

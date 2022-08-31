@@ -6,7 +6,7 @@
                 <h3 class="text-center">World Cup Predicting</h3>
                 <hr>
                 <div class="card p-3">
-                    <img src="./images/fans.jpg" class="img-fluid mb-4" alt="">
+                    <img src="{{asset('images/worldcup.png')}}" class="img-fluid mb-4" alt="">
                     <h4>Why would you play predict fantasy football?</h4>
                     <p>
                         Watching football is always fun but it’s always better with people. Playing predict fantasy
