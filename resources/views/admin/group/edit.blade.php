@@ -19,7 +19,7 @@
                     <option value="D" @if ($group->group=='D') selected @endif>D</option>
                     <option value="E" @if ($group->group=='E') selected @endif>E</option>
                     <option value="F" @if ($group->group=='F') selected @endif>F</option>
-                    <option value="G" @iG ($group->group=='G') selected @endif>G</option>
+                    <option value="G" @if ($group->group=='G') selected @endif>G</option>
                     <option value="H" @if ($group->group=='H') selected @endif>H</option>
                     <option value="Round of 16" @if ($group->group=='Round of 16') selected @endif>Round of 16</option>
                     <option value="Quater Final" @if ($group->group=='Quater Final') selected @endif>Quater Final</option>

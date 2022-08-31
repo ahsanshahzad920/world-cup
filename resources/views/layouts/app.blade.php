@@ -47,25 +47,25 @@ $media = media();
                             <a class="nav-link ps-0" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-0" style="margin-left:10px;" href="{{ url('about-us') }}">About Us</a>
+                            <a class="nav-link ps-0" style="margin-left:15px;" href="{{ url('about-us') }}">About Us</a>
                         </li>
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" style="margin-left:10px;" href="/matches">Matches</a>
+                                <a class="nav-link" style="margin-left:15px;" href="/matches">Matches</a>
                             </li>
                         @endauth
                         <li class="nav-item">
-                            <a class="nav-link" style="margin-left:10px;" href="/how-to-play">How To Play & Guidelines</a>
+                            <a class="nav-link" style="margin-left:15px;" href="/how-to-play">How To Play & Guidelines</a>
                         </li class="nav-item">
                         <li class="nav-item">
-                            <a class="nav-link ps-0" style="margin-left:10px;" href="{{ url('hall-of-fame') }}">Hall of Fame</a>
+                            <a class="nav-link ps-0" style="margin-left:15px;" href="{{ url('hall-of-fame') }}">Hall of Fame</a>
                         </li>
                         <li>
-                            <a class="nav-link" style="margin-left:10px;" href="/contact-us">Contact Us</a>
+                            <a class="nav-link" style="margin-left:15px;" href="/contact-us">Contact Us</a>
                         </li>
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link pe-0" style="margin-left:10px;" href="/prediction">My Prediction</a>
+                                <a class="nav-link pe-0" style="margin-left:15px;" href="/prediction">My Prediction</a>
                             </li>
                         @endauth
                         {{-- <li class="nav-item">
@@ -197,10 +197,10 @@ $media = media();
                         use Carbon\Carbon;
                         echo Carbon::now()->format('Y');
                     @endphp Futebol Fanatics Platform. All rights reserved.</p>
-                    @foreach ($media as $item)
+                    {{--@foreach ($media as $item)
                         <a href="{{ $item->link ?? '' }}" title="{{ $item->name ?? '' }}" class="me-2"><i
                                 class="{{ $item->icon ?? '' }} fa-2x"></i></a>
-                    @endforeach
+                    @endforeach--}}
                     {{-- <a href="#" class="me-2"><i class="fa fa-youtube fa-2x"></i></a>
                     <a href="#" class="me-2"><i class="fa fa-twitter fa-2x"></i></a>
                     <a href="#" class="me-2"><i class="fa fa-facebook fa-2x"></i></a>

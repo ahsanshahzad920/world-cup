@@ -42,6 +42,34 @@ $contact = contact();
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="collapse navbar-collapse  justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="{{ url('about-us') }}">About Us</a>
+                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/matches">Matches</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/how-to-play">How To Play & Guidelines</a>
+                        </li class="nav-item">
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="{{ url('hall-of-fame') }}">Hall of Fame</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/contact-us">Contact Us</a>
+                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link pe-0" style="margin-left:15px;" href="/prediction">My Prediction</a>
+                            </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="#">Organise League</a>
+                        </li> --}}
+                    </ul>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

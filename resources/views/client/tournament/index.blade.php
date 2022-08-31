@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+<div class="alert alert-primary">
+    <p>Welcome to your Account Dashboard, <b>{{auth()->user()->username??''}}</b></p>
+</div>
 <div class="card">
     <div class="card-header">
         Tournaments

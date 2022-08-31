@@ -107,7 +107,7 @@
                     </div>
                     <button type="submit" class="btn btn-success">Create Account</button>
                     <div class="mb-3">
-                        Already Register? <a href="{{ route('login') }}">Login</a>
+                        Already Registered? <a href="{{ route('login') }}">Login</a>
                     </div>
                 </form>
             </div>
