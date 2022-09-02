@@ -40,6 +40,7 @@ Route::get('/about-us', 'HomeController@About')->name('about-us');
 Route::get('/hall-of-fame', 'HomeController@fame')->name('hall-of-fame');
 Route::get('/contact-us', 'HomeController@contact')->name('contact-us');
 Route::get('term-condition', 'HomeController@term')->name('term-condition');
+Route::get('privacy-policy', 'HomeController@policy')->name('term-condition');
 Route::get('/matches', 'HomeController@matches')->name('matches');
 Route::get('/prediction', 'HomeController@prediction')->name('prediction');
 Route::post('FAQ_Search', 'HomeController@FaqSearch')->name('FAQ_Search');
@@ -74,6 +75,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('tournament', 'TournamentController');
     // Team
     Route::resource('team', 'TeamController');
+    // Privacy Policy
+    Route::resource('policy', 'PolicyController');
     // Term & Condition
     Route::resource('term', 'TermController');
     // Play & Guideline

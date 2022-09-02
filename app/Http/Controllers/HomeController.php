@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Models\Chat;
 use App\Models\Messages;
 use App\ParticipantPoint;
+use App\Policy;
 use App\Slider;
 use App\Term;
 use App\Tournament;
@@ -91,6 +92,11 @@ class HomeController extends Controller
     {
         $term = Term::orderBy('created_at','ASC')->get();
         return view('term-condition',compact('term')); 
+    }
+    public function policy()
+    {
+        $policy = Policy::orderBy('created_at','ASC')->get();
+        return view('privacy-policy',compact('policy')); 
     }
 
     public function matches()

@@ -194,6 +194,9 @@ $contact = contact();
                     @can('term_access')
                         <a href="{{ url('admin/term') }}"  @if (Request::is('admin/term')) class="links active" @else class="links" @endif>Terms and Conditions</a>
                     @endcan
+                    @can('policy_access')
+                        <a href="{{ url('admin/policy') }}"  @if (Request::is('admin/policy')) class="links active" @else class="links" @endif>Privacy Policy</a>
+                    @endcan
                 </div>
                 <div></div>
                 <div class="w-100 px-0 py-4 p-md-4" id="v-pills-dashboard">

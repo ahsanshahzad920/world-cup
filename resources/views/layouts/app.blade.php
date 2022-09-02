@@ -214,7 +214,7 @@ $media = media();
                 </div>
                 <div class="col-sm-4">
                     <div class="text-start text-lg-end">
-                        <a href="#" class="me-2">Privacy Policy</a>
+                        <a href="{{url('privacy-policy')}}" class="me-2">Privacy Policy</a>
                         <a href="{{ url('term-condition') }}">Terms & Conditions</a>
                     </div>
                 </div>
