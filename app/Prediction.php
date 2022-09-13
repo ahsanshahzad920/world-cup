@@ -14,6 +14,10 @@ class Prediction extends Model
     {
         return $this->belongsTo(GroupMatch::class, 'match_id');
     }
+    public function win_name()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
+    }
     public function user_name()
     {
         return $this->belongsTo(User::class, 'participant_id');

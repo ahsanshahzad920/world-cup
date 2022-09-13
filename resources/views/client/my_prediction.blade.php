@@ -20,6 +20,9 @@
                                 Match No
                             </th>
                             <th>
+                                Match Type
+                            </th>
+                            <th>
                                 Win Team
                             </th>
                             <th>
@@ -47,13 +50,18 @@
                                     {{ $item->match_id ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $item->team_id ?? '' }}
+                                    {{ $item->match_name->type ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $item->team1_goal ?? '' }}
+                                    {{ $item->win_name->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $item->team2_goal ?? '' }}
+                                    {{ $item->match_name->team1_name->name ?? '' }} <br>
+                                    Goal: {{$item->team1_goal??''}}
+                                </td>
+                                <td>
+                                    {{ $item->match_name->team2_name->name ?? '' }} <br>
+                                    Goal: {{$item->team2_goal??''}}
                                 </td>
                                 <td>
                                     @if ($item->allow == 0)
