@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GroupMatch;
 use App\Prediction;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,17 @@ class PredictionController extends Controller
         $prediction = Prediction::orderBy('created_at','DESC')->where('participant_id',Auth()->user()->id)->get();
         return view('client/my_prediction',compact('prediction'));
     }
-
+    public function first_entry($tournament)
+    {
+        $prediction = Prediction::where('participant_id',Auth()->user()->id)->get();
+        return view('client/first_entry.index',compact('prediction'));
+    }
+    public function second_entry($tournament)
+    {
+        $prediction = Prediction::where('participant_id',Auth()->user()->id)->get();
+        return view('client/second_entry.index',compact('prediction'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -50,6 +61,8 @@ class PredictionController extends Controller
         $prediction->team_id = $request->team_id;
         $prediction->team1_goal = $request->team1_goal;
         $prediction->team2_goal = $request->team2_goal;
+        $match = GroupMatch::find($request->match_id);
+        $prediction->type = $match->type;
         $prediction->save();
         return back();
     }

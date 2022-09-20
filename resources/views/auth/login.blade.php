@@ -36,11 +36,11 @@
                     <button type="submit" class="btn btn-success">Login</button>
                     <br>
                     <div class="mb-3">
-                        if you want new? <a href="{{ route('register') }}">Create Account</a>
+                        Want to join the fun? <a href="{{ route('register') }}">Create an Account</a>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         Rules of game <a href="#">click</a>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>

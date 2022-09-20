@@ -122,16 +122,24 @@ class GroupMatchController extends Controller
                 $participant_point = ParticipantPoint::where('participant_id', $item->participant_id)->where('tournament_id', $request->tournament_id)->first();
                 if ($request->penalty == 'on') {
                     $participant_point->points = $participant_point->points + 1;
+                    $item->point = 1;
                 } else {
                     if ($request->goal1 == $item->team1_goal && $request->goal2 == $item->team2_goal) {
                         $participant_point->points = $participant_point->points + 4;
+                        $item->point = 4;
                     } elseif ($request->goal1 - $request->goal2 == $item->team1_goal - $item->team2_goal) {
                         $participant_point->points = $participant_point->points + 2;
+                        $item->point = 2;
                     } else {
                         $participant_point->points = $participant_point->points + 1;
+                        $item->point = 1;
                     }
                 }
-
+                if($match->team1_id == $item->team_id && $match->type=="Final"){
+                    $participant_point->points = $participant_point->points + 10;
+                    $participant_point->update();
+                }
+                $item->update();
                 $participant_point->update();
             }
         } else {
@@ -144,16 +152,21 @@ class GroupMatchController extends Controller
                 $participant_point = ParticipantPoint::where('participant_id', $item->participant_id)->where('tournament_id', $request->tournament_id)->first();
                 if ($request->penalty == 'on') {
                     $participant_point->points = $participant_point->points + 1;
+                    $item->point = 1;
                 } else {
                     if ($request->goal1 == $item->team1_goal && $request->goal2 == $item->team2_goal) {
 
                         $participant_point->points = $participant_point->points + 4;
+                        $item->point = 4;
                     } elseif ($request->goal1 - $request->goal2 == $item->team1_goal - $item->team2_goal) {
                         $participant_point->points = $participant_point->points + 2;
+                        $item->point = 2;
                     } else {
                         $participant_point->points = $participant_point->points+1;
+                        $item->point = 1;
                     }
                 }
+                $item->update();
                 $participant_point->update();
             }
         }

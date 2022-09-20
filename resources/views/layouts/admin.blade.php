@@ -140,7 +140,10 @@ $contact = contact();
                     <a href="{{ url('tournament') }}" @if (Request::is('tournament')) class="links active" @else class="links" @endif>Participant Management</a>
                     @endif
                     @can('user_prediction_access')
-                    <a href="{{ url('my-prediction') }}" @if (Request::is('my-prediction')) class="links active" @else class="links" @endif>My Predictions</a>
+                    <a href="{{ url('first-entry') }}" @if (Request::is('first-entry')) class="links active" @else class="links" @endif>My Predictions-First Entry</a>
+                    @endcan
+                    @can('user_prediction_access')
+                    <a href="{{ url('second-entry') }}" @if (Request::is('second-entry')) class="links active" @else class="links" @endif>My Predictions-Second Entry</a>
                     @endcan
                     
                     {{-- <a href="#" class="links">Entry Management</a> --}}

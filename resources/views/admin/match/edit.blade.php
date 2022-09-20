@@ -29,11 +29,13 @@
                     </div>
                 </div>
             </div>
+            @if($match->type!="league")
             <div class="form-group">
                 <input type="checkbox" name="penalty" id="">
                 <label  for="team1">Match win by penalty kiks?</label>
             </div>
-            <div class="form-group">
+            @endif
+            <div class="form-group" style="margin-top: 5px;">
                 <button class="btn btn-danger" type="submit">
                     UPDATE
                 </button>
