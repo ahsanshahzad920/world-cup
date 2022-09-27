@@ -38,6 +38,7 @@
                     </thead>
                     <tbody>
                         @foreach ($prediction as $index => $item)
+                        @if($item->match_id!=null)
                             <tr>
                                 <td>
                                     {{ $index + 1 }}
@@ -73,6 +74,7 @@
                                     @endif
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
