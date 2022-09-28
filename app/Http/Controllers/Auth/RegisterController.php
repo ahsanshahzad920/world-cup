@@ -111,10 +111,10 @@ class RegisterController extends Controller
                 $particpant->save();
             }
             return $user;
-            // $details = [
-            //     'body' => 'Your account Admins can review and approve or deny!'
-            // ];
-            // Mail::to($data['email'])->send(new \App\Mail\PermissionUser($details));
+            $details = [
+                'body' => ' '
+            ];
+            Mail::to($data['email'])->send(new \App\Mail\PermissionUser($details));
         } else {
             return redirect()->back();
         }

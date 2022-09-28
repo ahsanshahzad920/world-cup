@@ -28,7 +28,7 @@ class PermissionUser extends Mailable
      */
     public function build()
     {
-        return $this->subject('Verification email form Futebol Fanatics Platform')
+        return $this->subject('Welcome to Futebol Fanatics Platform!')
                     ->view('emails.permission');
     }
 }
