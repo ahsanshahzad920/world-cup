@@ -130,7 +130,7 @@
                     </a>
                 </div>
                 <div class="col-12 col-lg-6 mb-5">
-                    <h3>Ranking / Individual</h3>
+                    <h3>Participant Ranking</h3>
                     <table class="table table-striped">
                         <tbody>
                             @foreach ($point as $index=> $item)
@@ -143,26 +143,51 @@
                             
                         </tbody>
                     </table>
-                    <a href="{{url('point/3')}}" class="btn btn-success">All rankings »</a>
+                    <a href="{{url('admin/participant_point')}}" class="btn btn-success">All rankings »</a>
                 </div>
-                <div class="col-12 col-lg-6 mb-5">
+                <div class="col-12 col-lg-12 mb-5">
                     <h3>Matches</h3>
                     <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Stadium</th>
+                            <th scope="col">Team 1</th>
+                            <th scope="col">Team 2</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Score</th>
+                        </tr>
+                    </thead>
                         <tbody>
-                            @foreach ($world_cup as $item)
+                            @foreach ($world_cup as $index=> $item)
                             <tr>
+                                <td>{{$index+1}}</td>
                                 <td>{{date('d M Y', strtotime($item->date))??''}} {{$item->time??''}}</td>
+                                <td>{{$item->ground??''}}</td>
                                 <td><img src="{{asset($item->team1_name->flag??'')}}" alt=""> {{$item->team1_name->name??''}}</td>
                                 <td> <img src="{{asset($item->team2_name->flag??'')}}" alt=""> {{$item->team2_name->name??''}}</td>
+                                @if($item->type=='league')
+                                <td>Group Match</td>
+                                @else
                                 <td>{{$item->type??''}}</td>
-                                <td><a href="#">NS</a></td>
+                                @endif
+
+                                <td>
+                                @if($item->goal1>0 ||$item->goal2>0 )
+                                {{$item->goal1}}/{{$item->goal2}}
+                                @else
+                                NS
+                                @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <a href="{{url('point-table/3')}}" class="btn btn-success">All Matches »</a>
+                    <!-- <a href="{{url('point-table/3')}}" class="btn btn-success">All Matches »</a> -->
+                    <a href="{{url('matches')}}" class="btn btn-success">All Matches »</a> 
                 </div>
-                <div class="col-12 col-lg-6 mb-5">
+                <!-- <div class="col-12 col-lg-6 mb-5">
                     <h3>Ranking / Best league</h3>
                     <table class="table table-striped">
                         <tbody>
@@ -176,7 +201,7 @@
                         </tbody>
                     </table>
                     <a href="{{url('point/3')}}" class="btn btn-success">All Rankings »</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

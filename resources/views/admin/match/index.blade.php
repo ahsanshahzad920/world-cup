@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label class="required" for="group">Match Type</label>
                     <select name="type" class="form-control" id="">
-                        <option value="league">league Match</option>
+                        <option value="Group Match">Group Match</option>
                         <option value="Round of 16">Round of 16</option>
                         <option value="Quarterfinal">Quarterfinal</option>
                         <option value="Semifinal">Semifinal</option>
@@ -53,7 +53,7 @@
                     {!! $errors->first('time', "<span class='text-danger'>:message</span>") !!}
                 </div>
                 <div class="form-group">
-                    <label class="required" for="group">Ground</label>
+                    <label class="required" for="group">Stadium</label>
                     <input class="form-control" type="text" name="ground" id="ground"
                         value="{{ old('ground', '') }}" required>
                     {!! $errors->first('ground', "<span class='text-danger'>:message</span>") !!}

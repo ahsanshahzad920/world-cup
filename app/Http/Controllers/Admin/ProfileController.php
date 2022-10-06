@@ -12,7 +12,7 @@ class ProfileController extends Controller
     public function index()
     {
         $country = Country::orderBy('name', 'ASC')->get();
-        return view('Admin/users.profile', compact('country'));
+        return view('admin/users.profile', compact('country'));
     }
 
     public function update(Request $request, $id)

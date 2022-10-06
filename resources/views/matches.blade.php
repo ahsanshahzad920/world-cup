@@ -26,8 +26,18 @@
                                 {{ $item->team1_name->name ?? '' }}</td>
                             <td> <img src="{{ asset($item->team2_name->flag ?? '') }}" alt="">
                                 {{ $item->team2_name->name ?? '' }}</td>
-                            <td>{{ $item->type ?? '' }}</td>
-                            <td><a href="#">NS</a></td>
+                                @if($item->type=='league')
+                                <td>Group Match</td>
+                                @else
+                                <td>{{$item->type??''}}</td>
+                                @endif
+                            <td>
+                                @if($item->goal1>0 ||$item->goal2>0 )
+                                {{$item->goal1}}/{{$item->goal2}}
+                                @else
+                                NS
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                 </tbody>

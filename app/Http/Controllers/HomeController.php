@@ -39,7 +39,7 @@ class HomeController extends Controller
     }
     public function home()
     {
-        $world_cup = GroupMatch::where('tournament_id',3)->orderBy('date','ASC')->where('win',null)->get();
+        $world_cup = GroupMatch::where('tournament_id',3)->orderBy('date','ASC')->where('win',null)->paginate('10');
         $point = ParticipantPoint::where('tournament_id',3)->orderBy('points','DESC')->where('status',0)->get();
         $slider = Slider::orderBy('id','DESC')->get();
         $service = Service::orderBy('id','ASC')->get();
@@ -101,7 +101,8 @@ class HomeController extends Controller
 
     public function matches()
     {
-        $world_cup = GroupMatch::orderBy('date','ASC')->where('win',null)->get();
+        $world_cup = GroupMatch::orderBy('date','ASC')->where('win',null)->paginate('10');
+        
         return view('matches',compact('world_cup')); 
     }
 

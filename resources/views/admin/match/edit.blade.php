@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            @if($match->type!="league")
+            @if($match->type!="league"||$match->type!="Group Match")
             <div class="form-group">
                 <input type="checkbox" name="penalty" id="">
                 <label  for="team1">Match win by penalty kicks?</label>

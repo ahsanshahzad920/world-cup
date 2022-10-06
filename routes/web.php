@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'Config cache cleared';
+});
 // profile
 Route::post('message_send', 'user\ContactController@store');
 Route::group(['middleware' => ['auth']], function () {
@@ -72,7 +76,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/admin', 'HomeController@index')->name('home');
     Route::get('paid-users/{id?}', 'HomeController@paidUsers');
     //Profile
-    Route::view('profile', 'Admin/users/profile');
+    Route::view('profile', 'admin/users/profile');
 
     // Tournament
     Route::resource('tournament', 'TournamentController');
