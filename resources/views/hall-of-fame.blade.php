@@ -106,9 +106,8 @@
                                     @foreach ($point->where('tournament_id', $item->id) as $index => $item)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $item->participant_name->first_name ?? '' }}
-                                                {{ $item->participant_name->last_name ?? '' }}</td>
-                                            <td>{{ $item->points ?? '' }}</td>
+                                            <td>{{ $item->participant ?? '' }}</td>
+                                            <td>{{ $item->point ?? '' }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

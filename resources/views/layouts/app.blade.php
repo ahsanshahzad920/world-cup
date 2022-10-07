@@ -145,6 +145,9 @@ $media = media();
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('logo.jpg') }}"
+                        style="height: 30px;
+                    width: 40px;" alt="">
                     <span>Futebol Fanatics Platform</span>
                     <small class="powered-by">Powered by Renovato Bros Association</small>
                 </a>
@@ -178,7 +181,7 @@ $media = media();
         </nav>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">Organise League</a>
+                <a class="navbar-brand" href="#"></a>
                 <div class="d-flex">
                     <a class="nav-link text-white" href="/login">Login</a>
                     <a class="nav-link btn btn-primary text-white" href="/register">Sign Up</a>

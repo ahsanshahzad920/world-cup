@@ -69,6 +69,9 @@ Route::get('bulet', 'AwardController@Bulit');
 Route::get('service', 'ServicesController@index');
 Route::get('service_detail/{id}', 'ServicesController@edit');
 
+
+Route::get('all-ranking', 'Admin\HomeController@all_ranking')->middleware("auth");
+
 // Admin
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth.admin']], function () {
@@ -102,6 +105,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('match/{group}/{tournament}', 'GroupMatchController@index');
     Route::post('match-store', 'GroupMatchController@store')->name('match.store');
     Route::get('match-edit/{id}', 'GroupMatchController@edit')->name('match.edit');
+    Route::post('match-update/{id}', 'GroupMatchController@matchUpdate');
     Route::post('match-update/{id}', 'GroupMatchController@update')->name('match.update');
     Route::delete('match-destroy/{id}', 'GroupMatchController@destroy')->name('match.destroy');
     // Participant Point
@@ -109,6 +113,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('deleteTypeMedal', 'TypeMedalController@destroy')->name('deleteTypeMedal');
     // media
     Route::resource('media', 'MediaController');
+    // Ranking Tournament
+    Route::resource('ranking-tournament', 'RankingTournamentController');
+    // Ranking Points
+    Route::resource('ranking-points', 'RankingUserController');
     // Website Content
     Route::resource('content', 'ContentController');
     // contact

@@ -18,14 +18,14 @@ class GroupMatchController extends Controller
     }
     public function first_entry()
     {
-        $match = GroupMatch::where('type','league')->get();
+        $match = GroupMatch::where('type','Group Match')->get();
         $predition = Prediction::where('participant_id',Auth()->user()->id)->get();
         $team = Team::orderBy('name','ASC')->get();
         return view('client/first_entry.index',compact('match','predition','team'));
     }
     public function second_entry()
     {
-        $match = GroupMatch::where('type','!=','league')->get();
+        $match = GroupMatch::where('type','!=','Group Match')->get();
         $predition = Prediction::where('participant_id',Auth()->user()->id)->get();
         return view('client/second_entry.index',compact('match','predition'));
     }

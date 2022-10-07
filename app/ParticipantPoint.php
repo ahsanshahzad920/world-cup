@@ -10,4 +10,8 @@ class ParticipantPoint extends Model
     {
         return $this->belongsTo(User::class, 'participant_id');
     }
+    public function tournament_name()
+    {
+        return $this->belongsTo(Tournament::class, 'tournament_id');
+    }
 }

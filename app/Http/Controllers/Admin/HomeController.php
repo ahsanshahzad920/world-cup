@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ParticipantPoint;
 use App\User;
 use Carbon\Carbon;
 
@@ -12,7 +13,11 @@ class HomeController
         //dd('asdsa');
         return view('home');
     }
-
+    public function all_ranking()
+    {
+        $points = ParticipantPoint::orderBy('points','DESC')->orderBy('tournament_id','ASC')->get();
+        return view('all_ranking',compact('points'));
+    }
     public function about()
     {
         return view('about');

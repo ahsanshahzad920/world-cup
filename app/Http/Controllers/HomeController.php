@@ -19,6 +19,8 @@ use App\Models\Chat;
 use App\Models\Messages;
 use App\ParticipantPoint;
 use App\Policy;
+use App\RankingTournament;
+use App\RankingUser;
 use App\Slider;
 use App\Term;
 use App\Tournament;
@@ -78,8 +80,8 @@ class HomeController extends Controller
 
     public function fame()
     {
-        $tournament = Tournament::all();
-        $point = ParticipantPoint::orderBy('points','DESC')->get();
+        $tournament = RankingTournament::all();
+        $point = RankingUser::orderBy('point','DESC')->get();
         return view('hall-of-fame',compact('tournament','point')); 
     }
 

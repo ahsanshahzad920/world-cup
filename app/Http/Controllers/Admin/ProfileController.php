@@ -33,7 +33,7 @@ class ProfileController extends Controller
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $upload = 'uploads';
-            $filename = time().$file->getClientOriginalName();
+            $filename = time() . $file->getClientOriginalName();
             $path    = move_uploaded_file($file->getPathName(), $upload . $filename);
             $user->image =  $upload . $filename;
         }

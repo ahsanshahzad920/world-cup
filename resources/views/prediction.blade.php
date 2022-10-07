@@ -36,8 +36,9 @@
                     </div> --}}
                     <div class="row">
                         <div class="col-12 col-lg-6 offset-lg-3 mt-3">
-                            <a href="{{url('point-table/3')}}" class="btn btn-primary form-control">Prediction</a>
-                            
+                            @if(!Auth()->user()->is_admin)
+                            <a href="{{url('first-entry')}}" class="btn btn-primary form-control">Prediction</a>
+                            @endif
                         </div>
                     </div>
                 </div>

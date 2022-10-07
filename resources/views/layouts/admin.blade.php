@@ -159,7 +159,9 @@ $contact = contact();
                     @can('team_access')
                         <a href="{{ url('admin/team') }}"  @if (Request::is('admin/team')) class="links active" @else class="links" @endif>Teams</a>
                     @endcan
-
+                    @can('all_ranking_access')
+                    <a href="{{ url('all-ranking') }}"  @if (Request::is('all-ranking')) class="links active" @else class="links" @endif>All Rankings</a>
+                    @endcan
                     {{-- <a href="{{ url('chat') }}"  @if (Request::is('chat')) class="links active" @else class="links" @endif>Messages</a> --}}
                     @can('user_access')
                         <a href="/admin/users"  @if (Request::is('admin/users')) class="links active" @else class="links" @endif>User Management</a>
@@ -179,6 +181,12 @@ $contact = contact();
                     {{-- @can('blog_access')
                         <a href="{{ url('admin/blog') }}" class="links">Blogs</a>
                     @endcan --}}
+                    @can('ranking_tournament_access')
+                        <a href="{{ url('admin/ranking-tournament') }}"  @if (Request::is('admin/ranking-tournament')) class="links active" @else class="links" @endif>Ranking Tournaments</a>
+                    @endcan
+                    @can('ranking_points_access')
+                        <a href="{{ url('admin/ranking-points') }}"  @if (Request::is('admin/ranking-points')) class="links active" @else class="links" @endif>Ranking Points</a>
+                    @endcan
                     @can('slider_access')
                         <a href="{{ url('admin/slider') }}"  @if (Request::is('admin/slider')) class="links active" @else class="links" @endif>Slider</a>
                     @endcan

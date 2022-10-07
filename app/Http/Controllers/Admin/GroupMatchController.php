@@ -72,7 +72,32 @@ class GroupMatchController extends Controller
         $match->save();
         return redirect('admin/match/' . $request->group . '/' . $request->tournament_id)->with('success', 'Group ' . $request->group . ' Match has created!');
     }
-
+    public function matchUpdate(Request $request,$id)
+    {
+        $validation = $request->validate(
+            [
+                'team1' => 'required',
+                'team2' => 'required',
+                'date' => 'required',
+                'time' => 'required',
+                'ground' => 'required',
+                'type' => 'required',
+                'city' => 'required',
+            ]
+        );
+        $match = GroupMatch::find($id);
+        $match->tournament_id = $request->tournament_id;
+        $match->group = $request->group;
+        $match->team1_id = $request->team1;
+        $match->team2_id = $request->team2;
+        $match->date = $request->date;
+        $match->time = $request->time;
+        $match->ground = $request->ground;
+        $match->type = $request->type;
+        $match->city = $request->city;
+        $match->update();
+        return redirect('admin/match/' . $request->group . '/' . $request->tournament_id)->with('success', 'Group ' . $request->group . ' Match has updated!');
+    }
     /**
      * Display the specified resource.
      *

@@ -133,7 +133,7 @@
                     <h3>Participant Ranking</h3>
                     <table class="table table-striped">
                         <tbody>
-                            @foreach ($point as $index=> $item)
+                            @foreach ($point->take(10) as $index=> $item)
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$item->participant_name->first_name??''}} {{$item->participant_name->last_name??''}}</td>
@@ -143,7 +143,7 @@
                             
                         </tbody>
                     </table>
-                    <a href="{{url('admin/participant_point')}}" class="btn btn-success">All rankings »</a>
+                    <a href="{{url('all-ranking')}}" class="btn btn-success">All rankings »</a>
                 </div>
                 <div class="col-12 col-lg-12 mb-5">
                     <h3>Matches</h3>
