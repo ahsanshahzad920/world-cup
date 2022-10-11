@@ -35,7 +35,7 @@
                                 @if($item->goal1>0 ||$item->goal2>0 )
                                 {{$item->goal1}}/{{$item->goal2}}
                                 @else
-                                NS
+                                TBD
                                 @endif
                             </td>
                         </tr>

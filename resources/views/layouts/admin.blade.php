@@ -134,7 +134,7 @@ $contact = contact();
 
     <div class="admin-portal">
         <div class="d-flex flex-column flex-md-row align-items-start">
-            <div class="side-links-sec dropdown">
+            <div class="side-links-sec dropdown" style="min-height:100vh !important;">
                 {{-- <a href="{{url('dashboard')}}" class="links">Dashboard</a> --}}
                 @can('participant_management_access')
                     <a href="{{ url('tournament') }}" @if (Request::is('tournament')) class="links active" @else class="links" @endif>Participant Management</a>

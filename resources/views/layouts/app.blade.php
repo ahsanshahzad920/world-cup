@@ -14,7 +14,7 @@ $media = media();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('icon.ico') }}" />
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('logo.jpg') }}" />
 
     @yield('style')
 </head>
@@ -146,10 +146,10 @@ $media = media();
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('logo.jpg') }}"
-                        style="height: 30px;
-                    width: 40px;" alt="">
-                    <span>Futebol Fanatics Platform</span>
-                    <small class="powered-by">Powered by Renovato Bros Association</small>
+                        style="height: 85px;
+                    width: 100px;" alt="">
+                    <!-- <span>Futebol Fanatics Platform</span>
+                    <small class="powered-by">Powered by Renovato Bros Association</small> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
