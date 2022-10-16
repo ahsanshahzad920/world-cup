@@ -133,14 +133,13 @@
                     <h3>Participant Ranking</h3>
                     <table class="table table-striped">
                         <tbody>
-                            @foreach ($point->take(10) as $index=> $item)
-                            @if($item->participant_name->permission==1)
+                            @foreach ($point as $index=> $item)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$item->participant_name->first_name??''}} {{$item->participant_name->last_name??''}}</td>
+                                <td>{{$item->touranament??''}}</td>
+                                <td>{{$item->first_name??''}} {{$item->last_name??''}}</td>
                                 <td>{{$item->points??''}}</td>
                             </tr>
-                            @endif
                             @endforeach
                             
                         </tbody>

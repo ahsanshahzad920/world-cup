@@ -42,7 +42,11 @@ class HomeController extends Controller
     public function home()
     {
         $world_cup = GroupMatch::orderBy('date','ASC')->where('win',null)->paginate('10');
-        $point = ParticipantPoint::orderBy('points','DESC')->where('status',0)->get();
+        $query = 'SELECT participant_points.points, users.first_name, users.last_name, tournaments.name as touranament FROM participant_points 
+        JOIN users on users.id = participant_points.participant_id 
+        JOIN tournaments on tournaments.id = participant_points.tournament_id 
+         WHERE participant_points.status = 0 AND users.permission = 1 ORDER BY participant_points.points DESC LIMIT 10';
+        $point = DB::select(DB::raw($query));
         $slider = Slider::orderBy('id','DESC')->get();
         $service = Service::orderBy('id','ASC')->get();
         $blog = Blog::orderBy('id','ASC')->get();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\ParticipantPoint;
 use App\Tournament;
 use Illuminate\Http\Request;
 
@@ -112,8 +113,8 @@ class TournamentController extends Controller
      */
     public function destroy(Tournament $tournament)
     {
+        $participant = ParticipantPoint::where('tournament_id',$tournament->id)->delete();
         $tournament->delete();
-
         return back()->with('success','Tournament has deleted!');
     }
 }
