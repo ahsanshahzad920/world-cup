@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/dash-assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/dash-assets/css/auth.css">
     <!-- Favicon Link -->
-    <link rel="shortcut icon" type="image/png" href="/dash-assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('logo.jpg') }}">
 </head>
 
 <body>
