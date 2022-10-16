@@ -134,11 +134,13 @@
                     <table class="table table-striped">
                         <tbody>
                             @foreach ($point->take(10) as $index=> $item)
+                            @if($item->participant_name->permission==1)
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$item->participant_name->first_name??''}} {{$item->participant_name->last_name??''}}</td>
                                 <td>{{$item->points??''}}</td>
                             </tr>
+                            @endif
                             @endforeach
                             
                         </tbody>

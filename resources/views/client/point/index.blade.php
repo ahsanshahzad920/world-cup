@@ -26,6 +26,7 @@
                 </thead>
                 <tbody>
                     @foreach($point as $index => $item)
+                    @if($item->participant_name->permission==1)
                         <tr>
                             <td>
                                 {{$index+1}}
@@ -38,6 +39,7 @@
                                 {{ $item->points ?? '' }}
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

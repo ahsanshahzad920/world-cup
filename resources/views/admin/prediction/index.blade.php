@@ -17,7 +17,7 @@
                                 Tournament
                             </th>
                             <th>
-                                Match No
+                                Match Type
                             </th>
                             <th>
                                 Win Team
@@ -48,10 +48,10 @@
                                         href="{{ url('point-table/' . $item->id) }}">{{ $item->tournament_name->name ?? '' }}</a>
                                 </td>
                                 <td>
-                                    {{ $item->match_id ?? '' }}
+                                    {{ $item->match_name->type ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $item->team_id ?? '' }}
+                                    {{ $item->win_name->name ?? '' }}
                                 </td>
                                 <td>
                                     {{ $item->team1_goal ?? '' }}

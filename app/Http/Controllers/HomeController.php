@@ -41,8 +41,8 @@ class HomeController extends Controller
     }
     public function home()
     {
-        $world_cup = GroupMatch::where('tournament_id',3)->orderBy('date','ASC')->where('win',null)->paginate('10');
-        $point = ParticipantPoint::where('tournament_id',3)->orderBy('points','DESC')->where('status',0)->get();
+        $world_cup = GroupMatch::orderBy('date','ASC')->where('win',null)->paginate('10');
+        $point = ParticipantPoint::orderBy('points','DESC')->where('status',0)->get();
         $slider = Slider::orderBy('id','DESC')->get();
         $service = Service::orderBy('id','ASC')->get();
         $blog = Blog::orderBy('id','ASC')->get();
