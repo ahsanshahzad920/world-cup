@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\ParticipantPoint;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class HomeController
 {
@@ -15,7 +16,11 @@ class HomeController
     }
     public function all_ranking()
     {
-        $points = ParticipantPoint::orderBy('points','DESC')->orderBy('tournament_id','ASC')->get();
+        $query = 'SELECT participant_points.points, users.first_name, users.last_name, tournaments.name as touranament FROM participant_points 
+        JOIN users on users.id = participant_points.participant_id 
+        JOIN tournaments on tournaments.id = participant_points.tournament_id 
+         WHERE participant_points.status = 0 AND users.permission = 1 ORDER BY participant_points.points DESC LIMIT 10';
+        $points = DB::select(DB::raw($query));
         return view('all_ranking',compact('points'));
     }
     public function about()

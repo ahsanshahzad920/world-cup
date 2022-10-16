@@ -27,22 +27,20 @@
                 </thead>
                 <tbody>
                     @foreach($points as $index => $item)
-                    @if($item->participant_name->permission==1)
                         <tr>
                             <td>
                                 {{$index+1}}
                             </td>
                             <td>
-                                {{ $item->tournament_name->name ?? '' }}
+                                {{ $item->touranament ?? '' }}
                             </td>
                             <td>
-                                {{ $item->participant_name->first_name ?? '' }} {{ $item->participant_name->last_name ?? '' }}
+                                {{ $item->first_name ?? '' }} {{ $item->last_name ?? '' }}
                             </td>
                             <td>
                                 {{ $item->points ?? '' }}
                             </td>
                         </tr>
-                        @endif
                     @endforeach
                 </tbody>
             </table>
