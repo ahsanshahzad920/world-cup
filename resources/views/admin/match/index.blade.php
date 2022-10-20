@@ -32,9 +32,9 @@
                     <select name="type" class="form-control" id="">
                         <option value="Group Match">Group Match</option>
                         <option value="Round of 16">Round of 16</option>
-                        <option value="Quarterfinal">Quarterfinal</option>
+                        <option value="Quater Final">Quater Final</option>
                         <option value="Semifinal">Semifinal</option>
-                        <option value="3rd place">3rd place Match</option>
+                        <option value="Third Place">3rd place Match</option>
                         <option value="Final">Final</option>
                     </select>
                     {!! $errors->first('type', "<span class='text-danger'>:message</span>") !!}
@@ -226,9 +226,9 @@
                                                             <select name="type" class="form-control" id="">
                                                                 <option value="Group Match" {{($item->group=='Group Match')?'selected':''}}>Group Match</option>
                                                                 <option value="Round of 16" {{($item->group=='Round of 16')?'selected':''}}>Round of 16</option>
-                                                                <option value="Quarterfinal" {{($item->group=='Quarterfinal')?'selected':''}}>Quarterfinal</option>
+                                                                <option value="Quater Final" {{($item->group=='Quater Final')?'selected':''}}>Quarterfinal</option>
                                                                 <option value="Semifinal" {{($item->group=='Semifinal')?'selected':''}}>Semifinal</option>
-                                                                <option value="3rd place" {{($item->group=='3rd place')?'selected':''}}>3rd place Match</option>
+                                                                <option value="Third Place" {{($item->group=='Third Place')?'selected':''}}>3rd place Match</option>
                                                                 <option value="Final" {{($item->group=='Final')?'selected':''}}>Final</option>
                                                             </select>
                                                             {!! $errors->first('type', "<span class='text-danger'>:message</span>") !!}

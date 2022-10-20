@@ -373,9 +373,6 @@
                                 #
                             </th>
                             <th>
-                                Tournament
-                            </th>
-                            <th>
                                 Team 1
                             </th>
                             <th>
@@ -412,9 +409,6 @@
                             <tr>
                                 <td>
                                     {{ $index + 1 }}
-                                </td>
-                                <td>
-                                    {{ $item->tournament_name->name ?? '' }}
                                 </td>
                                 <td>
                                     {{ $item->team1_name->name ?? '' }}
