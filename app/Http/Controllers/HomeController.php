@@ -107,7 +107,7 @@ class HomeController extends Controller
 
     public function matches()
     {
-        $world_cup = GroupMatch::orderBy('date','ASC')->where('win',null)->paginate('10');
+        $world_cup = GroupMatch::orderBy('date','DESC')->paginate('10');
         
         return view('matches',compact('world_cup')); 
     }
