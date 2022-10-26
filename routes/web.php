@@ -39,6 +39,7 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::get('my-prediction', 'PredictionController@index');
     Route::post('predition-match', 'PredictionController@store')->name('Predition.store');
     Route::post('predition-match/{id}', 'PredictionController@update')->name('Predition.update');
+    Route::post('second-predition-match', 'PredictionController@second')->name('secondPredition.store');
 });
 
 Route::get('/', 'HomeController@home')->name('/');
