@@ -104,7 +104,17 @@ class PredictionController extends Controller
             } else {
                 $match = new ParticipantMatch;
                 $match->tournament_id = $request->tournament_id;
-                $match->sr = $request->sr ?? $check->sr + 1;
+                if(isset($request->sr)){
+                    $sr_no = $request->sr;
+                }else{
+                    if(isset($check->sr)){
+                        $sr_no = $check->sr + 1;
+                    }else{
+                        $sr_no = 1;
+                    }
+                   
+                }
+                $match->sr = $sr_no;
                 $match->type = $type;
                 $match->team1_id = $request->team_id;
                 $match->participant_id = Auth()->user()->id;
