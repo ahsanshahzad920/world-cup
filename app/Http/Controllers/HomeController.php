@@ -41,7 +41,7 @@ class HomeController extends Controller
     }
     public function home()
     {
-        $world_cup = GroupMatch::orderBy('date','ASC')->where('win',null)->paginate('10');
+        $world_cup = GroupMatch::orderBy('date','ASC')->orderBy('time','ASC')->paginate('10');
         $query = 'SELECT participant_points.points, users.first_name, users.last_name, tournaments.name as touranament FROM participant_points 
         JOIN users on users.id = participant_points.participant_id 
         JOIN tournaments on tournaments.id = participant_points.tournament_id 
@@ -107,7 +107,7 @@ class HomeController extends Controller
 
     public function matches()
     {
-        $world_cup = GroupMatch::orderBy('date','DESC')->paginate('10');
+        $world_cup = GroupMatch::orderBy('date','ASC')->orderBy('time','ASC')->get();
         
         return view('matches',compact('world_cup')); 
     }
