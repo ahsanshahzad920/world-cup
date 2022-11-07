@@ -94,6 +94,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('guideline', 'GuidelineController');
     // prediction
     Route::resource('prediction', 'PredictionController');
+    // participant Match
+    Route::resource('participant-match', 'ParticipantMatchController');
     // group
     Route::get('group/{id}', 'GroupController@index');
     Route::get('group-create/{id}', 'GroupController@create')->name('group.create');
@@ -109,6 +111,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('match-update/{id}', 'GroupMatchController@matchUpdate');
     Route::post('match-update/{id}', 'GroupMatchController@update')->name('match.update');
     Route::delete('match-destroy/{id}', 'GroupMatchController@destroy')->name('match.destroy');
+    Route::get('match-reset/{id}', 'GroupMatchController@reset')->name('match.reset');
     // Participant Point
     Route::resource('participant_point', 'ParticipantPointController');
     Route::post('deleteTypeMedal', 'TypeMedalController@destroy')->name('deleteTypeMedal');

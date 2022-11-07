@@ -156,6 +156,9 @@ $contact = contact();
                     @can('tournament_access')
                         <a href="{{ url('admin/tournament') }}"  @if (Request::is('admin/tournament')) class="links active" @else class="links" @endif>Tournament Management</a>
                     @endcan
+                    @can('tournament_access')
+                    <a href="{{ url('admin/participant-match') }}"  @if (Request::is('admin/participant-match')) class="links active" @else class="links" @endif>Participant Matches</a>
+                    @endcan
                     @can('team_access')
                         <a href="{{ url('admin/team') }}"  @if (Request::is('admin/team')) class="links active" @else class="links" @endif>Teams</a>
                     @endcan

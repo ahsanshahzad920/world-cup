@@ -7,6 +7,11 @@
     </div>
 
     <div class="card-body">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <form method="POST" action="{{ route("admin.match.update",$match->id) }}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="tournament_id" value="{{$match->tournament_id??''}}">

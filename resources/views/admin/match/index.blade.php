@@ -5,6 +5,16 @@
             Create Match
         </div>
         <div class="card-body">
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
             <form method="POST" action="{{ route('admin.match.store') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="tournament_id" value="{{ $tournament ?? '' }}">
@@ -39,6 +49,18 @@
                     </select>
                     {!! $errors->first('type', "<span class='text-danger'>:message</span>") !!}
                 </div>
+                {{-- @if ($group == 'Round of 16')
+                    <div class="form-group">
+                        <label class="required" for="group">Group</label>
+                        <select name="quater_group" class="form-control" id="">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                        {!! $errors->first('quater_group', "<span class='text-danger'>:message</span>") !!}
+                    </div>
+                @endif --}}
                 <div class="form-group">
                     <label class="required" for="group">Date</label>
                     <input class="form-control" type="date" name="date" id="date" value="{{ old('date', '') }}"
@@ -53,8 +75,8 @@
                 </div>
                 <div class="form-group">
                     <label class="required" for="group">Stadium</label>
-                    <input class="form-control" type="text" name="ground" id="ground" value="{{ old('ground', '') }}"
-                        required>
+                    <input class="form-control" type="text" name="ground" id="ground"
+                        value="{{ old('ground', '') }}" required>
                     {!! $errors->first('ground', "<span class='text-danger'>:message</span>") !!}
                 </div>
                 <div class="form-group">
@@ -162,12 +184,16 @@
                                     {{ $item->win_name->name ?? '' }}
                                 </td>
                                 <td>
-                                    @if ($item->win == null)
+                                    @if (!isset($item->win))
                                         @can('match_update')
                                             <a class="btn btn-xs btn-dark" href="{{ url('admin/match-edit/' . $item->id) }}">
                                                 Update
                                             </a>
                                         @endcan
+                                    @else
+                                        <a class="btn btn-xs btn-info" href="{{ url('admin/match-reset/' . $item->id) }}">
+                                            Reset
+                                        </a>
                                     @endif
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
                                         data-target="#EditMatch{{ $item->id ?? '' }}">
@@ -199,24 +225,31 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{url('admin/match-update/'.$item->id)}}" method="POST">
+                                            <form action="{{ url('admin/match-update/' . $item->id) }}" method="POST">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="required" for="team1">Team 1</label>
-                                                            <select name="team1" class="form-control" id="" required>
+                                                            <select name="team1" class="form-control" id=""
+                                                                required>
                                                                 @foreach ($team as $item1)
-                                                                    <option {{($item->team1_id==$item1->team_name->id)?'selected':''}}value="{{ $item1->team_name->id ?? '' }}">{{ $item1->team_name->name ?? '' }}</option>
+                                                                    <option
+                                                                        {{ $item->team1_id == $item1->team_name->id ? 'selected' : '' }}value="{{ $item1->team_name->id ?? '' }}">
+                                                                        {{ $item1->team_name->name ?? '' }}</option>
                                                                 @endforeach
                                                             </select>
                                                             {!! $errors->first('team1', "<span class='text-danger'>:message</span>") !!}
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="required" for="team1">Team 2</label>
-                                                            <select name="team2" class="form-control" id="" required>
+                                                            <select name="team2" class="form-control" id=""
+                                                                required>
                                                                 @foreach ($team as $item1)
-                                                                <option {{($item->team2_id==$item1->team_name->id)?'selected':''}} value="{{ $item1->team_name->id ?? '' }}">{{ $item1->team_name->name ?? '' }}</option>
+                                                                    <option
+                                                                        {{ $item->team2_id == $item1->team_name->id ? 'selected' : '' }}
+                                                                        value="{{ $item1->team_name->id ?? '' }}">
+                                                                        {{ $item1->team_name->name ?? '' }}</option>
                                                                 @endforeach
                                                             </select>
                                                             {!! $errors->first('team2', "<span class='text-danger'>:message</span>") !!}
@@ -224,37 +257,62 @@
                                                         <div class="form-group">
                                                             <label class="required" for="group">Match Type</label>
                                                             <select name="type" class="form-control" id="">
-                                                                <option value="Group Match" {{($item->group=='Group Match')?'selected':''}}>Group Match</option>
-                                                                <option value="Round of 16" {{($item->group=='Round of 16')?'selected':''}}>Round of 16</option>
-                                                                <option value="Quater Final" {{($item->group=='Quater Final')?'selected':''}}>Quarterfinal</option>
-                                                                <option value="Semifinal" {{($item->group=='Semifinal')?'selected':''}}>Semifinal</option>
-                                                                <option value="Third Place" {{($item->group=='Third Place')?'selected':''}}>3rd place Match</option>
-                                                                <option value="Final" {{($item->group=='Final')?'selected':''}}>Final</option>
+                                                                <option value="Group Match"
+                                                                    {{ $item->group == 'Group Match' ? 'selected' : '' }}>Group
+                                                                    Match</option>
+                                                                <option value="Round of 16"
+                                                                    {{ $item->group == 'Round of 16' ? 'selected' : '' }}>Round
+                                                                    of 16</option>
+                                                                <option value="Quater Final"
+                                                                    {{ $item->group == 'Quater Final' ? 'selected' : '' }}>
+                                                                    Quarterfinal</option>
+                                                                <option value="Semifinal"
+                                                                    {{ $item->group == 'Semifinal' ? 'selected' : '' }}>
+                                                                    Semifinal</option>
+                                                                <option value="Third Place"
+                                                                    {{ $item->group == 'Third Place' ? 'selected' : '' }}>3rd
+                                                                    place Match</option>
+                                                                <option value="Final"
+                                                                    {{ $item->group == 'Final' ? 'selected' : '' }}>Final
+                                                                </option>
                                                             </select>
                                                             {!! $errors->first('type', "<span class='text-danger'>:message</span>") !!}
                                                         </div>
+                                                        {{-- @if ($group == 'Round of 16')
+                                                            <div class="form-group">
+                                                                <label class="required" for="group">Group</label>
+                                                                <select name="quater_group" class="form-control"
+                                                                    id="">
+                                                                    <option value="A">A</option>
+                                                                    <option value="B">B</option>
+                                                                    <option value="C">C</option>
+                                                                    <option value="D">D</option>
+                                                                </select>
+                                                                {!! $errors->first('quater_group', "<span class='text-danger'>:message</span>") !!}
+                                                            </div>
+                                                        @endif --}}
                                                         <div class="form-group">
                                                             <label class="required" for="group">Date</label>
-                                                            <input class="form-control" type="date" name="date" id="date" value="{{ $item->date?? '' }}"
-                                                                required>
+                                                            <input class="form-control" type="date" name="date"
+                                                                id="date" value="{{ $item->date ?? '' }}" required>
                                                             {!! $errors->first('date', "<span class='text-danger'>:message</span>") !!}
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="required" for="group">Time</label>
-                                                            <input class="form-control" type="time" name="time" id="time" value="{{ $item->time??'' }}"
-                                                                required>
+                                                            <input class="form-control" type="time" name="time"
+                                                                id="time" value="{{ $item->time ?? '' }}" required>
                                                             {!! $errors->first('time', "<span class='text-danger'>:message</span>") !!}
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="required" for="group">Stadium</label>
-                                                            <input class="form-control" type="text" name="ground" id="ground" value="{{ $item->ground??'' }}"
-                                                                required>
+                                                            <input class="form-control" type="text" name="ground"
+                                                                id="ground" value="{{ $item->ground ?? '' }}" required>
                                                             {!! $errors->first('ground', "<span class='text-danger'>:message</span>") !!}
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="required" for="group">City</label>
-                                                            <input class="form-control" type="text" name="city" id="city" value="{{ $item->city??'' }}"
-                                                                required>
+                                                            <input class="form-control" type="text" name="city"
+                                                                id="city" value="{{ $item->city ?? '' }}" required>
                                                             {!! $errors->first('city', "<span class='text-danger'>:message</span>") !!}
                                                         </div>
                                                     </div>
@@ -265,7 +323,7 @@
                                                 data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Update</button>
                                         </div>
-                                    </form>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

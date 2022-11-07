@@ -15,9 +15,6 @@
                             ID
                         </th>
                         <th>
-                            Tournament
-                        </th>
-                        <th>
                             Participant
                         </th>
                         <th>
@@ -30,9 +27,6 @@
                         <tr>
                             <td>
                                 {{$index+1}}
-                            </td>
-                            <td>
-                                {{ $item->touranament ?? '' }}
                             </td>
                             <td>
                                 {{ $item->first_name ?? '' }} {{ $item->last_name ?? '' }}

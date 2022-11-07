@@ -62,94 +62,97 @@
                                     {{ $point->team2_goal ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $item->win_name->name ?? '' }}
+                                    {{ $point->win_name->name ?? '' }}
                                 </td>
                                 <td>
 
-                                    {{ $point->point ?? '' }}
+                                    {{ $point->point ?? '0' }}
                                 </td>
                                 <td>
                                     @if ($item->win == null)
-                                    @if ($predition->where('participant_id', Auth()->user()->id)->where('match_id', $item->id)->count() < 1)
-                                        @can('participant_prediction_create')
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#model{{ $item->id ?? '' }}">
-                                                Prediction
-                                            </button>
+                                        @if ($predition->where('participant_id', Auth()->user()->id)->where('match_id', $item->id)->count() < 1)
+                                            @can('participant_prediction_create')
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#model{{ $item->id ?? '' }}">
+                                                    Prediction
+                                                </button>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                Prediction
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="{{ route('client.secondPredition.store') }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                    <input type="hidden" name="tournament_id"
-                                                                        value="{{ $item->tournament_id ?? '' }}">
-                                                                    <input type="hidden" name="match_id"
-                                                                        value="{{ $item->id ?? '' }}">
-                                                                    <input type="hidden" name="type" value="Round of 16">
-                                                                    <div class="col-md-12">
-                                                                        <b>Select Your Win Team</b>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <input type="radio" name="team_id"
-                                                                                value="{{ $item->team1_name->id }}"
-                                                                                id="" required>
-                                                                            <label
-                                                                                for="">{{ $item->team1_name->name }}</label>
-                                                                            <img src="{{ asset($item->team1_name->flag ?? '') }}"
-                                                                                style="height:50px; width:70px;" alt="">
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                    Prediction
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{ route('client.secondPredition.store') }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <input type="hidden" name="tournament_id"
+                                                                            value="{{ $item->tournament_id ?? '' }}">
+                                                                        <input type="hidden" name="match_id"
+                                                                            value="{{ $item->id ?? '' }}">
+                                                                        <input type="hidden" name="type"
+                                                                            value="Round of 16">
+                                                                        <div class="col-md-12">
+                                                                            <b>Select Your Win Team</b>
                                                                         </div>
-                                                                        <div class="form-group">
-                                                                            <label for="">Goals</label>
-                                                                            <input type="number" required name="goal1"
-                                                                                class="form-control">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <input type="radio" name="team_id"
+                                                                                    value="{{ $item->team1_name->id }}"
+                                                                                    id="" required>
+                                                                                <label
+                                                                                    for="">{{ $item->team1_name->name }}</label>
+                                                                                <img src="{{ asset($item->team1_name->flag ?? '') }}"
+                                                                                    style="height:50px; width:70px;"
+                                                                                    alt="">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Goals</label>
+                                                                                <input type="number" required name="goal1"
+                                                                                    class="form-control">
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <input type="radio" name="team_id"
-                                                                                value="{{ $item->team2_name->id }}"
-                                                                                id="" required>
-                                                                            <label
-                                                                                for="">{{ $item->team2_name->name }}</label>
-                                                                            <img src="{{ asset($item->team2_name->flag ?? '') }}"
-                                                                                style="height:50px; width:70px;" alt="">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="">Goals</label>
-                                                                            <input type="number" required name="goal2"
-                                                                                class="form-control">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <input type="radio" name="team_id"
+                                                                                    value="{{ $item->team2_name->id }}"
+                                                                                    id="" required>
+                                                                                <label
+                                                                                    for="">{{ $item->team2_name->name }}</label>
+                                                                                <img src="{{ asset($item->team2_name->flag ?? '') }}"
+                                                                                    style="height:50px; width:70px;"
+                                                                                    alt="">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Goals</label>
+                                                                                <input type="number" required name="goal2"
+                                                                                    class="form-control">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Save
-                                                                    changes</button>
-                                                            </div>
-                                                        </form>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save
+                                                                        changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endcan
+                                            @endcan
                                         @endif
                                     @endif
                                     @can('match_delete')
@@ -214,7 +217,8 @@
                             @php
                                 $point = $predition
                                     ->where('participant_id', Auth()->user()->id)
-                                    ->where('sr', $item->sr)->where('type', 'Quater Final')
+                                    ->where('sr', $item->sr)
+                                    ->where('type', 'Quater Final')
                                     ->first();
                             @endphp
                             <tr>
@@ -237,10 +241,9 @@
                                     {{ $point->win_name->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $point->point ?? '' }}
+                                    {{ $point->point ?? '0' }}
                                 </td>
                                 <td>
-                                    @if (count($quarter)==4 && !isset($point->sr))
                                     @if ($item->win_id == null)
                                         @can('participant_prediction_create')
                                             <!-- Button trigger modal -->
@@ -272,6 +275,8 @@
                                                                         value="{{ $item->tournament_id ?? '' }}">
                                                                     <input type="hidden" name="sr"
                                                                         value="{{ $item->sr ?? '' }}">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $item->id ?? '' }}">
                                                                     <input type="hidden" name="type"
                                                                         value="Quater Final">
                                                                     <div class="col-md-12">
@@ -324,7 +329,6 @@
                                                 </div>
                                             </div>
                                         @endcan
-                                    @endif
                                     @endif
                                     @can('match_delete')
                                         <form action="{{ route('admin.match.destroy', $item->id) }}" method="POST"
@@ -388,7 +392,8 @@
                             @php
                                 $point = $predition
                                     ->where('participant_id', Auth()->user()->id)
-                                    ->where('sr', $item->sr)->where('type', 'Semifinal')
+                                    ->where('sr', $item->sr)
+                                    ->where('type', 'Semifinal')
                                     ->first();
                             @endphp
                             <tr>
@@ -411,94 +416,93 @@
                                     {{ $point->win_name->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $point->point ?? '' }}
+                                    {{ $point->point ?? '0' }}
                                 </td>
-                                <td>@if (count($semi)==2 && !isset($point->sr))
+                                <td>
                                     @if ($item->win_id == null)
-                                            @can('participant_prediction_create')
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#model{{ $item->id ?? '' }}">
-                                                    Prediction
-                                                </button>
+                                        @can('participant_prediction_create')
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#model{{ $item->id ?? '' }}">
+                                                Prediction
+                                            </button>
 
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                    Prediction
-                                                                </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="{{ route('client.secondPredition.store') }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <input type="hidden" name="tournament_id"
-                                                                            value="{{ $item->tournament_id ?? '' }}">
-                                                                        <input type="hidden" name="sr"
-                                                                            value="{{ $item->sr ?? '' }}">
-                                                                        <input type="hidden" name="type"
-                                                                            value="Semifinal">
-                                                                        <div class="col-md-12">
-                                                                            <b>Select Your Win Team</b>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                Prediction
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('client.secondPredition.store') }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <input type="hidden" name="tournament_id"
+                                                                        value="{{ $item->tournament_id ?? '' }}">
+                                                                    <input type="hidden" name="sr"
+                                                                        value="{{ $item->sr ?? '' }}">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $item->id ?? '' }}">
+                                                                    <input type="hidden" name="type" value="Semifinal">
+                                                                    <div class="col-md-12">
+                                                                        <b>Select Your Win Team</b>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <input type="radio" name="team_id"
+                                                                                value="{{ $item->team1_name->id }}"
+                                                                                id="" required>
+                                                                            <label
+                                                                                for="">{{ $item->team1_name->name }}</label>
+                                                                            <img src="{{ asset($item->team1_name->flag ?? '') }}"
+                                                                                style="height:50px; width:70px;"
+                                                                                alt="">
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <input type="radio" name="team_id"
-                                                                                    value="{{ $item->team1_name->id }}"
-                                                                                    id="" required>
-                                                                                <label
-                                                                                    for="">{{ $item->team1_name->name }}</label>
-                                                                                <img src="{{ asset($item->team1_name->flag ?? '') }}"
-                                                                                    style="height:50px; width:70px;"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="">Goals</label>
-                                                                                <input type="number" required name="goal1"
-                                                                                    class="form-control">
-                                                                            </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Goals</label>
+                                                                            <input type="number" required name="goal1"
+                                                                                class="form-control">
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <input type="radio" name="team_id"
-                                                                                    value="{{ $item->team2_name->id }}"
-                                                                                    id="" required>
-                                                                                <label
-                                                                                    for="">{{ $item->team2_name->name }}</label>
-                                                                                <img src="{{ asset($item->team2_name->flag ?? '') }}"
-                                                                                    style="height:50px; width:70px;"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="">Goals</label>
-                                                                                <input type="number" required name="goal2"
-                                                                                    class="form-control">
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <input type="radio" name="team_id"
+                                                                                value="{{ $item->team2_name->id }}"
+                                                                                id="" required>
+                                                                            <label
+                                                                                for="">{{ $item->team2_name->name }}</label>
+                                                                            <img src="{{ asset($item->team2_name->flag ?? '') }}"
+                                                                                style="height:50px; width:70px;"
+                                                                                alt="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Goals</label>
+                                                                            <input type="number" required name="goal2"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save
-                                                                        changes</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            @endcan
-                                        @endif
+                                            </div>
+                                        @endcan
                                     @endif
                                     @can('match_delete')
                                         <form action="{{ route('admin.match.destroy', $item->id) }}" method="POST"
@@ -562,7 +566,8 @@
                             @php
                                 $point = $predition
                                     ->where('participant_id', Auth()->user()->id)
-                                    ->where('sr', $item->sr)->where('type','Third Place')
+                                    ->where('sr', $item->sr)
+                                    ->where('type', 'Third Place')
                                     ->first();
                             @endphp
                             <tr>
@@ -585,96 +590,93 @@
                                     {{ $point->win_name->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $point->point ?? '' }}
+                                    {{ $point->point ?? '0' }}
                                 </td>
                                 <td>
-                                    @if(count($third)==1 && !isset($point->sr))
-                                    @if ($item->win == null)
-                                        
-                                            @can('participant_prediction_create')
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#model{{ $item->id ?? '' }}">
-                                                    Prediction
-                                                </button>
+                                    @if ($item->win_id == null)
+                                        @can('participant_prediction_create')
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#model{{ $item->id ?? '' }}">
+                                                Prediction
+                                            </button>
 
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                    Prediction
-                                                                </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="{{ route('client.secondPredition.store') }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <input type="hidden" name="tournament_id"
-                                                                            value="{{ $item->tournament_id ?? '' }}">
-                                                                        <input type="hidden" name="sr"
-                                                                            value="1">
-                                                                        <div class="col-md-12">
-                                                                            <input type="hidden" name="type"
-                                                                                value="Third Place">
-                                                                            <b>Select Your Win Team</b>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                Prediction
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('client.secondPredition.store') }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <input type="hidden" name="tournament_id"
+                                                                        value="{{ $item->tournament_id ?? '' }}">
+                                                                    <input type="hidden" name="sr" value="1">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $item->id ?? '' }}">
+                                                                    <div class="col-md-12">
+                                                                        <input type="hidden" name="type"
+                                                                            value="Third Place">
+                                                                        <b>Select Your Win Team</b>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <input type="radio" name="team_id"
+                                                                                value="{{ $item->team1_name->id }}"
+                                                                                id="" required>
+                                                                            <label
+                                                                                for="">{{ $item->team1_name->name }}</label>
+                                                                            <img src="{{ asset($item->team1_name->flag ?? '') }}"
+                                                                                style="height:50px; width:70px;"
+                                                                                alt="">
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <input type="radio" name="team_id"
-                                                                                    value="{{ $item->team1_name->id }}"
-                                                                                    id="" required>
-                                                                                <label
-                                                                                    for="">{{ $item->team1_name->name }}</label>
-                                                                                <img src="{{ asset($item->team1_name->flag ?? '') }}"
-                                                                                    style="height:50px; width:70px;"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="">Goals</label>
-                                                                                <input type="number" required name="goal1"
-                                                                                    class="form-control">
-                                                                            </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Goals</label>
+                                                                            <input type="number" required name="goal1"
+                                                                                class="form-control">
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <input type="radio" name="team_id"
-                                                                                    value="{{ $item->team2_name->id }}"
-                                                                                    id="" required>
-                                                                                <label
-                                                                                    for="">{{ $item->team2_name->name }}</label>
-                                                                                <img src="{{ asset($item->team2_name->flag ?? '') }}"
-                                                                                    style="height:50px; width:70px;"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="">Goals</label>
-                                                                                <input type="number" required name="goal2"
-                                                                                    class="form-control">
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <input type="radio" name="team_id"
+                                                                                value="{{ $item->team2_name->id }}"
+                                                                                id="" required>
+                                                                            <label
+                                                                                for="">{{ $item->team2_name->name }}</label>
+                                                                            <img src="{{ asset($item->team2_name->flag ?? '') }}"
+                                                                                style="height:50px; width:70px;"
+                                                                                alt="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Goals</label>
+                                                                            <input type="number" required name="goal2"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save
-                                                                        changes</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            @endcan
-                                        @endif
+                                            </div>
+                                        @endcan
                                     @endif
                                     @can('match_delete')
                                         <form action="{{ route('admin.match.destroy', $item->id) }}" method="POST"
@@ -738,7 +740,8 @@
                             @php
                                 $point = $predition
                                     ->where('participant_id', Auth()->user()->id)
-                                    ->where('sr', $item->sr)->where('type', 'Final')
+                                    ->where('sr', $item->sr)
+                                    ->where('type', 'Final')
                                     ->first();
                             @endphp
                             <tr>
@@ -762,95 +765,93 @@
                                 </td>
                                 <td>
 
-                                    {{ $point->point ?? '' }}
+                                    {{ $point->point ?? '0' }}
                                 </td>
                                 <td>
-                                    @if(count($final)==1 && !isset($point->sr))
-                                    @if ($item->win == null)
-                                        
-                                            @can('participant_prediction_create')
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#model{{ $item->id ?? '' }}">
-                                                    Prediction
-                                                </button>
+                                    @if ($item->win_id == null)
+                                        @can('participant_prediction_create')
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#model{{ $item->id ?? '' }}">
+                                                Prediction
+                                            </button>
 
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">
-                                                                    Prediction
-                                                                </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="{{ route('client.secondPredition.store') }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <input type="hidden" name="tournament_id"
-                                                                            value="{{ $item->tournament_id ?? '' }}">
-                                                                        <input type="hidden" name="sr"
-                                                                            value="{{ $item->sr ?? '' }}">
-                                                                        <input type="hidden" name="type" value="Final">
-                                                                        <div class="col-md-12">
-                                                                            <b>Select Your Win Team</b>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="model{{ $item->id ?? '' }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                Prediction
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('client.secondPredition.store') }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <input type="hidden" name="tournament_id"
+                                                                        value="{{ $item->tournament_id ?? '' }}">
+                                                                    <input type="hidden" name="sr"
+                                                                        value="{{ $item->sr ?? '' }}">
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $item->id ?? '' }}">
+                                                                    <input type="hidden" name="type" value="Final">
+                                                                    <div class="col-md-12">
+                                                                        <b>Select Your Win Team</b>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <input type="radio" name="team_id"
+                                                                                value="{{ $item->team1_name->id ?? '' }}"
+                                                                                id="" required>
+                                                                            <label
+                                                                                for="">{{ $item->team1_name->name ?? '' }}</label>
+                                                                            <img src="{{ asset($item->team1_name->flag ?? '') }}"
+                                                                                style="height:50px; width:70px;"
+                                                                                alt="">
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <input type="radio" name="team_id"
-                                                                                    value="{{ $item->team1_name->id??'' }}"
-                                                                                    id="" required>
-                                                                                <label
-                                                                                    for="">{{ $item->team1_name->name??'' }}</label>
-                                                                                <img src="{{ asset($item->team1_name->flag ?? '') }}"
-                                                                                    style="height:50px; width:70px;"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="">Goals</label>
-                                                                                <input type="number" required name="goal1"
-                                                                                    class="form-control">
-                                                                            </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Goals</label>
+                                                                            <input type="number" required name="goal1"
+                                                                                class="form-control">
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <input type="radio" name="team_id"
-                                                                                    value="{{ $item->team2_name->id??'' }}"
-                                                                                    id="" required>
-                                                                                <label
-                                                                                    for="">{{ $item->team2_name->name??'' }}</label>
-                                                                                <img src="{{ asset($item->team2_name->flag ?? '') }}"
-                                                                                    style="height:50px; width:70px;"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="">Goals</label>
-                                                                                <input type="number" required name="goal2"
-                                                                                    class="form-control">
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <input type="radio" name="team_id"
+                                                                                value="{{ $item->team2_name->id ?? '' }}"
+                                                                                id="" required>
+                                                                            <label
+                                                                                for="">{{ $item->team2_name->name ?? '' }}</label>
+                                                                            <img src="{{ asset($item->team2_name->flag ?? '') }}"
+                                                                                style="height:50px; width:70px;"
+                                                                                alt="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Goals</label>
+                                                                            <input type="number" required name="goal2"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save
-                                                                        changes</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            @endcan
-                                        @endif
+                                            </div>
+                                        @endcan
                                     @endif
                                     @can('match_delete')
                                         <form action="{{ route('admin.match.destroy', $item->id) }}" method="POST"

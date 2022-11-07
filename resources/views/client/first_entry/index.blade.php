@@ -89,7 +89,7 @@
                                 </td>
                                 <td>
 
-                                    {{ $point->point ?? '' }}
+                                    {{ $point->point ?? '0' }}
                                 </td>
                                 <td>
                                     @if ($item->win == null)

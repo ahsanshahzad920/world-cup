@@ -14,8 +14,8 @@ class ParticipantMatch extends Model
     {
         return $this->belongsTo(Team::class, 'team2_id');
     }
-    public function win_name()
+    public function participant_name()
     {
-        return $this->belongsTo(Team::class, 'win');
+        return $this->belongsTo(User::class, 'participant_id');
     }
 }

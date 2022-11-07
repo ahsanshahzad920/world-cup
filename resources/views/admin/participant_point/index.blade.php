@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                         @foreach ($tournament as $index => $item)
-                            @if ($item->participant_name->permission == 1)
+                            @if (isset($item->participant_id) && $item->participant_name->permission == 1)
                                 <tr>
                                     <td>
                                         {{ $index + 1 }}
