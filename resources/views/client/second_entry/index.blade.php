@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 @section('content')
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="card">
         <div class="card-header">
             Matches Round of 16
@@ -137,6 +142,13 @@
                                                                             <div class="form-group">
                                                                                 <label for="">Goals</label>
                                                                                 <input type="number" required name="goal2"
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="">if penalty?</label>
+                                                                                <input type="checkbox" name="penalty"
                                                                                     class="form-control">
                                                                             </div>
                                                                         </div>
@@ -316,6 +328,12 @@
                                                                                 class="form-control">
                                                                         </div>
                                                                     </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="">if penalty?</label>
+                                                                            <input type="checkbox" name="penalty">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -488,6 +506,12 @@
                                                                             <label for="">Goals</label>
                                                                             <input type="number" required name="goal2"
                                                                                 class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="">if penalty?</label>
+                                                                            <input type="checkbox" name="penalty">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -664,6 +688,12 @@
                                                                                 class="form-control">
                                                                         </div>
                                                                     </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="">if penalty?</label>
+                                                                            <input type="checkbox" name="penalty">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -837,6 +867,12 @@
                                                                             <label for="">Goals</label>
                                                                             <input type="number" required name="goal2"
                                                                                 class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="">if penalty?</label>
+                                                                            <input type="checkbox" name="penalty">
                                                                         </div>
                                                                     </div>
                                                                 </div>

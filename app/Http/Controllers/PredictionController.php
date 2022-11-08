@@ -71,6 +71,13 @@ class PredictionController extends Controller
     public function second(Request $request)
     {
         // dd($request->all());
+        $penalty = 1;
+        if($request->penalty=='on'){
+            if($request->goal1 != $request->goal2){
+                return back()->with('error','Penalty not select if match not tie!');
+            }
+            $penalty = 0;
+        }
         $prediction = new Prediction;
         if ($request->type == "Round of 16") {
             $prediction->match_id = $request->match_id;
@@ -87,6 +94,8 @@ class PredictionController extends Controller
         $prediction->team1_goal = $request->goal1;
         $prediction->team2_goal = $request->goal2;
         $prediction->type = $request->type;
+        $prediction->penalty = $penalty;
+        $prediction->team_id = $request->team_id;
         $prediction->save();
         // if ($request->type == 'Round of 16') {
         //     $type = 'Quater Final';

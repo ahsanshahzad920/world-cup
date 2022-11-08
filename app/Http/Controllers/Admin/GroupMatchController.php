@@ -149,7 +149,7 @@ class GroupMatchController extends Controller
         $match->goal2 = 0;
         $match->win = null;
         $match->update();
-        return back()->with('success','Match reset!');
+        return back()->with('success', 'Match reset!');
     }
     /**
      * Update the specified resource in storage.
@@ -160,6 +160,7 @@ class GroupMatchController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         try {
             $validation = $request->validate(
                 [
@@ -170,7 +171,7 @@ class GroupMatchController extends Controller
             $match = GroupMatch::find($id);
             if ($request->goal1 > $request->goal2) {
                 if ($match->type == 'Quater Final' || $match->type == 'Semifinal' || $match->type == 'Third Place' || $match->type == 'Final') {
-                    
+
                     $group = Group::where('team_id', $match->team1_id)->where('tournament_id', $request->tournament_id)->first();
                     $group->total_points = $group->total_points + 2;
                     $group->win = $group->win + 1;
@@ -181,7 +182,7 @@ class GroupMatchController extends Controller
                         if ($request->penalty == 'on' && isset($participant_point)) {
                             $participant_point->points = $participant_point->points + 1;
                             $item->point = 1;
-                        } elseif(isset($participant_point)) {
+                        } elseif (isset($participant_point)) {
                             if ($request->goal1 == $item->team1_goal && $request->goal2 == $item->team2_goal) {
                                 $participant_point->points = $participant_point->points + 4;
                                 $item->point = 4;
@@ -192,7 +193,7 @@ class GroupMatchController extends Controller
                                 $participant_point->points = $participant_point->points + 1;
                                 $item->point = 1;
                             }
-                        }else{
+                        } else {
                             $item->point = 0;
                         }
                         if ($match->team1_id == $item->team_id && $match->type == "Final") {
@@ -213,7 +214,7 @@ class GroupMatchController extends Controller
                         if ($request->penalty == 'on' && isset($participant_point)) {
                             $participant_point->points = $participant_point->points + 1;
                             $item->point = 1;
-                        } elseif(isset($participant_point)) {
+                        } elseif (isset($participant_point)) {
                             if ($request->goal1 == $item->team1_goal && $request->goal2 == $item->team2_goal) {
                                 $participant_point->points = $participant_point->points + 4;
                                 $item->point = 4;
@@ -224,7 +225,7 @@ class GroupMatchController extends Controller
                                 $participant_point->points = $participant_point->points + 1;
                                 $item->point = 1;
                             }
-                        }else{
+                        } else {
                             $item->point = 0;
                         }
                         if ($match->team1_id == $item->team_id && $match->type == "Final" && isset($participant_point)) {
@@ -235,15 +236,42 @@ class GroupMatchController extends Controller
                         $participant_point->update();
                     }
                 }
-            }elseif($request->goal1 == $request->goal2){
+            } elseif ($request->goal1 == $request->goal2) {
                 if ($match->type == 'Quater Final' || $match->type == 'Semifinal' || $match->type == 'Third Place' || $match->type == 'Final') {
-                    $group = Group::where('team_id', $match->team1_id)->where('tournament_id', $request->tournament_id)->first();
-                    $group->total_points = $group->total_points + 1;
+                    $group = Group::where('team_id', $request->team_id)->where('tournament_id', $request->tournament_id)->first();
+                    $group->total_points = $group->total_points + 2;
                     $group->update();
-                    $group1 = Group::where('team_id', $match->team2_id)->where('tournament_id', $request->tournament_id)->first();
-                    $group1->total_points = $group1->total_points + 1;
-                    $group1->update();
-                    $match->win=0;
+                    $match->win = $request->team_id;
+                    $predition = Prediction::where('sr', $match->sr)->where('team_id', $request->team_id)->where('tournament_id', $request->tournament_id)->where('type', $match->type)->where('penalty', 0)->get();
+                    foreach ($predition as $item) {
+                        $participant_point = ParticipantPoint::where('participant_id', $item->participant_id)->where('tournament_id', $request->tournament_id)->first();
+                        if ($request->penalty == 'on' && isset($participant_point)) {
+                            if ($item->team1_goal == $request->goal1 && $request->team_id == $item->team_id) {
+                                $participant_point->points = $participant_point->points + 5;
+                                $item->point = 5;
+                            } else {
+                                $participant_point->points = $participant_point->points + 4;
+                                $item->point = 4;
+                            }
+                        } elseif ($request->penalty == 'on' && isset($participant_point)) {
+                            if ($item->team1_goal != $request->goal1 && $request->team_id == $item->team_id) {
+                                $participant_point->points = $participant_point->points + 3;
+                                $item->point = 3;
+                            } else {
+                                $participant_point->points = $participant_point->points + 2;
+                                $item->point = 2;
+                            }
+                        } else {
+                            $item->point = 0;
+                        }
+                        if ($match->team1_id == $item->team_id && $match->type == "Final") {
+                            $participant_point->points = $participant_point->points + 10;
+                            $participant_point->update();
+                            $item->point = 10;
+                        }
+                        $item->update();
+                        $participant_point->update();
+                    }
                 } else {
                     $group = Group::where('team_id', $match->team2_id)->where('tournament_id', $request->tournament_id)->first();
                     $group = Group::where('team_id', $match->team1_id)->where('tournament_id', $request->tournament_id)->first();
@@ -252,7 +280,7 @@ class GroupMatchController extends Controller
                     $group1 = Group::where('team_id', $match->team2_id)->where('tournament_id', $request->tournament_id)->first();
                     $group1->total_points = $group1->total_points + 1;
                     $group1->update();
-                    $match->win=0;
+                    $match->win = $request->team_id;
                 }
             } else {
                 if ($match->type == 'Quater Final' || $match->type == 'Semifinal' || $match->type == 'Third Place' || $match->type == 'Final') {
@@ -266,7 +294,7 @@ class GroupMatchController extends Controller
                         if ($request->penalty == 'on' && isset($participant_point)) {
                             $participant_point->points = $participant_point->points + 1;
                             $item->point = 1;
-                        } elseif(isset($participant_point)) {
+                        } elseif (isset($participant_point)) {
                             if ($request->goal1 == $item->team1_goal && $request->goal2 == $item->team2_goal) {
 
                                 $participant_point->points = $participant_point->points + 4;
@@ -278,7 +306,7 @@ class GroupMatchController extends Controller
                                 $participant_point->points = $participant_point->points + 1;
                                 $item->point = 1;
                             }
-                        }else{
+                        } else {
                             $item->point = 0;
                         }
                         $item->update();
@@ -295,7 +323,7 @@ class GroupMatchController extends Controller
                         if ($request->penalty == 'on' && isset($participant_point)) {
                             $participant_point->points = $participant_point->points + 1;
                             $item->point = 1;
-                        } elseif(isset($participant_point)) {
+                        } elseif (isset($participant_point)) {
                             if ($request->goal1 == $item->team1_goal && $request->goal2 == $item->team2_goal) {
 
                                 $participant_point->points = $participant_point->points + 4;
@@ -307,7 +335,7 @@ class GroupMatchController extends Controller
                                 $participant_point->points = $participant_point->points + 1;
                                 $item->point = 1;
                             }
-                        }else{
+                        } else {
                             $item->point = 0;
                         }
                         $item->update();
