@@ -116,6 +116,10 @@ class GroupMatchController extends Controller
         $match->time = $request->time;
         $match->ground = $request->ground;
         $match->type = $request->type;
+        if($request->type == 'Quater Final' || $request->type == 'Semifinal' || $request->type == 'Third Place' || $request->type == 'Final'){
+            $match_sr = GroupMatch::where('type',$request->type)->max('sr');
+            $match->sr = $match_sr+1;
+        }
         $match->city = $request->city;
         $match->update();
         return redirect('admin/match/' . $request->group . '/' . $request->tournament_id)->with('success', 'Group ' . $request->group . ' Match has updated!');
@@ -237,27 +241,29 @@ class GroupMatchController extends Controller
                     }
                 }
             } elseif ($request->goal1 == $request->goal2) {
-                if ($match->type == 'Quater Final' || $match->type == 'Semifinal' || $match->type == 'Third Place' || $match->type == 'Final') {
+                if ($match->type == 'Round of 16' || $match->type == 'Quater Final' || $match->type == 'Semifinal' || $match->type == 'Third Place' || $match->type == 'Final') {
                     $group = Group::where('team_id', $request->team_id)->where('tournament_id', $request->tournament_id)->first();
                     $group->total_points = $group->total_points + 2;
                     $group->update();
                     $match->win = $request->team_id;
-                    $predition = Prediction::where('sr', $match->sr)->where('team_id', $request->team_id)->where('tournament_id', $request->tournament_id)->where('type', $match->type)->where('penalty', 0)->get();
+                    if($match->type == 'Round of 16'){
+                        $predition = Prediction::where('team_id', $request->team_id)->where('tournament_id', $request->tournament_id)->where('type', $match->type)->where('penalty', 0)->get();
+                    }else{
+                        $predition = Prediction::where('sr', $match->sr)->where('team_id', $request->team_id)->where('tournament_id', $request->tournament_id)->where('type', $match->type)->where('penalty', 0)->get();
+                    }
                     foreach ($predition as $item) {
                         $participant_point = ParticipantPoint::where('participant_id', $item->participant_id)->where('tournament_id', $request->tournament_id)->first();
                         if ($request->penalty == 'on' && isset($participant_point)) {
                             if ($item->team1_goal == $request->goal1 && $request->team_id == $item->team_id) {
                                 $participant_point->points = $participant_point->points + 5;
                                 $item->point = 5;
-                            } else {
+                            } elseif ($item->team1_goal == $request->goal1 && $request->team_id != $item->team_id) {
                                 $participant_point->points = $participant_point->points + 4;
                                 $item->point = 4;
-                            }
-                        } elseif ($request->penalty == 'on' && isset($participant_point)) {
-                            if ($item->team1_goal != $request->goal1 && $request->team_id == $item->team_id) {
+                            }elseif ($item->team1_goal != $request->goal1 && $request->team_id == $item->team_id){
                                 $participant_point->points = $participant_point->points + 3;
                                 $item->point = 3;
-                            } else {
+                            }else {
                                 $participant_point->points = $participant_point->points + 2;
                                 $item->point = 2;
                             }

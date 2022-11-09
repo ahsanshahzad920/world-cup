@@ -73,13 +73,13 @@
                                     {{ $item->team1_name->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $point->team1_goal ?? '' }}
+                                    {{ $item->goal1 ?? '' }}
                                 </td>
                                 <td>
                                     {{ $item->team2_name->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $point->team2_goal ?? '' }}
+                                    {{ $item->goal2 ?? '' }}
                                 </td>
                                 <td>
                                     {{ $item->date ?? '' }}

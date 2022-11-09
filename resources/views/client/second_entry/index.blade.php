@@ -148,8 +148,7 @@
                                                                         <div class="col-md-12">
                                                                             <div class="form-group">
                                                                                 <label for="">if penalty?</label>
-                                                                                <input type="checkbox" name="penalty"
-                                                                                    class="form-control">
+                                                                                <input type="checkbox" name="penalty">
                                                                             </div>
                                                                         </div>
                                                                     </div>
