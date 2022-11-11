@@ -279,6 +279,25 @@ class GroupMatchController extends Controller
                         $participant_point->update();
                     }
                 } else {
+                    $predition = Prediction::where('match_id', $match->id)->where('team_id', $request->team_id)->where('tournament_id', $request->tournament_id)->where('type', $match->type)->get();
+                    foreach ($predition as $item) {
+                        $participant_point = ParticipantPoint::where('participant_id', $item->participant_id)->where('tournament_id', $request->tournament_id)->first();
+                        if (isset($participant_point)) {
+                            if ($item->team1_goal == $request->goal1 && $item->team2_goal == $request->goal2 && $request->team_id == $item->team_id) {
+                                $participant_point->points = $participant_point->points + 4;
+                                $item->point = 4;
+                            } 
+                        } else {
+                            $item->point = 0;
+                        }
+                        if ($match->team1_id == $item->team_id && $match->type == "Final") {
+                            $participant_point->points = $participant_point->points + 10;
+                            $participant_point->update();
+                            $item->point = 10;
+                        }
+                        $item->update();
+                        $participant_point->update();
+                    }
                     $group = Group::where('team_id', $match->team2_id)->where('tournament_id', $request->tournament_id)->first();
                     $group = Group::where('team_id', $match->team1_id)->where('tournament_id', $request->tournament_id)->first();
                     $group->total_points = $group->total_points + 1;
