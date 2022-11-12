@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">
             Group Matches
-            @if ($match->count() == $predition->where('participant_id', Auth()->user()->id)->count())
+            @if ($match->count() == $predition->where('participant_id', Auth()->user()->id)->where('type','Group Match')->count())
                 <button class="btn btn-primary" data-toggle="modal" data-target="#winner">World Cup Winner</button>
             @endif
         </div>
@@ -12,7 +12,7 @@
             @php
                                 $winner = $predition
                                     ->where('participant_id', Auth()->user()->id)
-                                    ->where('match_id', null)
+                                    ->where('match_id', null)->where('type','winner')
                                     ->first();
                             @endphp
             @if($winner!=null)

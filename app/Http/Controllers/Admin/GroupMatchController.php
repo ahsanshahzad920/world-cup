@@ -286,7 +286,9 @@ class GroupMatchController extends Controller
                             if ($item->team1_goal == $request->goal1 && $item->team2_goal == $request->goal2 && $request->team_id == $item->team_id) {
                                 $participant_point->points = $participant_point->points + 4;
                                 $item->point = 4;
-                            } 
+                            }elseif ($item->team1_goal != $request->goal1 && $item->team2_goal != $request->goal2 && $request->goal1 == $request->goal2){
+                                $item->point = 2;
+                            }
                         } else {
                             $item->point = 0;
                         }
